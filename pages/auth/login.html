@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
 </head>
 
-<body class="app app-signup p-0">
+<body class="app app-login p-0">
     <div class="row g-0 app-auth-wrapper">
         <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
             <div class="d-flex flex-column align-content-end">
@@ -30,18 +30,23 @@
                     <h2 class="auth-heading text-center mb-4">Acesse sua conta</h2>
 
                     <div class="auth-form-container text-start mx-auto">
-                        <form action="#" class="auth-form auth-signup-form">
+                        <form action="#" class="auth-form auth-login-form">
 
                             <div class="email mb-3">
-                                <label for="signup-email" class="sr-only">Seu email</label>
-                                <input type="email" name="signup-email" id="signup-email"
-                                    class="form-control signup-email" required="required" placeholder="Seu email">
+                                <label for="login-email" class="sr-only">Seu email</label>
+                                <input type="email" name="login-email" id="login-email" class="form-control login-email"
+                                    required="required" placeholder="Seu email">
 
                             </div>
                             <div class="password mb-3">
-                                <label class="sr-only" for="signup-password">Senha</label>
-                                <input type="password" id="signup-password" name="signup-password"
-                                    class="form-control signup-password" required="required" placeholder="Sua senha">
+                                <label class="sr-only" for="login-password">Senha</label>
+                                <div class="input-group">
+                                    <input type="password" id="login-password" name="login-password"
+                                        class="form-control login-password" required="required" placeholder="Sua senha">
+                                    <button type="button" class="btn btn-secondary" id="show-password">
+                                        <i id="show-pass-icon" class="fas fa-eye-slash"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="text-center">
                                 <button type="submit"
@@ -80,7 +85,7 @@
 
 
     </div><!-- //row-->
-
+   <script src="../../assets/js/auth/login-assets.js"></script>
 </body>
 
 </html>
