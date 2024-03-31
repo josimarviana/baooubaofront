@@ -1,7 +1,0 @@
-{
-  "liveServer.settings.port": 5501,
-  "files.exclude": {
-    ".DS_Store": "explorerExcludedFiles",
-    "config.codekit3": "explorerExcludedFiles"
-  }
-}
