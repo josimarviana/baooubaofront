@@ -49,9 +49,9 @@
                         </div><!--//app-search-box-->
 
                         <div class="app-utilities col-auto">
-                            <div class="app-utility-item app-notifications-dropdown dropdown">
-                                <a href="#" class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
-                                    data-bs-toggle="dropdown" role="button" aria-expanded="false" title="Notifications">
+                            <div class="app-utility-item app-proposals-dropdown dropdown">
+                                <a href="#" class="dropdown-toggle no-toggle-arrow" id="proposals-dropdown-toggle"
+                                    data-bs-toggle="dropdown" role="button" aria-expanded="false" title="proposals">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
@@ -61,7 +61,7 @@
                                     <span class="icon-badge">3</span>
                                 </a><!--//dropdown-toggle-->
 
-                                <div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
+                                <div class="dropdown-menu p-0" aria-labelledby="proposals-dropdown-toggle">
                                     <div class="dropdown-menu-header p-3">
                                         <h5 class="dropdown-menu-title mb-0">Notificações</h5>
                                     </div><!--//dropdown-menu-header-->
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="notifications.html" class="link-mask"></a>
+                                            <a href="proposals.html" class="link-mask"></a>
                                         </div><!--//item-->
 
 
@@ -114,7 +114,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="notifications.html" class="link-mask"></a>
+                                            <a href="proposals.html" class="link-mask"></a>
                                         </div><!--//item-->
                                         <div class="item p-3">
                                             <div class="row gx-2 justify-content-between align-items-center">
@@ -136,15 +136,15 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a class="link-mask" href="notifications.html"></a>
+                                            <a class="link-mask" href="proposals.html"></a>
                                         </div><!--//item-->
                                     </div><!--//dropdown-menu-content-->
                                     <div class="dropdown-menu-footer p-2 text-center">
-                                        <a href="notifications.html">Ver todas</a>
+                                        <a href="proposals.html">Ver todas</a>
                                     </div>
 
                                 </div><!--//dropdown-menu-->
-                            </div><!--//app-notifications-dropdown-->
+                            </div><!--//app-proposals-dropdown-->
 
                             <div class="app-utility-item">
                                 <a href="settings.html" title="Settings">
@@ -572,7 +572,40 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div class="app-card app-card-proposal shadown-sm mb-4">
+                            <div class="app-card-header px-4 py-3">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-12 col-lg-auto text-center text-lg-start">
+                                        <i class="fas fa-file-alt text-file"></i>
+                                    </div><!--//col-->
+                                    <div class="col-12 col-lg-auto text-center text-lg-start">
+                                        <div class="proposal-type mb-2"><span class="badge bg-info">Em
+                                                votação</span></div>
+                                        <h4 class="proposal-title mb-1">Título da proposta</h4>
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//app-card-header-->
+                            <div class="app-card-body p-4">
+                                <div class="proposal-content">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil laboriosam rem iste,
+                                    fugit iure aperiam quas, officiis dolorum aspernatur ab suscipit perferendis non.
+                                    Quisquam maxime, in omnis voluptates nemo nihil?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, soluta corrupti ut,
+                                    modi repellat cum aspernatur minima voluptatibus odit quo, praesentium omnis aliquam
+                                    aut eius quas! Officiis ullam reprehenderit necessitatibus.
+                                </div>
 
+                            </div><!--//app-card-body-->
+                            <hr>
+                            <div class="col-12 col-lg-auto text-center text-lg-start">
+                                Categorias:
+                            </div>
+                            <hr>
+                            <div class="app-card-footer px-4 py-3">
+                                <a href="#" class="text-action-links">Votos</a>
+                                <span>0</span>
+                            </div><!--//app-card-footer-->
+                        </div><!--//app-card-->
                     </div><!--//modal-body-->
                 </div>
             </div>
