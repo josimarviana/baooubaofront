@@ -60,6 +60,21 @@
                                     class="form-control signup-confirm-password" required="required"
                                     placeholder="Confirme sua senha">
                             </div>
+                            <div class="mb-3">
+                                <p class="mb-1">Tipo de usuário:</p>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="student" name="type[]" value="student">
+                                    <label class="form-check-label" for="student">Estudante</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="teacher" name="type[]" value="teacher">
+                                    <label class="form-check-label" for="teacher">Docente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="tae" name="type[]" value="tae">
+                                    <label class="form-check-label" for="tae">TAE</label>
+                                </div>
+                            </div>
                             <div class="text-center">
                                 <button type="submit"
                                     class="btn app-btn-primary w-100 theme-btn mx-auto">Cadastrar-se</button>
