@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Mod.Usuários - Bão ou Não</title>
+    <title>Home - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -294,135 +294,150 @@
             </di><!--//app-sidepanel-->
     </header><!--//app-header-->
 
-    <div class="app-wrapper">
-        <div class="app-content pt-3 p-md-3 p-lg-4">
-            <div class="container-xl">
-                <div class="row g-3 mb-4 alignt-items-center justify-content-between">
-                    <div class="col-auto">
-                        <h1 class="app-page-title mb-0">Usuários</h1>
-                    </div><!--//col-->
-                    <div class="col-auto">
-                        <div class="page-utilities">
-                            <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                                <div class="col-auto">
-                                    <form action="#" class="table-search-form row gx-1 align-items-center">
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    
+    <head>
+        <title>Home - Bão ou Não</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
+        <meta name="author" content="Cristian Alves Silva">
+        <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
+    
+        <!-- FontAwesome JS -->
+        <script defer src="../../assets/fontawesome/js/all.min.js"></script>
+        <!-- App CSS-->
+        <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
+    </head>
+    
+    <body class="app">
+        <div class="app-wrapper">
+            <div class="app-content p-3 p-md-3 p-lg-4">
+                <h1 class="app-page-title">Nova proposta</h1>
+                
+                <div class="row g-4 new-proposal-section justify-content-center">
+                    <div class="col-12 col-md-12">
+                        <div class="app-card app-card-new-proposal shadow-sm p-4">
+                            <div class="app-card-boddy">
+                                <form class="new-proposal-form">
+                                    <div class="mb-3">
+                                        <label for="proposal-title" class="form-label">Título<span class="ms-2"
+                                                data-bs-container="body" data-bs-toggle="popover"
+                                                data-bs-trigger="hover focus" data-bs-placement="top"
+                                                data-bs-content="Informe um título que faça sentido com sua proposta, pois é por ele que as pessoas terão interesse em ler mais sobre."><svg
+                                                    width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
+                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                    <path
+                                                        d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
+                                                    <circle cx="8" cy="4.5" r="1" />
+                                                </svg></span></label>
+                                        <input type="text" name="proposal-title" id="proposal-title" class="form-control"
+                                            required="required" />
+    
+                                    </div>
+    
+                                    <div class="mb-3">
+                                        <label for="proposal-description" class="form-label">Descrição</label>
+                                        <textarea name="proposal-description" class="form-control h-100"
+                                            id="proposal-description" cols="30" rows="7" required="required"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="proposal-image">Imagem<span class="ms-2"
+                                                data-bs-container="body" data-bs-toggle="popover"
+                                                data-bs-trigger="hover focus" data-bs-placement="top"
+                                                data-bs-content="Adicione uma imagem que ajude a descrever seu projeto, seja um modelo pronto ou algum esboço da sua ideia."><svg
+                                                    width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
+                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                    <path
+                                                        d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
+                                                    <circle cx="8" cy="4.5" r="1" />
+                                                </svg></span></label>
+                                        <input type="file" name="proposal-image" id="proposal-image" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+    
+                                        <label for="proposal-category" class="form-label">Categorias</label>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="proposal-category-1">
+                                            <label class="form-check-label" for="proposal-category-1">
+                                                Infraestrutura
+                                            </label>
+    
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="proposal-category-1">
+                                            <label class="form-check-label" for="proposal-category-1">
+                                                Corpo docente
+                                            </label>
+    
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="proposal-category-1">
+                                            <label class="form-check-label" for="proposal-category-1">
+                                                Coordenação
+                                            </label>
+    
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="proposal-category-1">
+                                            <label class="form-check-label" for="proposal-category-1">
+                                                Ensino
+                                            </label>
+    
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="proposal-category-1">
+                                            <label class="form-check-label" for="proposal-category-1">
+                                                Biblioteca
+                                            </label>
+    
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row justify-content-between">
                                         <div class="col-auto">
-                                            <input type="text" name="search-users" id="search-users"
-                                                class="form-control search-users" placeholder="Pesquisar">
+                                            <a class="btn app-btn-primary" href="#">Salvar</a>
                                         </div>
                                         <div class="col-auto">
-                                            <button type="submit" class="btn app-btn-secondary">Buscar</button>
+                                            <a class="btn app-btn-secondary" href="#">Cancelar</a>
                                         </div>
-                                    </form>
-                                </div><!--//col-->
-
-                                <div class="col-auto">
-                                    <select class="form-select w=auto">
-                                        <option selected value="option-1">Todos</option>
-                                        <option value="option-2">Opção 2</option>
-                                        <option value="option-3">Opção 3</option>
-                                        <option value="option-4">Opção 4</option>
-                                        <option value="option-5">Opção 5</option>
-                                    </select>
-                                </div><!--//col-auto-->
-
-                            </div><!--//row-->
-                        </div><!--//page-utilities-->
-                    </div><!--//col-auto-->
-                </div><!--//row-->
-
-                <!-- <nav id="users-table-tab"
-                    class="users-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link active" id="users-" data-bs-toggle="tab"
-                        role="tab" aria-controls="users-" aria-selected="false">ID</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Nome</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Email</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Tipo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Ativo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Criado em:</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Atualizado em:</a>
-                </nav> -->
-                <div class="tab-content" id="users-table-tab-content">
-                    <div class="tab-pane fade show active" id="users-all" role="tabpanel"
-                        aria-labelledby="users-all-tab">
-                        <div class="app-card app-card-users-table shadow-sm mb-5">
-                            <div class="app-card-body">
-                                <div class="table-responsive">
-                                    <table class="table app-table-hover mb-0 text-left">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Tipo</th>
-                                                <th>Ativo</th>
-                                                <th>Criado em:</th>
-                                                <th>Atualizado em:</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="cell">1</td>
-                                                <td class="cell">Cristian Alves</td>
-                                                <td class="cell">cristian.silva@estudante.iftm.edu.br</td>
-                                                <td class="cell">Estudante</td>
-                                                <td class="cell">Sim</td>
-                                                <td class="cell">01/04/2023</td>
-                                                <td class="cell">02/04/2023</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cell">2</td>
-                                                <td class="cell">Josimar Viana Silva</td>
-                                                <td class="cell">josimarviana@iftm.edu.br</td>
-                                                <td class="cell">Docente</td>
-                                                <td class="cell">Sim</td>
-                                                <td class="cell">01/04/2023</td>
-                                                <td class="cell">02/04/2023</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cell">3</td>
-                                                <td class="cell">Elisabete Xavier</td>
-                                                <td class="cell">elisabete.xavier@estudante.iftm.edu.br</td>
-                                                <td class="cell">Estudante</td>
-                                                <td class="cell">Sim</td>
-                                                <td class="cell">31/03/2024</td>
-                                                <td class="cell">02/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cell">4</td>
-                                                <td class="cell">Felipe Soares</td>
-                                                <td class="cell">felipe.soares@estudante.iftm.edu.br</td>
-                                                <td class="cell">Estudante</td>
-                                                <td class="cell">Não</td>
-                                                <td class="cell">05/02/2023</td>
-                                                <td class="cell">28/07/2023</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cell">5</td>
-                                                <td class="cell">Hyan Lucas</td>
-                                                <td class="cell">hyan.caixeta@estudante.iftm.edu.br</td>
-                                                <td class="cell">Estudante</td>
-                                                <td class="cell">Sim</td>
-                                                <td class="cell">22/09/2021</td>
-                                                <td class="cell">02/04/2024</td>
-                                            </tr>
-                                          
-                                        </tbody>
-                                    </table>
-                                </div><!--/table-responsive-->
+                                    </div>
+                                </form><!--//new-proposal-form-->
                             </div><!--//app-card-body-->
-                        </div><!--//app-card-users-table-->
-                    </div><!--//tab-pane-->
-                </div><!--//users-table-tab-conten-->
-            </div><!--//container-xl-->
-        </div><!--//app-content-->
-    </div><!--//app-wrapper-->
+                        </div><!--//app-card-->
+                    </div><!--//col-->
+                </div><!--//row-->
+            </div><!--//app-content-->
+        </div><!--//app-wrapper-->
+    
+    
+    
+    
+    
+        <!-- Javascript-->
+        <script src="../../assets/plugins/popper.min.js"></script>
+        <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+        <!--Specific page Js-->
+        <script src="../../assets/js/app/app.js"></script>
+    </body>
+    
+    </html>
 
 
     <!-- Javascript-->
