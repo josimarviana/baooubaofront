@@ -49,9 +49,9 @@
                         </div><!--//app-search-box-->
 
                         <div class="app-utilities col-auto">
-                            <div class="app-utility-item app-proposals-dropdown dropdown">
-                                <a href="#" class="dropdown-toggle no-toggle-arrow" id="proposals-dropdown-toggle"
-                                    data-bs-toggle="dropdown" role="button" aria-expanded="false" title="proposals">
+                            <div class="app-utility-item app-notifications-dropdown dropdown">
+                                <a href="#" class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
+                                    data-bs-toggle="dropdown" role="button" aria-expanded="false" title="Notifications">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
@@ -61,7 +61,7 @@
                                     <span class="icon-badge">3</span>
                                 </a><!--//dropdown-toggle-->
 
-                                <div class="dropdown-menu p-0" aria-labelledby="proposals-dropdown-toggle">
+                                <div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
                                     <div class="dropdown-menu-header p-3">
                                         <h5 class="dropdown-menu-title mb-0">Notificações</h5>
                                     </div><!--//dropdown-menu-header-->
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="proposals.html" class="link-mask"></a>
+                                            <a href="notifications.html" class="link-mask"></a>
                                         </div><!--//item-->
 
 
@@ -114,7 +114,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="proposals.html" class="link-mask"></a>
+                                            <a href="notifications.html" class="link-mask"></a>
                                         </div><!--//item-->
                                         <div class="item p-3">
                                             <div class="row gx-2 justify-content-between align-items-center">
@@ -136,15 +136,15 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a class="link-mask" href="proposals.html"></a>
+                                            <a class="link-mask" href="notifications.html"></a>
                                         </div><!--//item-->
                                     </div><!--//dropdown-menu-content-->
                                     <div class="dropdown-menu-footer p-2 text-center">
-                                        <a href="proposals.html">Ver todas</a>
+                                        <a href="notifications.html">Ver todas</a>
                                     </div>
 
                                 </div><!--//dropdown-menu-->
-                            </div><!--//app-proposals-dropdown-->
+                            </div><!--//app-notifications-dropdown-->
 
                             <div class="app-utility-item">
                                 <a href="settings.html" title="Settings">
@@ -203,7 +203,7 @@
                                 <span class="nav-link-text">Início</span>
                             </a><!--//nav-link-->
                         </li><!--//nav-item-->
-                        <li class="nav-item"><a href="#" class="nav-link">
+                        <li class="nav-item"><a href="my-proposal.html" class="nav-link">
                                 <span class="nav-icon"> <svg width="1em" height="1em" viewBox="0 0 16 16"
                                         class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -294,17 +294,15 @@
             </di><!--//app-sidepanel-->
     </header><!--//app-header-->
 
-
     <div class="app-wrapper">
         <div class="app-content pt-3 p-md-3 p-lg-4">
-            <div class="row g-3 mb-4 align-items-center justify-content-between">
-                <div class="col-auto">
-                    <h1 class="app-page-title mb-0">Minhas propostas</h1>
-                </div><!--//col-->
-                <div class="col-auto">
-                    <div class="page-utilities">
-                        <div class="row g-2 justify-content-start justify-content-md-end alignt-items-center">
-
+            <div class="container-xl">
+                <div class="row g-3 mb-4 align-items-center justify-content-between">
+                    <div class="col">
+                        <h1 class="app-page-title mb-0">Minhas propostas</h1>
+                    </div>
+                    <div class="col-auto text-end">
+                        <form action="#" class="docs-search-form row gx-1 align-items-center">
                             <div class="col-auto">
                                 <a href="new-proposal.html" class="btn app-btn-primary">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus"
@@ -316,330 +314,132 @@
                                     </svg>
                                     Nova proposta
                                 </a>
-                            </div><!--//row-->
+                            </div>
+                        </form>
+                    </div><!--//col-->
 
-                        </div><!--//page-utilities-->
-                    </div><!--//col-auto-->
+
                 </div><!--//row-->
+
 
                 <div class="row g-4">
-                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
-                        <div class="app-card app-card-doc shadow-sm h-100">
-                            <div class="app-card-thumb-holder p-3">
-                                <span class="icon-holder">
-                                    <i class="fas fa-file-alt text-file"></i>
-                                </span>
-                                <!-- <span class="badge bg-success">Novo</span> -->
-                                <a href="#file-link" class="app-card-link-mask"></a>
-                            </div><!--//app-card-thumb-holder -->
-                            <div class="app-card-body p-3 has-card-actions">
-                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Lorem ipsum</a></h4>
-                                <div class="app-doc-meta">
-                                    <ul class="list-unstyled">
-                                        <li><span class="text-muted">Autor:</span></li>
-                                        <li><span class="text-muted">Criação:</span></li>
-                                        <li><span class="text-muted">Categoria:</span></li>
-                                    </ul>
-                                </div><!--//app-doc-meta-->
-                                <div class="app-card-actions">
-                                    <div class="dropdown">
-                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                                class="bi bi-three-dots-vertical" fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="col-12 col-lg-4">
+                        <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
+                            <div class="app-card-header p-3 border-bottom-0">
+                                <div class="row align-items-center gx-3">
+                                    <div class="col-auto">
+                                        <div class="app-icon-holder">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
-                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </div><!--//dropdown-toggle-->
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#proposalModal">
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                                        class="bi bi-eye me-2" fill="currentColor"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                                    </svg>Ver
-                                                </a></li><!--//dropdown-item-->
-                                            <a class="dropdown-item" href="#"><svg width="1em" height="1em"
-                                                    viewBox="0 0 16 16" class="bi bi-pencil me-2" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                </svg>Editar</a></li><!--//dropdown-item-->
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
-                                                        viewBox="0 0 16 16" class="bi bi-trash me-2" fill="currentColor"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>Deletar</a></li>
-                                        </ul><!--//dropdown-menu-->
-                                    </div><!--//dropdown-->
-                                </div><!--//app-card-actions-->
-                            </div><!--//app-card-body-->
-                        </div><!--app-card-->
-
-
-                    </div><!--//col-->
-                    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
-                        <div class="app-card app-card-doc shadown-sm h-100">
-                            <div class="app-card-thumb-holder p-3">
-                                <span class="icon-holder">
-                                    <i class="fas fa-file-alt text-file"></i>
-                                </span>
-                                <a href="#file-link" class="app-card-link-mask"></a>
-
-                            </div><!--//app-card-thumb-holder-->
-                            <div class="app-card-body p-3 has-card-actions">
-                                <h4 class="app-doc-title truncate mb-0"><a href="#file-link">Lorem ipsum</a></h4>
-                                <div class="app-doc-meta">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><span class="text-muted">Autor:</span></li>
-                                        <li><span class="text-muted">Criação:</span></li>
-                                        <li><span class="text-muted">Categoria:</span></li>
-                                    </ul>
-                                </div><!--//app-doc-meta-->
-                                <div class="app-card-actions">
-                                    <div class="dropdown">
-                                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                                class="bi bi-three-dots-vertical" fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                    d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                                                 <path fill-rule="evenodd"
-                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                                    d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
                                             </svg>
-                                        </div><!--//dropdown-toggle-->
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="dropdown-item">
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                                        class="bi bi-eye me-2" fill="currentColor"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                                    </svg>Ver
-                                                </a></li><!--//dropdown-item-->
-                                            <a class="dropdown-item" href="#"><svg width="1em" height="1em"
-                                                    viewBox="0 0 16 16" class="bi bi-pencil me-2" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                </svg>Editar</a></li><!--//dropdown-item-->
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#"><svg width="1em" height="1em"
-                                                        viewBox="0 0 16 16" class="bi bi-trash me-2" fill="currentColor"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>Deletar</a></li>
-                                        </ul><!--//dropdown-menu-->
-                                    </div><!--//dropdown-->
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h4 class="app-card-title">Title</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-card-body px-4">
+                                <div class="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quidem
+                                    nesciunt, debitis sequi magni voluptatum officiis aut molestias consequatur in
+                                    ullam, dolorum repellendus, atque ipsum saepe sapiente voluptate exercitationem
+                                    soluta!
+                                </div>
+                            </div>
+                            <div class="app-card-footer p-4 mt-auto">
+                                <a href="#" class="btn app-btn-secondary">Visualizar</a>
+                            </div>
+                        </div>
+                    </div>
 
-                                </div><!--//app-card-actions-->
-                            </div><!--//app-card-body-->
-                        </div><!--//app-card-->
-                    </div><!--//col-->
                 </div><!--//row-->
+            </div><!--//container-xl-->
+        </div><!--//app-content-->
+    </div><!--//app-wrapper-->
 
 
-            </div><!--//app-content-->
-        </div><!--//app-wrapper-->
 
-
-        <!-- Modal's-->
-        <div class="modal fade" id="cadastroPropostaModal" tabindex="-1" aria-labelledby="createProposalModal"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createProposalModal">Nova Proposta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="new-proposal-form">
-                            <div class="mb-3">
-                                <label for="proposal-title" class="form-label">Título<span class="ms-2"
-                                        data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                                        data-bs-placement="top"
-                                        data-bs-content="Informe um título que faça sentido com sua proposta, pois é por ele que as pessoas terão interesse em ler mais sobre."><svg
-                                            width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
-                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                            <path
-                                                d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                            <circle cx="8" cy="4.5" r="1" />
-                                        </svg></span></label>
-                                <input type="text" name="proposal-title" id="proposal-title" class="form-control"
-                                    required="required" />
-
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="proposal-description" class="form-label">Descrição</label>
-                                <textarea name="proposal-description" class="form-control h-100"
-                                    id="proposal-description" cols="30" rows="7" required="required"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="proposal-image">Imagem<span class="ms-2"
-                                        data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                                        data-bs-placement="top"
-                                        data-bs-content="Adicione uma imagem que ajude a descrever seu projeto, seja um modelo pronto ou algum esboço da sua ideia."><svg
-                                            width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
-                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                            <path
-                                                d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                            <circle cx="8" cy="4.5" r="1" />
-                                        </svg></span></label>
-                                <input type="file" name="proposal-image" id="proposal-image" class="form-control">
-                            </div>
-                            <div class="mb-3">
-
-                                <label for="proposal-category" class="form-label">Categorias</label>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="proposal-category-1">
-                                    <label class="form-check-label" for="proposal-category-1">
-                                        Infraestrutura
-                                    </label>
-
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="proposal-category-1">
-                                    <label class="form-check-label" for="proposal-category-1">
-                                        Corpo docente
-                                    </label>
-
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="proposal-category-1">
-                                    <label class="form-check-label" for="proposal-category-1">
-                                        Coordenação
-                                    </label>
-
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="proposal-category-1">
-                                    <label class="form-check-label" for="proposal-category-1">
-                                        Ensino
-                                    </label>
-
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="proposal-category-1">
-                                    <label class="form-check-label" for="proposal-category-1">
-                                        Biblioteca
-                                    </label>
-
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row justify-content-between">
-                                <div class="col-auto">
-                                    <a class="btn app-btn-primary" href="#">Salvar</a>
-                                </div>
-                                <div class="col-auto">
-                                    <a class="btn app-btn-secondary" data-bs-dismiss="modal" href="#">Cancelar</a>
-                                </div>
-                            </div>
-                        </form><!--//new-proposal-form-->
-                    </div><!--//modal-body-->
+    <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewProposalModal">Proposta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div><!--//new-proposal-->
-
-        <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="viewProposalModal">Proposta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="app-card app-card-proposal shadown-sm mb-4">
-                            <div class="app-card-header px-4 py-3">
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-12 col-lg-auto text-center text-lg-start">
-                                        <i class="fas fa-file-alt text-file"></i>
-                                    </div><!--//col-->
-                                    <div class="col-12 col-lg-auto text-center text-lg-start">
-                                        <div class="proposal-type mb-2"><span class="badge bg-info">Em
-                                                votação</span></div>
-                                        <h4 class="proposal-title mb-1">Título da proposta</h4>
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//app-card-header-->
-                            <div class="app-card-body p-4">
-                                <div class="proposal-content">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil laboriosam rem iste,
-                                    fugit iure aperiam quas, officiis dolorum aspernatur ab suscipit perferendis non.
-                                    Quisquam maxime, in omnis voluptates nemo nihil?
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, soluta corrupti ut,
-                                    modi repellat cum aspernatur minima voluptatibus odit quo, praesentium omnis aliquam
-                                    aut eius quas! Officiis ullam reprehenderit necessitatibus.
-                                </div>
-
-                            </div><!--//app-card-body-->
-                            <hr>
-                            <div class="col-12 col-lg-auto text-center text-lg-start">
-                                Categorias:
+                <div class="modal-body">
+                    <div class="app-card app-card-proposal shadown-sm mb-4">
+                        <div class="app-card-header px-4 py-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-12 col-lg-auto text-center text-lg-start">
+                                    <i class="fas fa-file-alt text-file"></i>
+                                </div><!--//col-->
+                                <div class="col-12 col-lg-auto text-center text-lg-start">
+                                    <div class="proposal-type mb-2"><span class="badge bg-info">Em
+                                            votação</span></div>
+                                    <h4 class="proposal-title mb-1">Título da proposta</h4>
+                                </div><!--//col-->
+                            </div><!--//row-->
+                        </div><!--//app-card-header-->
+                        <div class="app-card-body p-4">
+                            <div class="proposal-content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil laboriosam rem iste,
+                                fugit iure aperiam quas, officiis dolorum aspernatur ab suscipit perferendis non.
+                                Quisquam maxime, in omnis voluptates nemo nihil?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, soluta corrupti ut,
+                                modi repellat cum aspernatur minima voluptatibus odit quo, praesentium omnis aliquam
+                                aut eius quas! Officiis ullam reprehenderit necessitatibus.
                             </div>
-                            <hr>
-                            <div class="app-card-footer px-4 py-3">
-                                <a href="#" class="text-action-links">Votos</a>
-                                <span>0</span>
-                            </div><!--//app-card-footer-->
-                        </div><!--//app-card-->
-                    </div><!--//modal-body-->
-                </div>
+
+                        </div><!--//app-card-body-->
+                        <hr>
+                        <div class="col-12 col-lg-auto text-center text-lg-start">
+                            Categorias:
+                        </div>
+                        <hr>
+                        <div class="app-card-footer px-4 py-3">
+                            <a href="#" class="text-action-links">Votos</a>
+                            <span>0</span>
+                        </div><!--//app-card-footer-->
+                    </div><!--//app-card-->
+                </div><!--//modal-body-->
             </div>
-        </div><!--//view-proposal-->
+        </div>
+    </div><!--//view-proposal-->
 
-        <footer class="footer">
+    <footer class="footer">
 
-            <div class="footer-bottom text-center py-5">
-    
-    
-                <small class="copyright">Desenvolvido por
-                    <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves </a>
-                    ,
-                    <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
-                    ,
-                    <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-                    e
-                    <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
-    
-                    para todos
-                    do IFTM</small>
-    
-    
-            </div>
-    
-        </footer>
-    
+        <div class="footer-bottom text-center py-5">
 
 
-        <!-- Javascript-->
-        <script src="../../assets/plugins/popper.min.js"></script>
-        <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+            <small class="copyright">Desenvolvido por
+                <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves </a>
+                ,
+                <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
+                ,
+                <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
+                e
+                <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
 
-        <!--Specific page Js-->
-        <script src="../../assets/js/app/app.js"></script>
+                para todos
+                do IFTM</small>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Javascript-->
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--Specific page Js-->
+    <script src="../../assets/js/app/app.js"></script>
 </body>
 
 </html>
