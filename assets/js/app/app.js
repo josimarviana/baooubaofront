@@ -70,6 +70,11 @@ searchMobileTrigger.addEventListener("click", () => {
     searchMobileTriggerIcon.classList.remove("fa-xmark");
     searchMobileTriggerIcon.classList.add("fa-magnifying-glass");
   }
-
-  
 });
+document
+  .getElementById("cancel-link")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    document.getElementById("hidden-reset-button").click();
+    window.location.href = "../../pages/logged/my-proposal.html";
+  });
