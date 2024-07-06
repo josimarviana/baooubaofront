@@ -249,7 +249,7 @@
                         <!--//nav-item-->
 
 
-                     
+
                         <li class="nav-item has-submenu">
                             <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse"
                                 data-bs-target="#submenu-1" aria-expanded="false" aria-controls="#submenu-1">
@@ -389,10 +389,20 @@
                     <!--//app-card-body-->
                 </div>
                 <!--//app-card alert-->
+                <div class="row g-4" id="card-container">
+                    <!-- As novas propostas serão adicionadas aqui -->
 
-                <div class="row g-4">
-                    <div class="col-12 col-lg-4">
-                        <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const apiUrl = 'https://apibaoounao.iftmparacatu.app.br/proposal';
+
+                            fetch(apiUrl)
+                                .then(response => response.json())
+                                .then(data => {
+                                    data.forEach(item => {
+                                        const newCard = document.createElement('div');
+                                        newCard.className = "col-12 col-lg-4";
+                                        newCard.innerHTML = `<div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                             <div class="app-card-header p-3 border-bottom-0">
                                 <div class="row align-items-center gx-3">
                                     <div class="col-auto">
@@ -409,7 +419,7 @@
                                     </div>
                                     <!--//col-->
                                     <div class="col-auto">
-                                        <h4 class="app-card-title">Title</h4>
+                                        <h4 class="app-card-title">${item.title}</h4>
                                     </div>
                                     <!--//col-->
                                 </div>
@@ -418,8 +428,7 @@
                             <!--//app-card-header-->
                             <div class="app-card-body px-4">
                                 <div class="intro">
-                                    Pellentesque varius, elit vel volutpat sollicitudin, lacus
-                                    quam efficitur augue
+                                    ${item.description}
                                 </div>
                             </div>
                             <!--//app-card-body-->
@@ -428,9 +437,15 @@
                                     data-bs-target="#proposalModal">Visualizar</a>
                             </div>
                             <!--//app-card-footer-->
-                        </div>
-                        <!--//app-card-->
-                    </div>
+                        </div> `;
+                                        document.getElementById('card-container').appendChild(newCard);
+                                    });
+                                }).catch(error => {
+                                    console.error('Erro ao obter dados da API: ', error);
+                                });
+
+                        });
+                    </script>
                 </div>
             </div>
             <!--//container-xl-->
