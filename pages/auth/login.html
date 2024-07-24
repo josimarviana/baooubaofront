@@ -1,143 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <title>Login - Bão ou Não</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus"
-    />
-    <meta name="author" content="Cristian Alves Silva" />
-    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png" />
+<head>
+  <title>Login - Bão ou Não</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- FontAwesome JS -->
-    <script defer src="../../assets/fontawesome/js/all.min.js"></script>
-    <!-- App CSS-->
-    <link
-      rel="stylesheet"
-      href="../../assets/css/auth/style.css"
-      id="theme-style"
-    />
-  </head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description"
+    content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus" />
+  <meta name="author" content="Cristian Alves Silva" />
+  <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png" />
 
-  <body class="app app-login p-0">
-    <div class="row g-0 app-auth-wrapper">
-      <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
-        <div class="d-flex flex-column align-content-end">
-          <div class="app-auth-body mx-auto">
-            <div class="app-auth-branding mb-4">
-              <a class="app-logo" href="../../index.html">
-                <img
-                  class="logo-icon me-2"
-                  src="../../assets/images/BaoOuNao.png"
-                  alt="logo"
-              /></a>
-            </div>
-            <h2 class="auth-heading text-center mb-4">Acesse sua conta</h2>
+  <!-- FontAwesome JS -->
+  <script defer src="../../assets/fontawesome/js/all.min.js"></script>
+  <!-- App CSS-->
+  <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style" />
+</head>
 
-            <div class="auth-form-container text-start mx-auto">
-              <form action="#" class="auth-form auth-login-form">
-                <div class="email mb-3">
+<body class="app app-login p-0">
+  <div class="row g-0 app-auth-wrapper">
+    <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
+      <div class="d-flex flex-column align-content-end">
+        <div class="app-auth-body mx-auto">
+          <div class="app-auth-branding mb-4">
+            <a class="app-logo" href="../../index.html">
+              <img class="logo-icon me-2" src="../../assets/images/BaoOuNao.png" alt="logo" /></a>
+          </div>
+          <h2 class="auth-heading text-center mb-4">Acesse sua conta</h2>
+
+          <div class="auth-form-container text-start mx-auto">
+            <form id="loginForm" action="#" class="auth-form auth-login-form">
+              <div class="email mb-3">
                   <label for="login-email" class="sr-only">Seu email</label>
-                  <input
-                    type="email"
-                    name="login-email"
-                    id="login-email"
-                    class="form-control login-email"
-                    required="required"
-                    placeholder="Seu email"
-                  />
-                </div>
-                <div class="password mb-3">
+                  <input type="email" name="login-email" id="login-email" class="form-control login-email" required="required" placeholder="Seu email" />
+              </div>
+              <div class="password mb-3">
                   <label class="sr-only" for="login-password">Senha</label>
                   <div class="input-group">
-                    <input
-                      type="password"
-                      id="login-password"
-                      name="login-password"
-                      class="form-control login-password"
-                      required="required"
-                      placeholder="Sua senha"
-                    />
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      id="show-password"
-                    >
-                      <i id="show-pass-icon" class="fas fa-eye-slash"></i>
-                    </button>
+                      <input type="password" id="login-password" name="login-password" class="form-control login-password" required="required" placeholder="Sua senha" />
+                      <button type="button" class="btn btn-secondary" id="show-password">
+                          <i id="show-pass-icon" class="fas fa-eye-slash"></i>
+                      </button>
                   </div>
-                </div>
-                <div class="text-center">
-                  <button
-                    type="submit"
-                    class="btn app-btn-primary w-100 theme-btn mx-auto"
-                  >
-                    Entrar
+              </div>
+              <div class="text-center">
+                  <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
+                      Entrar
                   </button>
-                </div>
-              </form>
-              <div class="auth-option text-center pt-5">
-                Não possui conta?
-                <a href="signup.html" class="text-link">Cadastre-se</a>
               </div>
+          </form>
+          
+            <div class="auth-option text-center pt-5">
+              Não possui conta?
+              <a href="signup.html" class="text-link">Cadastre-se</a>
             </div>
-            <!--//auth-form-container-->
           </div>
-          <!--//app-auth-body-->
-          <footer class="app-auth-footer">
-            <div class="container text-center py-3">
-              <div class="d-flex flex-column align-content-end h-100">
-                <div class="h-100"></div>
-                <div class="text-center p-3 p-lg-4 rounded">
-                  <div class="mb-3">
-                    <img src="../../assets/images/logo-iftm.png" alt="" />
-                  </div>
+          <!--//auth-form-container-->
+        </div>
+        <!--//app-auth-body-->
+        <footer class="app-auth-footer">
+          <div class="container text-center py-3">
+            <div class="d-flex flex-column align-content-end h-100">
+              <div class="h-100"></div>
+              <div class="text-center p-3 p-lg-4 rounded">
+                <div class="mb-3">
+                  <img src="../../assets/images/logo-iftm.png" alt="" />
                 </div>
               </div>
             </div>
-          </footer>
-          <!--//logo-footer  -->
-        </div>
-        <!--//flex-column-->
+          </div>
+        </footer>
+        <!--//logo-footer  -->
       </div>
-      <!--//col-->
-
-      <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
-        <div class="auth-background-holder"></div>
-        <div class="auth-background-mask"></div>
-        <div class="auth-background-overlay p-3 p-lg-5"></div>
-        <!--//auth-background-overlay-->
-      </div>
-      <!--//col-->
+      <!--//flex-column-->
     </div>
-    <!-- //row-->
+    <!--//col-->
 
-    <footer class="footer">
+    <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
+      <div class="auth-background-holder"></div>
+      <div class="auth-background-mask"></div>
+      <div class="auth-background-overlay p-3 p-lg-5"></div>
+      <!--//auth-background-overlay-->
+    </div>
+    <!--//col-->
+  </div>
+  <!-- //row-->
 
-      <div class="footer-bottom text-center py-5">
-  
-  
-        <small class="copyright">Desenvolvido por
-          <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves </a>
-          ,
-          <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
-          ,
-          <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-          e
-          <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
-  
-          para todos
-          do IFTM</small>
-  
-  
-      </div>
-  
-    </footer>
-  
-    <script src="../../assets/js/auth/login-assets.js"></script>
-  </body>
+  <footer class="footer">
+
+    <div class="footer-bottom text-center py-5">
+
+
+      <small class="copyright">Desenvolvido por
+        <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves </a>
+        ,
+        <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
+        ,
+        <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
+        e
+        <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+
+        para todos
+        do IFTM</small>
+
+
+    </div>
+
+  </footer>
+
+  <script src="../../assets/js/auth/login-assets.js"></script>
+</body>
+
 </html>
