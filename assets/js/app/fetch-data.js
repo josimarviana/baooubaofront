@@ -2,9 +2,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal";
   const jwt = sessionStorage.getItem("jwt");
   if (!jwt) {
-    // JWT não encontrado, redirecionar para o login (ou exibir mensagem de erro)
     console.error("Usuário não autenticado. Redirecionando para o login.");
-    // window.location.href = 'login.html'; // Redirecionar para a página de login
+    window.location.href = "../auth/login.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
   }
   try {
