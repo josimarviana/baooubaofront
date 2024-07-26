@@ -1,18 +1,28 @@
-document.addEventListener('DOMContentLoaded', async function () {
-    const apiUrl = 'https://apibaoounao.iftmparacatu.app.br/proposal';
+document.addEventListener("DOMContentLoaded", async function () {
+  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal";
+  const jwt = localStorage.getItem("jwt");
+  if (!jwt) {
+    // JWT não encontrado, redirecionar para o login (ou exibir mensagem de erro)
+    console.error("Usuário não autenticado. Redirecionando para o login.");
+    // window.location.href = 'login.html'; // Redirecionar para a página de login
+    return; // Interrompe a execução da função
+  }
+  try {
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    const cardContainer = document.getElementById("card-container");
 
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        const cardContainer = document.getElementById('card-container');
-
-        data.forEach(item => {
-            const newCard = document.createElement('div');
-            newCard.className = "col-12 col-lg-4";
-            newCard.innerHTML = `
+    data.forEach((item) => {
+      const newCard = document.createElement("div");
+      newCard.className = "col-12 col-lg-4";
+      newCard.innerHTML = `
                 <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                     <div class="app-card-header p-3 border-bottom-0">
                         <div class="row align-items-center gx-3">
@@ -39,9 +49,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                         data-proposal-id="${item.id}">Visualizar</a>
                     </div>
                 </div>`;
-            cardContainer.appendChild(newCard);
-        });
-    } catch (error) {
-        console.error('Erro ao obter dados da API:', error);
-    }
+      cardContainer.appendChild(newCard);
+    });
+  } catch (error) {
+    console.error("Erro ao obter dados da API:", error);
+  }
 });

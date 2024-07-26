@@ -12,31 +12,41 @@ document.getElementById("show-password").addEventListener("click", function () {
     passwordIcon.classList.add("fa-eye-slash");
   }
 });
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault(); // impede o comportamento padrão de envio do form
 
-    const email = document.getElementById("login-email");
-    const password = document.getElementById("login-password");
-    try {
-        const response = await fetch('https://apibaoounao.iftmparacatu.app.br/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email: email, password: password }),
-            credentials: 'include' // Necessário para enviar cookies HttpOnly
-        });
+const loginForm = document.querySelector("#loginForm");
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-        if (response.ok) {
-            // Redirecione ou atualize a interface conforme necessário
-            window.location.href = '/index.html';
-        } else {
-            // Lidar com erros, como credenciais inválidas
-            alert('Login falhou. Verifique suas credenciais.');
-        }
-    } catch (error) {
-        console.error('Erro:', error);
-    }
+  const email = document.querySelector("#login-email").value;
+  const password = document.querySelector("#login-password").value;
+  const data = {
+    email,
+    password,
+  };
+
+  fetch("https://apibaoounao.iftmparacatu.app.br/user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Falha na autenticação. Verifique suas credenciais e tente novamente."
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const token = data.token;
+      localStorage.setItem("jwt", token);
+      window.location.href =
+        "../../../pages/logged/home.html";
+    })
+    .catch((error) => {
+      console.error("Erro durante o login:", error);
+      alert(error.message);
+    });
 });
