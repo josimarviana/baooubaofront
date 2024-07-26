@@ -40,13 +40,22 @@ loginForm.addEventListener("submit", (event) => {
       return response.json();
     })
     .then((data) => {
+      // console.log("Dados completos da resposta:", data);
       const token = data.token;
       sessionStorage.setItem("jwt", token);
-      window.location.href = "../../../pages/logged/home.html";
+
+      // const userId = data.id;
+      // const userEmail = data.email;
+      // const userName = data.name;
+
+      // sessionStorage.setItem("userId", userId);
+      // sessionStorage.setItem("userEmail", userEmail);
+      // sessionStorage.setItem("userName", userName);
+
+       window.location.href = "../../../pages/logged/home.html";
     })
     .catch((error) => {
       console.error("Erro durante o login:", error);
       alert(error.message);
     });
 });
-

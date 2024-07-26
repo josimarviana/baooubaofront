@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const jwt = sessionStorage.getItem("jwt");
+  const userName = sessionStorage.getItem("userName");
+  const userEmail = sessionStorage.getItem("userEmail");
+
   if (!jwt) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
     window.location.href = "../auth/login.html"; // Redirecionar para a página de login
