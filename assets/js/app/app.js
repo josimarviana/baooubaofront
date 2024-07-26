@@ -78,3 +78,10 @@ document
     document.getElementById("hidden-reset-button").click();
     window.location.href = "../../pages/logged/my-proposal.html";
   });
+
+
+  function logout() {
+    sessionStorage.removeItem("jwt");
+    window.location.href = "../../index.html";
+  }
+  

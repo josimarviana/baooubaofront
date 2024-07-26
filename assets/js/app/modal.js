@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
-  const jwt = localStorage.getItem("jwt");
+  const jwt = sessionStorage.getItem("jwt");
   if (!jwt) {
     // JWT não encontrado, redirecionar para o login (ou exibir mensagem de erro)
     console.error("Usuário não autenticado. Redirecionando para o login.");

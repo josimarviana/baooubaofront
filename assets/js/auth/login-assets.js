@@ -41,12 +41,12 @@ loginForm.addEventListener("submit", (event) => {
     })
     .then((data) => {
       const token = data.token;
-      localStorage.setItem("jwt", token);
-      window.location.href =
-        "../../../pages/logged/home.html";
+      sessionStorage.setItem("jwt", token);
+      window.location.href = "../../../pages/logged/home.html";
     })
     .catch((error) => {
       console.error("Erro durante o login:", error);
       alert(error.message);
     });
 });
+
