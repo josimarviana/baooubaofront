@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const data = await response.json();
 
+      console.log(data);
+
       // Atualizar o modal com os dados dinâmicos obtidos da API
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
@@ -44,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
       proposalLikes.textContent = data.likes;
       proposalSituation.textContent = data.situation;
       proposalAuthor.textContent = "Autor: " + data.userEntity.name;
-      proposalCategory.textContent = "Precisa cadastrar categoria na proposta";
+      //proposalCategory.textContent = "Categorias: " + data.categorys.title;
+
+      
+      
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
