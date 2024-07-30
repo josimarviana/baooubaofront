@@ -1,34 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal";
+  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal/filter";
   const jwt = sessionStorage.getItem("jwt");
-  const cardContainer = document.getElementById("card-container");
   
-  async function loadProposals(searchText = "") {
-    if (!jwt) {
-      console.error("Usuário não autenticado. Redirecionando para o login.");
-      window.location.href = "../auth/login.html"; // Redirecionar para a página de login
-      return;
-    }
-
-    const url = searchText 
-      ? `${apiUrl}/filter?contain=${encodeURIComponent(searchText)}` 
-      : apiUrl;
-
+  if (!jwt) {
+    console.error("Usuário não autenticado. Redirecionando para o login.");
+    window.location.href = "../auth/login.html"; // Redirecionar para a página de login
+    return; // Interrompe a execução da função
+  }
+  
+  // Função para carregar propostas
+  async function loadProposals(query = '') {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`${apiUrl}?contain=${encodeURIComponent(query)}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      
       const data = await response.json();
+      const cardContainer = document.getElementById("card-container");
+      
+      // Limpa o contêiner antes de adicionar novos cards
+      cardContainer.innerHTML = '';
 
-      // Limpar os resultados antigos
-      cardContainer.innerHTML = "";
-
-      // Adicionar novos cards
       data.forEach((item) => {
         const newCard = document.createElement("div");
         newCard.className = "col-12 col-lg-4";
@@ -55,8 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
             </div>
             <div class="app-card-footer p-4 mt-auto">
-              <a class="btn app-btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#proposalModal" 
-              data-proposal-id="${item.id}">Visualizar</a>
+              <a class="btn app-btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#proposalModal" data-proposal-id="${item.id}">Visualizar</a>
             </div>
           </div>`;
         cardContainer.appendChild(newCard);
@@ -66,14 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Carregar propostas iniciais
+  // Carregar propostas ao carregar a página
   loadProposals();
 
-  // Adicionar um event listener ao formulário de pesquisa
-  const searchForm = document.getElementById("app-search-form");
+  // Adicionar evento de submit ao formulário de pesquisa
+  const searchForm = document.querySelector(".app-search-form");
   searchForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio padrão do formulário
-    const searchText = document.getElementById("app-search-form").value.trim();
-    loadProposals(searchText); // Carregar propostas com filtro
+
+    const searchInput = document.getElementById("app-search-form");
+    const query = searchInput.value.trim();
+    loadProposals(query); // Recarregar as propostas com o filtro de pesquisa
   });
 });
