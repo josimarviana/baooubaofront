@@ -12,76 +12,83 @@ document.getElementById("show-password").addEventListener("click", function () {
     passwordIcon.classList.add("fa-eye-slash");
   }
 });
-const signupForm = document.querySelector(".auth-signup-form");
 
-signupForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+const signupForm = document.getElementById("signup-form");
+const signupName = document.getElementById("signup-name");
+const signupEmail = document.getElementById("signup-email");
+const signupPassword = document.getElementById("signup-password");
+const signupConfirmPassword = document.getElementById(
+  "signup-confirm-password"
+);
 
-  const name = document.getElementById("signup-name").value.trim();
-  const email = document.getElementById("signup-email").value.trim();
-  const password = document.getElementById("signup-password").value.trim();
-  const confirmPassword = document
-    .getElementById("signup-confirm-password")
-    .value.trim();
-  const role = "ROLE_USER";
+const passwordError = document.getElementById("passwordError");
+const confirmPasswordError = document.getElementById("confirmPasswordError");
+const emailError = document.getElementById("emailError");
+const typeError = document.getElementById("typeError");
 
-  // Coleta dos tipos de usuário
-  const typeElements = e.target.querySelectorAll('input[name="type[]"]');
-  const typeValues = [...typeElements]
-    .filter((checkbox) => checkbox.checked)
-    .map((checkbox) => checkbox.value.toUpperCase());
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Verifica se algum tipo de usuário foi selecionado
-  const type = typeValues.length > 0 ? typeValues[0] : null;
+signupForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-  const errors = [];
+  passwordError.textContent = "";
+  confirmPasswordError.textContent = "";
+  emailError.textContent = "";
+  typeError.textContent = "";
 
-  if (!name) errors.push("O campo nome é obrigatório.");
-  if (!email) errors.push("O campo email é obrigatório.");
-  if (!password) errors.push("O campo senha é obrigatório.");
-  if (password !== confirmPassword) errors.push("As senhas não coincidem.");
-  if (!type) errors.push("O campo tipo de usuário é obrigatório.");
+  const name = signupName.value;
+  const email = signupEmail.value;
+  const password = signupPassword.value;
+  const confirmPassword = signupConfirmPassword.value;
 
-  //   const passwordRegex =
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const selectedType = document.querySelector('input[name="type"]:checked');
+  const type = selectedType ? selectedType.value : "";
 
-  //   if (!passwordRegex.test(password)) {
-  //     errors.push(
-  //       "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maíuscula, um número e um caractere especial."
-  //     );
-  //   }
+  let isValid = true;
 
-  // Se houver erros, exibe alertas e retorna
-  if (errors.length > 0) {
-    alert(errors.join("\n"));
-    return;
+  if (password.length < 8) {
+    passwordError.textContent = "A senha deve ter no mínimo 8 caracteres.";
+    isValid = false;
   }
-  try {
-    const response = await fetch(
-      "https://apibaoounao.iftmparacatu.app.br/user",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          name,
-          type,
-          password,
-          role,
-        }),
-      }
-    );
+  if (password !== confirmPassword) {
+    confirmPasswordError.textContent = "As senhas não coincidem.";
+    isValid = false;
+  }
+  if (!emailRegex.test(email)) {
+    emailError.textContent = "Email inválido.";
+    isValid = false;
+  }
+  if (!type) {
+    typeError.textContent = "Selecione um tipo de usuário.";
+    isValid = false;
+  }
 
-    if (!response.ok) {
-      throw new Error("Erro ao cadastrar usuário");
-    }
+  if (isValid) {
+    const formData = {
+      email,
+      name,
+      type,
+      password,
+    };
 
-    // Pode ser necessário um tratamento adicional baseado na resposta do servidor
-    window.location.href = "../../../pages/auth/login.html";
-  } catch (error) {
-    console.error("Erro durante o cadastro:", error);
-    alert(error.message);
+    fetch("https://apibaoounao.iftmparacatu.app.br/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao enviar dados para a API");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Dados enviados com sucesso: ", data);
+      })
+      .catch((error) => {
+        console.error("Erro: ", error);
+      });
   }
 });

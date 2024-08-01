@@ -30,58 +30,60 @@
                     <h2 class="auth-heading text-center mb-4">Crie sua conta</h2>
 
                     <div class="auth-form-container text-start mx-auto">
-                        <form action="#" class="auth-form auth-signup-form">
+                        <form action="#" class="auth-form auth-signup-form" id="signup-form">
                             <div class="email mb-3">
-                                <label for="signup-name" class="sr-only">Seu nome</label>
-                                <input type="text" name="signup-name" id="signup-name" class="form-control signup-name"
-                                    required="required" placeholder="Seu nome completo">
-
+                              <label for="signup-name" class="sr-only">Seu nome</label>
+                              <input type="text" name="signup-name" id="signup-name" class="form-control signup-name"
+                                     required="required" placeholder="Seu nome completo">
                             </div>
                             <div class="email mb-3">
-                                <label for="signup-email" class="sr-only">Seu email</label>
-                                <input type="email" name="signup-email" id="signup-email"
-                                    class="form-control signup-email" required="required" placeholder="Email acadêmico">
-
+                              <label for="signup-email" class="sr-only">Seu email</label>
+                              <input type="email" name="signup-email" id="signup-email"
+                                     class="form-control signup-email" required="required" placeholder="Email acadêmico">
+                              <span id="emailError" class="invalid-feedback"></span>
                             </div>
                             <div class="password mb-3">
-                                <label class="sr-only" for="signup-password">Senha</label>
-                                <div class="input-group">
-                                    <input type="password" id="signup-password" name="signup-password"
-                                        class="form-control signup-password" required="required"
-                                        placeholder="Crie sua senha">
-                                    <button type="button" class="btn btn-secondary" id="show-password">
-                                        <i id="show-pass-icon" class="fas fa-eye-slash"></i>
-                                    </button>
-                                </div>
+                              <label class="sr-only" for="signup-password">Senha</label>
+                              <div class="input-group">
+                                <input type="password" id="signup-password" name="signup-password"
+                                       class="form-control signup-password" required="required"
+                                       placeholder="Crie sua senha">
+                                <button type="button" class="btn btn-secondary" id="show-password">
+                                  <i id="show-pass-icon" class="fas fa-eye-slash"></i>
+                                </button>
+                              </div>
+                              <span id="passwordError" class="invalid-feedback"></span>
                             </div>
                             <div class="password mb-3">
-                                <label for="signup-confirm-password" class="sr-only">Confirmar senha</label>
-                                <input type="password" name="signup-confirm-password" id="signup-confirm-password"
-                                    class="form-control signup-confirm-password" required="required"
-                                    placeholder="Confirme sua senha">
+                              <label for="signup-confirm-password" class="sr-only">Confirmar senha</label>
+                              <input type="password" name="signup-confirm-password" id="signup-confirm-password"
+                                     class="form-control signup-confirm-password" required="required"
+                                     placeholder="Confirme sua senha">
+                              <span id="confirmPasswordError" class="invalid-feedback"></span>
                             </div>
                             <div class="mb-3">
-                                <p class="mb-1">Tipo de usuário:</p>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="student" name="type[]"
-                                        value="student">
-                                    <label class="form-check-label" for="student">ESTUDANTE</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="teacher" name="type[]"
-                                        value="teacher">
-                                    <label class="form-check-label" for="teacher">DOCENTE</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="tae" name="type[]" value="tae">
-                                    <label class="form-check-label" for="tae">TAE</label>
-                                </div>
+                              <p class="mb-1">Tipo de usuário:</p>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="student" name="type"
+                                       value="ESTUDANTE">
+                                <label class="form-check-label" for="student">ESTUDANTE</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="teacher" name="type"
+                                       value="DOCENTE">
+                                <label class="form-check-label" for="teacher">DOCENTE</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="tae" name="type" value="TAE">
+                                <label class="form-check-label" for="tae">TAE</label>
+                              </div>
+                              <span id="typeError" class="invalid-feedback"></span>
                             </div>
                             <div class="text-center">
-                                <button type="submit"
-                                    class="btn app-btn-primary w-100 theme-btn mx-auto">Cadastrar-se</button>
+                              <button type="submit"
+                                      class="btn app-btn-primary w-100 theme-btn mx-auto">Cadastrar-se</button>
                             </div>
-                        </form>
+                          </form>
                         <div class="auth-option text-center pt-5">Já possui conta? <a href="login.html"
                                 class="text-link">Login</a></div>
                     </div><!--//auth-form-container-->
@@ -93,7 +95,7 @@
         <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
             <div class="auth-background-holder">
                 <img src="../../assets/images/modelo.png" alt="O mais brabo">
-              </div>
+            </div>
             <div class="auth-background-mask"></div>
             <div class="auth-background-overlay p-3 p-lg-5">
 
