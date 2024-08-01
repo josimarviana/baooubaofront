@@ -2,111 +2,94 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Cadastro - Bão ou Não</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Bão ou Não</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
-    <meta name="author" content="Cristian Alves Silva">
-    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
+  <meta name="author" content="Cristian Alves Silva">
+  <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
 
-    <!-- FontAwesome JS -->
-    <script defer src="../../assets/fontawesome/js/all.min.js"></script>
-    <!-- App CSS-->
-    <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
+  <!-- FontAwesome JS -->
+  <script defer src="../../assets/fontawesome/js/all.min.js"></script>
+  <!-- App CSS-->
+  <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
 </head>
 
 <body class="app app-signup p-0">
-    <div class="row g-0 app-auth-wrapper">
-        <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
-            <div class="d-flex flex-column align-content-end">
-                <div class="app-auth-body mx-auto">
-                    <div class="app-auth-branding mb-4"><a class="app-logo" href="../../index.html"><img
-                                class="logo-icon me-2" src="../../assets/images/BaoOuNao.png" alt="logo"></a></div>
-                    <h2 class="auth-heading text-center mb-4">Crie sua conta</h2>
+  <div class="row g-0 app-auth-wrapper">
+    <div class="col-12 col-md-12 col-lg-12 auth-main-col text-center p-5">
+      <div class="d-flex flex-column align-content-end">
+        <div class="app-auth-body mx-auto">
+          <div class="app-auth-branding mb-4"><a class="app-logo" href="../../index.html"><img class="logo-icon me-2"
+                src="../../assets/images/BaoOuNao.png" alt="logo"></a></div>
+          <h2 class="auth-heading text-center mb-4">Crie sua conta</h2>
 
-                    <div class="auth-form-container text-start mx-auto">
-                        <form action="#" class="auth-form auth-signup-form" id="signup-form">
-                            <div class="email mb-3">
-                              <label for="signup-name" class="sr-only">Seu nome</label>
-                              <input type="text" name="signup-name" id="signup-name" class="form-control signup-name"
-                                     required="required" placeholder="Seu nome completo">
-                            </div>
-                            <div class="email mb-3">
-                              <label for="signup-email" class="sr-only">Seu email</label>
-                              <input type="email" name="signup-email" id="signup-email"
-                                     class="form-control signup-email" required="required" placeholder="Email acadêmico">
-                              <span id="emailError" class="invalid-feedback"></span>
-                            </div>
-                            <div class="password mb-3">
-                              <label class="sr-only" for="signup-password">Senha</label>
-                              <div class="input-group">
-                                <input type="password" id="signup-password" name="signup-password"
-                                       class="form-control signup-password" required="required"
-                                       placeholder="Crie sua senha">
-                                <button type="button" class="btn btn-secondary" id="show-password">
-                                  <i id="show-pass-icon" class="fas fa-eye-slash"></i>
-                                </button>
-                              </div>
-                              <span id="passwordError" class="invalid-feedback"></span>
-                            </div>
-                            <div class="password mb-3">
-                              <label for="signup-confirm-password" class="sr-only">Confirmar senha</label>
-                              <input type="password" name="signup-confirm-password" id="signup-confirm-password"
-                                     class="form-control signup-confirm-password" required="required"
-                                     placeholder="Confirme sua senha">
-                              <span id="confirmPasswordError" class="invalid-feedback"></span>
-                            </div>
-                            <div class="mb-3">
-                              <p class="mb-1">Tipo de usuário:</p>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="student" name="type"
-                                       value="ESTUDANTE">
-                                <label class="form-check-label" for="student">ESTUDANTE</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="teacher" name="type"
-                                       value="DOCENTE">
-                                <label class="form-check-label" for="teacher">DOCENTE</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="tae" name="type" value="TAE">
-                                <label class="form-check-label" for="tae">TAE</label>
-                              </div>
-                              <span id="typeError" class="invalid-feedback"></span>
-                            </div>
-                            <div class="text-center">
-                              <button type="submit"
-                                      class="btn app-btn-primary w-100 theme-btn mx-auto">Cadastrar-se</button>
-                            </div>
-                          </form>
-                        <div class="auth-option text-center pt-5">Já possui conta? <a href="login.html"
-                                class="text-link">Login</a></div>
-                    </div><!--//auth-form-container-->
-
-                </div><!--//app-auth-body-->
-            </div><!--//flex-column-->
-        </div><!--//col-->
-
-        <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
-            <div class="auth-background-holder">
-                <img src="../../assets/images/modelo.png" alt="O mais brabo">
+          <div class="auth-form-container text-start mx-auto">
+            <form action="#" class="auth-form auth-signup-form" id="signup-form">
+              <div class="email mb-3">
+                <label for="signup-name" class="sr-only">Seu nome</label>
+                <input type="text" name="signup-name" id="signup-name" class="form-control signup-name"
+                  required="required" placeholder="Seu nome completo">
+              </div>
+              <div class="email mb-3">
+                <label for="signup-email" class="sr-only">Seu email</label>
+                <input type="email" name="signup-email" id="signup-email" class="form-control signup-email"
+                  required="required" placeholder="Email acadêmico">
+                <span id="emailError" class="invalid-feedback"></span>
+              </div>
+              <div class="password mb-3">
+                <label class="sr-only" for="signup-password">Senha</label>
+                <div class="input-group">
+                  <input type="password" id="signup-password" name="signup-password"
+                    class="form-control signup-password" required="required" placeholder="Crie sua senha">
+                  <button type="button" class="btn btn-secondary" id="show-password">
+                    <i id="show-pass-icon" class="fas fa-eye-slash"></i>
+                  </button>
+                </div>
+                <span id="passwordError" class="invalid-feedback"></span>
+              </div>
+              <div class="password mb-3">
+                <label for="signup-confirm-password" class="sr-only">Confirmar senha</label>
+                <input type="password" name="signup-confirm-password" id="signup-confirm-password"
+                  class="form-control signup-confirm-password" required="required" placeholder="Confirme sua senha">
+                <span id="confirmPasswordError" class="invalid-feedback"></span>
+              </div>
+              <div class="mb-3">
+                <p class="mb-1">Tipo de usuário:</p>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="student" name="type" value="ESTUDANTE">
+                  <label class="form-check-label" for="student">ESTUDANTE</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="teacher" name="type" value="DOCENTE">
+                  <label class="form-check-label" for="teacher">DOCENTE</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="tae" name="type" value="TAE">
+                  <label class="form-check-label" for="tae">TAE</label>
+                </div>
+                <span id="typeError" class="invalid-feedback"></span>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Cadastrar-se</button>
+              </div>
+            </form>
+            <div class="auth-option text-center pt-5">Já possui conta? <a href="login.html" class="text-link">Login</a>
             </div>
-            <div class="auth-background-mask"></div>
-            <div class="auth-background-overlay p-3 p-lg-5">
+          </div><!--//auth-form-container-->
 
-            </div><!--//auth-background-overlay-->
-        </div><!--//col-->
+        </div><!--//app-auth-body-->
+      </div><!--//flex-column-->
+    </div><!--//col-->
+  </div><!-- //row-->
+  <script src="../../assets/js/auth/signup-assets.js">
 
-
-    </div><!-- //row-->
-    <script src="../../assets/js/auth/signup-assets.js">
-
-    </script>
+  </script>
 </body>
 
 </html>
