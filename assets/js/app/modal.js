@@ -38,6 +38,25 @@ document.addEventListener("DOMContentLoaded", function () {
       const proposalAuthor = proposalModal.querySelector("#proposal-author");
       const proposalCategory =
         proposalModal.querySelector("#proposal-category");
+      const proposalImage = proposalModal.querySelector("#proposal-image");
+
+      const defaultImageUrl =
+        "https://plus.unsplash.com/premium_photo-1676750395664-3ac0783ae2c2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      const imageData = data.image;
+      if (imageData) {
+        const imageUrl = `data:image/jpeg;base64,${imageData}`;
+        proposalImage.src = imageUrl;
+      } else {
+        proposalImage.src = defaultImageUrl;
+      }
+
+      proposalImage.onload = () => {
+        console.log("Imagem carregada com sucesso!");
+      };
+
+      proposalImage.onerror = (error) => {
+        console.error("Erro ao carregar a imagem:", error);
+      };
 
       modalTitle.textContent =
         "Criada em: " + new Date(data.createdAt).toLocaleDateString();
@@ -46,10 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
       proposalLikes.textContent = data.likes;
       proposalSituation.textContent = data.situation;
       proposalAuthor.textContent = "Autor: " + data.userEntity.name;
-      //proposalCategory.textContent = "Categorias: " + data.categorys.title;
 
-      
-      
+      //proposalCategory.textContent = "Categorias: " + data.categorys.title;
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
