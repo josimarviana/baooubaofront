@@ -1,0 +1,8 @@
+services:
+  nginx:
+    image: nginx:1-alpine
+    ports:
+      - 82:80
+    volumes:
+      - ${FRONT_VOLUME}:/usr/share/nginx/html
+    container_name: baoounaofrontend

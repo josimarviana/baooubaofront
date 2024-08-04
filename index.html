@@ -106,6 +106,21 @@
 								.then(data => {
 									// Para cada item na lista de dados
 									data.forEach(item => {
+										let iconClass = '';
+										switch (item.category){
+											case 'Infraestrutura':
+												iconClass = 'fa-solid fa-building'
+												break;
+											case 'Ensino':
+												iconClass = 'fa-solid fa-graduation-cap'
+												break;
+											case 'Alimentação':
+												iconClass = 'fa-solid fa-utensils'
+												break;
+											default:
+												iconClass = 'fa-solid fa-file'
+												break;
+										}
 										// Criar novo elemento HTML com os dados correspondentes
 										const newCard = document.createElement('div');
 										newCard.className = 'col-12 col-lg-4 py-3';
@@ -114,7 +129,7 @@
 												<div class="card-body">
 													<h5 class="card-title mb-3">
 														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="fas fa-cogs fa-fw"></i>
+															<i class="${iconClass}"></i>															
 														</span><!--//card-icon-holder-->
 														<span class="card-title-text">${item.title}</span>
 													</h5>
