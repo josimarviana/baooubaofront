@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
       // proposalSituation.textContent = data.situation;
-      proposalAuthor.textContent = "Autor: " + data.userEntity.name;
-      proposalCategory.textContent = data.categoryEntity.title;
+      proposalAuthor.textContent = "Autor: " + data.author;
+      proposalCategory.textContent = data.category;
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
