@@ -6851,7 +6851,7 @@ fieldset:disabled .btn {
   content: "";
 }
 .text-bg-primary {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(40, 183, 107, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-secondary {
@@ -6859,19 +6859,19 @@ fieldset:disabled .btn {
   background-color: RGBA(92.5, 102.5, 120, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-success {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(92, 179, 119, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-info {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(91, 153, 234, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-warning {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(238, 191, 65, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-danger {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(210, 109, 105, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-light {
@@ -6879,7 +6879,7 @@ fieldset:disabled .btn {
   background-color: RGBA(255, 255, 255, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-dark {
-  color: #fff !important;
+  color: #000 !important;
   background-color: #2f9e41 !important;
 }
 .link-primary {
