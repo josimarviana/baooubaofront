@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const data = await response.json();
 
-      console.log(data);
-
       // Atualizar o modal com os dados dinâmicos obtidos da API
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
@@ -32,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "#proposal-description"
       );
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      const proposalSituation = proposalModal.querySelector(
-        "#proposal-situation"
-      );
+      // const proposalSituation = proposalModal.querySelector(
+      //   "#proposal-situation"
+      // );
       const proposalAuthor = proposalModal.querySelector("#proposal-author");
       const proposalCategory =
         proposalModal.querySelector("#proposal-category");
@@ -57,16 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
       proposalImage.onerror = (error) => {
         console.error("Erro ao carregar a imagem:", error);
       };
-
+      console.log(data);
       modalTitle.textContent =
         "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
-      proposalSituation.textContent = data.situation;
+      // proposalSituation.textContent = data.situation;
       proposalAuthor.textContent = "Autor: " + data.userEntity.name;
-
-      //proposalCategory.textContent = "Categorias: " + data.categorys.title;
+      proposalCategory.textContent = data.categoryEntity.title;
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
