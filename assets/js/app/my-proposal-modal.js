@@ -6,12 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
   }
+
   proposalModal.addEventListener("show.bs.modal", async function (event) {
-    const button = event.relatedTarget; // Botão que acionou o modal
+    const button = event.relatedTarget;
     const id = button.getAttribute("data-proposal-id");
 
-    // Fazer a requisição à API para obter dados dinâmicos
     const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+
     try {
       const response = await fetch(apiUrl, {
         headers: {
@@ -21,8 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
 
+      const data = await response.json();
+      console.log(data);
       // Atualizar o modal com os dados dinâmicos obtidos da API
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
@@ -30,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "#proposal-description"
       );
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      // const proposalSituation = proposalModal.querySelector(
-      //   "#proposal-situation"
-      // );
+      const proposalSituation = proposalModal.querySelector(
+        "#proposal-situation"
+      );
       const proposalAuthor = proposalModal.querySelector("#proposal-author");
       const proposalCategory =
         proposalModal.querySelector("#proposal-category");
@@ -61,8 +63,35 @@ document.addEventListener("DOMContentLoaded", function () {
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
-      // proposalSituation.textContent = data.situation;
-      proposalAuthor.textContent = "Autor: " + data.author;
+
+      const situation = data.situation;
+      switch (situation) {
+        case "OPEN_FOR_VOTING":
+          proposalSituation.textContent = "Em votação";
+          proposalSituation.classList.add("text-bg-info");
+          break;
+        case "FORWARDED_TO_BOARD":
+          proposalSituation.textContent = "Encaminhado para o conselho";
+          proposalSituation.classList.add("text-bg-success");
+          break;
+        case "APPROVED":
+          proposalSituation.textContent = "Deferido";
+          proposalSituation.classList.add("text-bg-primary");
+          break;
+        case "DENIED":
+          proposalSituation.textContent = "Indeferido";
+          proposalSituation.classList.add("text-bg-danger");
+          break;
+        case "PENDING_MODERATION":
+          proposalSituation.textContent = "Em análise";
+          proposalSituation.classList.add("text-bg-warning");
+          break;
+        default:
+          proposalSituation.textContent = "";
+          proposalSituation.classList.add("bg-light");
+          break;
+      }
+
       proposalCategory.textContent = data.category;
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);

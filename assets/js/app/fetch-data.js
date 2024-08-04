@@ -10,13 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Função para carregar propostas
-  async function loadProposals(query = '') {
+  async function loadProposals(query = "") {
     try {
-      const response = await fetch(`${apiUrl}?contain=${encodeURIComponent(query)}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const response = await fetch(
+        `${apiUrl}?contain=${encodeURIComponent(query)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Função para exibir propostas
   function displayProposals(data) {
     const cardContainer = document.getElementById("card-container");
-    cardContainer.innerHTML = ''; // Limpa o contêiner antes de adicionar novos cards
+    cardContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos cards
 
     data.forEach((item) => {
       const newCard = document.createElement("div");
@@ -71,16 +74,20 @@ document.addEventListener("DOMContentLoaded", function () {
   function sortProposals(criteria) {
     let sortedProposals;
     switch (criteria) {
-      case 'option-2': // Mais recente
-        sortedProposals = [...proposals].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      case "option-2": // Mais recente
+        sortedProposals = [...proposals].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
         break;
-      case 'option-3': // Mais antigo
-        sortedProposals = [...proposals].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      case "option-3": // Mais antigo
+        sortedProposals = [...proposals].sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
         break;
-      case 'option-4': // Menos votado
+      case "option-4": // Menos votado
         sortedProposals = [...proposals].sort((a, b) => a.likes - b.likes);
         break;
-      case 'option-5': // Mais votado
+      case "option-5": // Mais votado
         sortedProposals = [...proposals].sort((a, b) => b.likes - a.likes);
         break;
       default: // Tudo

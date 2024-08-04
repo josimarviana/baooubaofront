@@ -6747,7 +6747,7 @@ fieldset:disabled .btn {
   content: "";
 }
 .text-bg-primary {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(21, 163, 98, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-secondary {
@@ -6755,20 +6755,20 @@ fieldset:disabled .btn {
   background-color: RGBA(93, 103, 120, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-success {
-  color: #000 !important;
-  background-color: RGBA(92, 179, 119, var(--bs-bg-opacity, 1)) !important;
+  color: #fff !important;
+  background-color: RGBA(40, 183, 107, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-danger {
-  color: #000 !important;
-  background-color: RGBA(210, 109, 105, var(--bs-bg-opacity, 1)) !important;
+  color: #fff !important;
+  background-color: RGBA(220, 53, 69, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-warning {
-  color: #000 !important;
+  color: #fff !important;
   background-color: RGBA(238, 191, 65, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-info {
-  color: #000 !important;
-  background-color: RGBA(91, 153, 234, var(--bs-bg-opacity, 1)) !important;
+  color: #fff !important;
+  background-color: RGBA(13, 202, 240, var(--bs-bg-opacity, 1)) !important;
 }
 .link-primary {
   color: RGBA(var(--bs-primary-rgb), var(--bs-link-opacity, 1)) !important;
@@ -12600,19 +12600,16 @@ button.close:focus {
   }
 }
 .app-login .auth-background-holder {
-  
   background-size: cover;
   height: 100vh;
   min-height: 100%;
 }
 .app-signup .auth-background-holder {
-  
   background-size: cover;
   height: 100vh;
   min-height: 100%;
 }
 .app-reset-password .auth-background-holder {
-  
   background-size: cover;
   height: 100vh;
   min-height: 100%;
