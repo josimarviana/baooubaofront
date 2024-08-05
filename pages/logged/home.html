@@ -415,6 +415,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!--//modal-header-->
+
                 <div class="modal-body">
                     <div class="app-card app-card-proposal shadown-sm mb-4">
                         <div class="app-card-header px-4 py-3">
@@ -430,45 +431,47 @@
                                             <span id="proposal-likes"></span></a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-auto ms-auto ">
+                                <div class="col-12 col-lg-auto ms-auto">
                                     <div class="proposal-type mb-2">
                                         <span class="badge bg-info" id="proposal-category"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--//app-card-header-->
 
-                        <!--//row-->
-                    </div>
-                    <!--//app-card-header-->
-                    <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
-                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
-                    </div>
-                    <div class="app-card-body p-4">
-                        <div class="proposal-content" id="proposal-description">
-                            <!-- aqui vai a descrição da proposta -->
+                        <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
+                            <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
+                        </div>
+                        <div class="app-card-body p-4">
+                            <div class="proposal-content" id="proposal-description">
+                                <!-- aqui vai a descrição da proposta -->
+                            </div>
+                        </div>
+                        <!--//app-card-body-->
+                        <hr>
+                        <div class="col-12 col-lg-auto text-center text-lg-start" id="proposal-author"></div>
+                        <hr>
+                        <div class="app-card-footer px-4 py-3">
+                            <button class="btn app-btn-primary" href="#" id="btn-vote">Votar</a>
                         </div>
                     </div>
-                    <!--//app-card-body-->
-                    <hr>
-                    <!-- <div class="col-12 col-lg-auto text-center text-lg-start" id="proposal-category">
-                    </div> -->
-                    <div class="col-12 col-lg-auto text-center text-lg-start" id="proposal-author">
+                    <!--//app-card-->
 
+                    <!-- Spinner de loading -->
+                    <div id="loading-spinner" class="position-absolute top-50 start-50 translate-middle d-none">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="app-card-footer px-4 py-3">
-                        <button class="btn app-btn-primary" href="#" id="btn-vote">Votar</a>
-                    </div>
-
-
                 </div>
-                <!--//app-card-->
+                <!--//modal-body-->
             </div>
-            <!--//modal-body-->
+            <!--//modal-content-->
         </div>
-        <!--//modal-content-->
+        <!--//modal-dialog-->
     </div>
+
     <!--//modal-dialog-->
     <footer class="footer">
 
