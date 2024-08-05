@@ -37,10 +37,10 @@
                                 </svg> </a>
                         </div><!--//col-->
 
-                       <!-- <div class="search-mobile-trigger d-sm-none col">
+                        <!-- <div class="search-mobile-trigger d-sm-none col">
                             <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
                         </div><!--//col-->
-                     <!--   <div class="app-search-box col">
+                        <!--   <div class="app-search-box col">
                             <form action="#" class="app-search-form">
                                 <input placeholder="Pesquisar..." type="text" name="app-search-form"
                                     id="app-search-form" class="form-control">
@@ -287,101 +287,61 @@
                 <div class="col-12 col-md-12">
                     <div class="app-card app-card-new-proposal shadow-sm p-4">
                         <div class="app-card-boddy">
-                            <form class="new-proposal-form">
+                            <form action="#" class="new-proposal-form" id="new-proposal-form">
                                 <div class="mb-3">
-                                    <label for="proposal-title" class="form-label">Título<span class="ms-2"
-                                            data-bs-container="body" data-bs-toggle="popover"
-                                            data-bs-trigger="hover focus" data-bs-placement="top"
-                                            data-bs-content="Informe um título que faça sentido com sua proposta, pois é por ele que as pessoas terão interesse em ler mais sobre."><svg
-                                                width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path
-                                                    d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                                <circle cx="8" cy="4.5" r="1" />
-                                            </svg></span></label>
-                                    <input type="text" name="proposal-title" id="proposal-title" class="form-control"
+                                    <label for="proposal-title" class="form-label">Título</label>
+                                    <input type="text" name="title" id="proposal-title" class="form-control"
                                         required="required" />
-
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="proposal-description" class="form-label">Descrição</label>
-                                    <textarea name="proposal-description" class="form-control h-100"
-                                        id="proposal-description" cols="30" rows="7" required="required"></textarea>
+                                    <textarea name="description" class="form-control h-100" id="proposal-description"
+                                        cols="30" rows="7" required="required"></textarea>
                                 </div>
+
                                 <div class="mb-3">
-                                    <label class="form-label" for="proposal-image">Imagem<span class="ms-2"
-                                            data-bs-container="body" data-bs-toggle="popover"
-                                            data-bs-trigger="hover focus" data-bs-placement="top"
-                                            data-bs-content="Adicione uma imagem que ajude a descrever seu projeto, seja um modelo pronto ou algum esboço da sua ideia."><svg
-                                                width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path
-                                                    d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                                <circle cx="8" cy="4.5" r="1" />
-                                            </svg></span></label>
-                                    <input type="file" name="proposal-image" id="proposal-image" class="form-control">
+                                    <label for="proposal-url" class="form-label">URL</label>
+                                    <input type="text" name="url" id="proposal-url" class="form-control" />
                                 </div>
+
                                 <div class="mb-3">
+                                    <label class="form-label" for="proposal-image">Imagem</label>
+                                    <input type="file" name="image" id="proposal-image" class="form-control" />
+                                </div>
 
-                                    <label for="proposal-category" class="form-label">Categorias</label>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="proposal-category-1">
-                                        <label class="form-check-label" for="proposal-category-1">
-                                            Infraestrutura
-                                        </label>
-
+                                <div class="mb-3">
+                                    <p class="mb-1">Categorias:</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="infra" name="category"
+                                            value="Infraestrutura" />
+                                        <label class="form-check-label" for="infra">Infraestrutura</label>
                                     </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="proposal-category-1">
-                                        <label class="form-check-label" for="proposal-category-1">
-                                            Corpo docente
-                                        </label>
-
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="ensino" name="category"
+                                            value="Ensino" />
+                                        <label class="form-check-label" for="ensino">Ensino</label>
                                     </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="proposal-category-1">
-                                        <label class="form-check-label" for="proposal-category-1">
-                                            Coordenação
-                                        </label>
-
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="proposal-category-1">
-                                        <label class="form-check-label" for="proposal-category-1">
-                                            Ensino
-                                        </label>
-
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="proposal-category-1">
-                                        <label class="form-check-label" for="proposal-category-1">
-                                            Biblioteca
-                                        </label>
-
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="alimentacao" name="category"
+                                            value="Alimentação" />
+                                        <label class="form-check-label" for="alimentacao">Alimentação</label>
                                     </div>
                                 </div>
+
                                 <hr>
                                 <div class="row justify-content-between">
                                     <div class="col-auto">
-                                        <a class="btn app-btn-primary" href="#">Salvar</a>
+                                        <button type="submit" class="btn app-btn-primary">Salvar</button>
                                     </div>
                                     <div class="col-auto">
-                                        <a class="btn app-btn-secondary" href="../../pages/logged/my-proposal.html" id="cancel-link">Cancelar</a>
+                                        <a class="btn app-btn-secondary" href="../../pages/logged/my-proposal.html"
+                                            id="cancel-link">Cancelar</a>
                                     </div>
                                 </div>
-                                <button type="reset" id="hidden-reset-button" style="display: none;"></button>
+                            </form>
+
                         </div>
-                        </form><!--//new-proposal-form-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
             </div><!--//col-->
@@ -421,6 +381,8 @@
 
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
+    <script src="../../assets/js/app/new-proposal.js"></script>
+
 </body>
 
 </html>
