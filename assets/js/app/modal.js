@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
   }
+
   let currentProposalId = null;
   let hasVoted = false;
 
@@ -14,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const id = button.getAttribute("data-proposal-id");
 
     currentProposalId = id;
-    // Fazer a requisição à API para obter dados dinâmicos
+
+    // Fazer a requisição à API para obter dados dinâmicos da proposta
     const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/${id}`;
     try {
       const response = await fetch(apiUrl, {
@@ -34,9 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "#proposal-description"
       );
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      // const proposalSituation = proposalModal.querySelector(
-      //   "#proposal-situation"
-      // );
       const proposalAuthor = proposalModal.querySelector("#proposal-author");
       const proposalCategory =
         proposalModal.querySelector("#proposal-category");
@@ -58,25 +57,40 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Erro ao carregar a imagem:", error);
       };
 
-      console.log(data);
-
       modalTitle.textContent =
         "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
-      // proposalSituation.textContent = data.situation;
       proposalAuthor.textContent = "Autor: " + data.author;
       proposalCategory.textContent = data.category;
 
-      //Verificar se o usuário ja votou nesta proposta
-      hasVoted = data.hasVoted;
-      const voteButton = proposalModal.querySelector("#btn-vote");
-      updateVoteButton(voteButton);
+      // Verificar se o usuário já votou nesta proposta
+      await checkIfUserHasVoted(id);
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   });
+
+  async function checkIfUserHasVoted(proposalId) {
+    const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/has-voted/${proposalId}`;
+    try {
+      const response = await fetch(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      hasVoted = data.hasVoted;
+      const voteButton = proposalModal.querySelector("#btn-vote");
+      updateVoteButton(voteButton);
+    } catch (error) {
+      console.error("Erro ao verificar se o usuário votou:", error);
+    }
+  }
 
   function updateVoteButton(button) {
     if (hasVoted) {
@@ -94,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (event.target && event.target.matches("#btn-vote")) {
       const button = event.target;
       const url = hasVoted
-        ? "https://apibaoounao.iftmparacatu.app.br/proposal/voting/unvote"
-        : "https://apibaoounao.iftmparacatu.app.br/proposal/voting";
+        ? "https://apibaoounao.iftmparacatu.app.br/voting/unvote"
+        : "https://apibaoounao.iftmparacatu.app.br/voting";
       const method = hasVoted ? "DELETE" : "POST";
 
       try {
@@ -120,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hasVoted = !hasVoted;
         updateVoteButton(button);
       } catch (error) {
-        console.log("Erro ao processar votação: ", error);
+        console.error("Erro ao processar votação: ", error);
       }
     }
   });
