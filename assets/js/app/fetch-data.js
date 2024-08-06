@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let proposals = []; // Variável para armazenar os dados recebidos
 
   if (!jwt) {
-    console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../erros/404.html"; // Redirecionar para a página de login
+    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
   }
 

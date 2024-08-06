@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../erros/404.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
   }
-  async function loadProposals(query = "") {
+  async function loadProposals() {
     try {
       const response = await fetch(apiUrl, {
         headers: {
