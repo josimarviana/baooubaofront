@@ -80,12 +80,25 @@ signupForm.addEventListener("submit", (event) => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Erro ao enviar dados para a API");
+          return response.text().then((text) => {
+            throw new Error(`Erro ao enviar dados para a API: ${text}`);
+          });
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Dados enviados com sucesso: ", data);
+        // Verificar se a resposta possui corpo e tratar conforme
+        return response.text().then((text) => {
+          if (text) {
+            try {
+              const data = JSON.parse(text);
+              console.log("Dados enviados com sucesso: ", data);
+            } catch (e) {
+              console.warn("Resposta da API não é JSON válido: ", text);
+            }
+          } else {
+            console.log("Dados enviados com sucesso, mas sem resposta JSON.");
+          }
+          localStorage.setItem("userEmail", email);
+          window.location.href = "../../../pages/messages/confirmation.html";
+        });
       })
       .catch((error) => {
         console.error("Erro: ", error);
