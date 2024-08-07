@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaooubao.iftmparacatu.app.br/cycle";
+  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/cycle";
   const jwt = sessionStorage.getItem("jwt");
   let cycles = [];
 

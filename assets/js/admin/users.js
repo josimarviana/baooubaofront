@@ -29,24 +29,30 @@ document.addEventListener("DOMContentLoaded", function () {
   function displayUsers(data) {
     const tableBody = document.querySelector("#users-all tbody");
 
-    // Limpa as linhas atuais da tabela
+    const roleMapping = {
+      ROLE_USER: "Usuário",
+      ROLE_ADMINISTRATOR: "Administrador",
+    };
+
     tableBody.innerHTML = "";
 
     data.forEach((user) => {
       console.log(user);
       const row = document.createElement("tr");
+
+      const friendlyRoles = user.roles
+        .map((role) => roleMapping[role.name] || role.name)
+        .join(", ");
+
       row.innerHTML = `
-          <td class="cell">${user.id}</td>
-                <td class="cell">${user.name}</td>
-                <td class="cell">${user.email}</td>
-                <td class="cell">${user.type}</td>
-                <td class="cell">${user.active ? "Sim" : "Não"}</td>
-                <td class="cell">${formatDate(user.createdAt)}</td>
-               <td class="cell">${user.roles
-                 .map((role) => role.name)
-                 .join(", ")}</td>
-                
-        `;
+        <td class="cell">${user.id}</td>
+        <td class="cell">${user.name}</td>
+        <td class="cell">${user.email}</td>
+        <td class="cell">${user.type}</td>
+        <td class="cell">${user.active ? "Sim" : "Não"}</td>
+        <td class="cell">${formatDate(user.createdAt)}</td>
+        <td class="cell">${friendlyRoles}</td>
+      `;
 
       tableBody.appendChild(row);
     });
