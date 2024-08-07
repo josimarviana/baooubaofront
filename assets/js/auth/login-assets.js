@@ -14,6 +14,8 @@ document.getElementById("show-password").addEventListener("click", function () {
 });
 
 const loginForm = document.querySelector("#loginForm");
+const errorMessage = document.getElementById("loginError");
+
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -37,12 +39,18 @@ loginForm.addEventListener("submit", (event) => {
           "Falha na autenticação. Verifique suas credenciais e tente novamente."
         );
       }
+
       return response.json();
     })
     .then((data) => {
       // console.log("Dados completos da resposta:", data);
       const token = data.token;
       sessionStorage.setItem("jwt", token);
+
+      const jwt = sessionStorage.getItem("jwt");
+      const decodedToken = parseJwt(jwt);
+
+      console.log("Decoded JWT:", decodedToken);
 
       // const userId = data.id;
       // const userEmail = data.email;
@@ -52,10 +60,29 @@ loginForm.addEventListener("submit", (event) => {
       // sessionStorage.setItem("userEmail", userEmail);
       // sessionStorage.setItem("userName", userName);
 
-       window.location.href = "../../../pages/logged/home.html";
+      errorMessage.textContent = "";
+      loginForm.reset();
+      window.location.href = "../../../pages/logged/home.html";
     })
     .catch((error) => {
       console.error("Erro durante o login:", error);
-      alert(error.message);
+
+      errorMessage.textContent =
+        "Falha na autenticação. Verifique suas credenciais e tente novamente.";
     });
+
+  function parseJwt(token) {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  }
 });
