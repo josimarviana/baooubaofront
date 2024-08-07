@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Adm.Usuários - Bão ou Não</title>
+    <title>Adm.Cíclos - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -160,8 +160,12 @@
 
                             <div class="app-utility-item app-user-dropdown dropdown">
                                 <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false"><img
-                                        src="../../assets/images/profiles/profile-3.png" alt="user profile"></a>
+                                    role="button" aria-expanded="false"> <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="1em" height="1em" fill="currentColor" class="bi bi-person-lines-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                                    </svg></a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                                     <li><a class="dropdown-item" href="account.html">Conta</a></li>
                                     <li><a class="dropdown-item" href="settings.html">Configurações</a></li>
@@ -241,13 +245,12 @@
 
                             <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
                                 <ul class="submenu-list list-unstyled">
-
                                     <li class="submenu-item"><a href="./categorys.html"
                                             class="submenu-link">Categorias</a></li>
-                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclos</a>
-                                    </li>
                                     <li class="submenu-item"><a href="./proposals.html"
                                             class="submenu-link">Propostas</a></li>
+                                    <li class="submenu-item"><a href="./users.html" class="submenu-link">Usuários</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -268,7 +271,7 @@
             <div class="container-xl">
                 <div class="row g-3 mb-4 alignt-items-center justify-content-between">
                     <div class="col-auto">
-                        <h1 class="app-page-title mb-0">Usuários</h1>
+                        <h1 class="app-page-title mb-0">Cíclos</h1>
                     </div><!--//col-->
                     <div class="col-auto">
                         <div class="page-utilities">
@@ -300,25 +303,9 @@
                     </div><!--//col-auto-->
                 </div><!--//row-->
 
-                <!-- <nav id="users-table-tab"
-                    class="users-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link active" id="users-" data-bs-toggle="tab"
-                        role="tab" aria-controls="users-" aria-selected="false">ID</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Nome</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Email</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Tipo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Ativo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Criado em:</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Atualizado em:</a>
-                </nav> -->
-                <div class="tab-content" id="users-table-tab-content">
-                    <div class="tab-pane fade show active" id="users-all" role="tabpanel"
+
+                <div class="tab-content" id="cycle-table-tab-content">
+                    <div class="tab-pane fade show active" id="cycles-all" role="tabpanel"
                         aria-labelledby="users-all-tab">
                         <div class="app-card app-card-users-table shadow-sm mb-5">
                             <div class="app-card-body">
@@ -326,18 +313,18 @@
                                     <table class="table table-striped table-bordered app-table-hover mb-0 text-left">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Tipo</th>
-                                                <th>Ativo</th>
+                                                <th>Título</th>
                                                 <th>Criado em</th>
-                                                <th>Cargos</th>
+                                                <th>Finalizado em</th>
 
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-
+                                            <tr>
+                                                <td class="cell">2024 - 2</td>
+                                                <td class="cell">01/02/2024</td>
+                                                <td class="cell">30/07/2024</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
@@ -356,7 +343,7 @@
 
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-    <script src="../../assets/js/admin/users.js"></script>
+    <script src="../../assets/js/admin/cycles.js"></script>
 
 </body>
 

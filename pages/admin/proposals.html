@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Adm.Usuários - Bão ou Não</title>
+    <title>Home - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,6 +18,7 @@
     <script defer src="../../assets/fontawesome/js/all.min.js"></script>
     <!-- App CSS-->
     <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
+
 </head>
 
 <body class="app">
@@ -84,7 +85,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="notifications.html" class="link-mask"></a>
+                                            <a href="#" class="link-mask"></a>
                                         </div><!--//item-->
 
 
@@ -114,7 +115,7 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a href="notifications.html" class="link-mask"></a>
+                                            <a href="#" class="link-mask"></a>
                                         </div><!--//item-->
                                         <div class="item p-3">
                                             <div class="row gx-2 justify-content-between align-items-center">
@@ -136,18 +137,18 @@
                                                     </div>
                                                 </div><!--//col-->
                                             </div><!--//row-->
-                                            <a class="link-mask" href="notifications.html"></a>
+                                            <a class="link-mask" href="#"></a>
                                         </div><!--//item-->
                                     </div><!--//dropdown-menu-content-->
                                     <div class="dropdown-menu-footer p-2 text-center">
-                                        <a href="notifications.html">Ver todas</a>
+                                        <a href="#">Ver todas</a>
                                     </div>
 
                                 </div><!--//dropdown-menu-->
                             </div><!--//app-notifications-dropdown-->
 
                             <div class="app-utility-item">
-                                <a href="settings.html" title="Settings">
+                                <a href="#" title="Settings">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -160,15 +161,24 @@
 
                             <div class="app-utility-item app-user-dropdown dropdown">
                                 <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false"><img
-                                        src="../../assets/images/profiles/profile-3.png" alt="user profile"></a>
+                                    role="button" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                        class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                    <span id="user-name">
+                                        <?php echo $userName; ?>
+                                    </span> </a>
+                                </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                    <li><a class="dropdown-item" href="account.html">Conta</a></li>
-                                    <li><a class="dropdown-item" href="settings.html">Configurações</a></li>
+                                    <li><a class="dropdown-item" href="#">Conta</a></li>  
+
+                                    <li><a class="dropdown-item" href="#">Configurações</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../../index.html">Sair</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
                                 </ul>
                             </div><!--//app-user-dropdown-->
                         </div><!--//app-utilities-->
@@ -191,7 +201,7 @@
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
                     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                         <li class="nav-item">
-                            <a href="../logged/home.html" class="nav-link">
+                            <a href="home.html" class="nav-link">
                                 <span class="nav-icon"><svg width="1em" height="1em" viewBox="0 0 16 16"
                                         class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -203,7 +213,7 @@
                                 <span class="nav-link-text">Início</span>
                             </a><!--//nav-link-->
                         </li><!--//nav-item-->
-                        <li class="nav-item"><a href="../logged/my-proposal.html" class="nav-link">
+                        <li class="nav-item"><a href="my-proposal.html" class="nav-link">
                                 <span class="nav-icon"> <svg width="1em" height="1em" viewBox="0 0 16 16"
                                         class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -215,6 +225,7 @@
                                 <span class="nav-link-text">Minhas propostas</span>
                             </a><!--//nav-link-->
                         </li><!--//nav-item-->
+
 
                         <li class="nav-item has-submenu">
                             <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse"
@@ -236,18 +247,17 @@
                                             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
                                     </svg>
                                 </span><!--//subment-arrow-->
-                            </a><!--//nav - link-->
+                            </a><!--//nav-link-->
 
 
                             <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
                                 <ul class="submenu-list list-unstyled">
-
                                     <li class="submenu-item"><a href="./categorys.html"
                                             class="submenu-link">Categorias</a></li>
                                     <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclos</a>
                                     </li>
-                                    <li class="submenu-item"><a href="./proposals.html"
-                                            class="submenu-link">Propostas</a></li>
+                                    <li class="submenu-item"><a href="./users.html" class="submenu-link">Usuários</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -255,108 +265,186 @@
 
 
                     </ul><!--//app-menu-->
-                </nav><!--//app - nav -main-->
+                </nav><!--//app-nav-main-->
 
-
-
+                <div class="app-sidepanel-footer">
+                    <nav class="app-nav app-nav-footer">
+                        <ul class="app-menu footer-menu list-unstyled">
+                            <li class="nav-item">
+                                <a href="settings.html" class="nav-link">
+                                    <span class="nav-icon">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />
+                                            <path fill-rule="evenodd"
+                                                d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-text">Configurações</span>
+                                </a>
+                            </li>
+                        </ul><!--//app-menu-->
+                    </nav><!--//app-nav-foooter-->
+                </div><!--//app-sidepanel-footer-->
             </div><!--//sidepanel-inner-->
-            </di><!--//app-sidepanel-->
+        </div><!--//app-sidepanel-->
     </header><!--//app-header-->
 
     <div class="app-wrapper">
-        <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="app-content pt-3 p-md p-lg-4">
             <div class="container-xl">
-                <div class="row g-3 mb-4 alignt-items-center justify-content-between">
+                <div class="row g-3 mb-4 align-items-center justify-content-between">
                     <div class="col-auto">
-                        <h1 class="app-page-title mb-0">Usuários</h1>
-                    </div><!--//col-->
+                        <h1 class="app-page-title mb-0">Propostas</h1>
+                    </div>
+                    <!--//col-auto-->
                     <div class="col-auto">
                         <div class="page-utilities">
                             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                                 <div class="col-auto">
-                                    <form action="#" class="table-search-form row gx-1 align-items-center">
-                                        <div class="col-auto">
-                                            <input type="text" name="search-users" id="search-users"
-                                                class="form-control search-users" placeholder="Pesquisar">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn app-btn-secondary">Buscar</button>
-                                        </div>
-                                    </form>
-                                </div><!--//col-->
 
-                                <div class="col-auto">
-                                    <select class="form-select w=auto">
-                                        <option selected value="option-1">Todos</option>
-                                        <option value="option-2">Opção 2</option>
-                                        <option value="option-3">Opção 3</option>
-                                        <option value="option-4">Opção 4</option>
-                                        <option value="option-5">Opção 5</option>
+                                    <select class="form-select w-auto">
+
+                                        <option selected value="option-1">Tudo</option>
+                                        <option value="option-2">Mais recente</option>
+                                        <option value="option-3">Mais antigo</option>
+                                        <option value="option-4">Menos votado</option>
+                                        <option value="option-5">Mais votado</option>
+
                                     </select>
-                                </div><!--//col-auto-->
+                                </div>
+                                <!--//col-auto-->
 
-                            </div><!--//row-->
-                        </div><!--//page-utilities-->
-                    </div><!--//col-auto-->
-                </div><!--//row-->
+                            </div>
+                            <!--//row-->
 
-                <!-- <nav id="users-table-tab"
-                    class="users-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link active" id="users-" data-bs-toggle="tab"
-                        role="tab" aria-controls="users-" aria-selected="false">ID</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Nome</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Email</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Tipo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Ativo</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Criado em:</a>
-                    <a href="#" class="felx-sm-fill text-sm-center nav-link" id="users-" data-bs-toggle="tab" role="tab"
-                        aria-controls="users-" aria-selected="false">Atualizado em:</a>
-                </nav> -->
-                <div class="tab-content" id="users-table-tab-content">
-                    <div class="tab-pane fade show active" id="users-all" role="tabpanel"
-                        aria-labelledby="users-all-tab">
-                        <div class="app-card app-card-users-table shadow-sm mb-5">
-                            <div class="app-card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered app-table-hover mb-0 text-left">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Tipo</th>
-                                                <th>Ativo</th>
-                                                <th>Criado em</th>
-                                                <th>Cargos</th>
+                        </div>
+                        <!--//page-utilities-->
+                    </div>
+                    <!--//col-auto-->
+                </div>
+                <!--//row-->
+            </div>
+            <!--//container-xl-->
+        </div>
+        <!--//app-content-->
+    </div>
+    <!--//app-wrapper-->
 
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
 
-                                        </tbody>
-                                    </table>
-                                </div><!--/table-responsive-->
-                            </div><!--//app-card-body-->
-                        </div><!--//app-card-users-table-->
-                    </div><!--//tab-pane-->
-                </div><!--//users-table-tab-conten-->
-            </div><!--//container-xl-->
-        </div><!--//app-content-->
-    </div><!--//app-wrapper-->
+    <div class="app-wrapper">
+        <div class="app-content pt-3 p-md-3 p-lg-4">
+            <div class="container-xl">
+                <div class="row g-4" id="card-container">
+                    <!-- As novas propostas serão adicionadas aqui -->
+                </div>
+            </div>
+            <!--//container-xl-->
+        </div>
+        <!--//app-content-->
+    </div>
+    <!--//app-wrapper-->
+    <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header align-items-between">
+                    <h5 class="modal-title" id="proposalModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!--//modal-header-->
 
+                <div class="modal-body">
+                    <div class="app-card app-card-proposal shadown-sm mb-4">
+                        <div class="app-card-header px-4 py-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-12 col-lg-auto">
+                                    <div>
+                                        <h4 class="proposal-title mb-1" id="proposal-title"></h4>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-auto">
+                                    <div class="text">
+                                        <a href="#" class="text-action-links"><i class="fa-solid fa-thumbs-up"></i>
+                                            <span id="proposal-likes"></span></a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-auto ms-auto">
+                                    <div class="proposal-type mb-2">
+                                        <span class="badge bg-info" id="proposal-category"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//app-card-header-->
+
+                        <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
+                            <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
+                        </div>
+                        <div class="app-card-body p-4">
+                            <div class="proposal-content" id="proposal-description">
+                                <!-- aqui vai a descrição da proposta -->
+                            </div>
+                        </div>
+                        <!--//app-card-body-->
+                        <hr>
+                        <div class="col-12 col-lg-auto text-center text-lg-start" id="proposal-author"></div>
+                        <hr>
+                        <div class="app-card-footer px-4 py-3">
+                            <button class="btn app-btn-primary" href="#" id="btn-vote">Votar</a>
+                        </div>
+                    </div>
+                    <!--//app-card-->
+
+                    <!-- Spinner de loading -->
+                    <div id="loading-spinner" class="position-absolute top-50 start-50 translate-middle d-none">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!--//modal-body-->
+            </div>
+            <!--//modal-content-->
+        </div>
+        <!--//modal-dialog-->
+    </div>
+
+    <!--//modal-dialog-->
+    <footer class="footer">
+
+        <div class="footer-bottom text-center py-5">
+
+
+            <small class="copyright">Desenvolvido por
+                <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves </a>
+                ,
+                <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
+                ,
+                <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
+                e
+                <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+
+                para todos
+                do IFTM</small>
+
+
+        </div>
+
+    </footer>
 
     <!-- Javascript-->
     <script src="../../assets/plugins/popper.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
+  
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-    <script src="../../assets/js/admin/users.js"></script>
+
+    <!-- <script src="../../assets/js/app/modal.js"></script> -->
+    <script src="../../assets/js/admin/proposals.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </body>
 
