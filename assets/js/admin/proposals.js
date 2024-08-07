@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html";
     return;
   }
-
   async function loadProposals() {
     try {
       const response = await fetch(apiUrl, {
@@ -19,9 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
 
-        proposals = await response.json();
-        displayProposals(proposals);
       }
+      proposals = await response.json();
+      displayProposals(proposals);
     } catch (error) {
       console.error("Erro ao obter dados da API: ", error);
     }
@@ -83,9 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                             <li><a href="#" class="dropdown-item text-info"><i
                                                         class="fa-solid fa-check-double"></i>
                                                     Encaminhar para conselho</a></li>
-
-
-
                                         </ul>
                                     </div>
                                 </div>
@@ -100,6 +96,5 @@ document.addEventListener("DOMContentLoaded", function () {
       cardContainer.appendChild(newCard);
     });
   }
-
   loadProposals();
 });

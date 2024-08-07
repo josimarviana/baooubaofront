@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     data.forEach((user) => {
       console.log(user);
       const row = document.createElement("tr");
-
       row.innerHTML = `
           <td class="cell">${user.id}</td>
                 <td class="cell">${user.name}</td>
@@ -46,9 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
                <td class="cell">${user.roles
                  .map((role) => role.name)
                  .join(", ")}</td>
-        
-             
-              
                 
         `;
 

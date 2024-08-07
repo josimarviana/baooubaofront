@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Home - Bão ou Não</title>
+    <title>[ADM] Propostas - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -37,17 +37,7 @@
                                         stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                                 </svg> </a>
                         </div><!--//col-->
-                        <div class="search-mobile-trigger d-sm-none col">
-                            <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
-                        </div><!--//col-->
-                        <div class="app-search-box col">
-                            <form action="#" class="app-search-form">
-                                <input placeholder="Pesquisar..." type="text" name="app-search-form"
-                                    id="app-search-form" class="form-control">
-                                <button type="submit" class="btn search-btn btn-primary" value="Buscar"><i
-                                        class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                        </div><!--//app-search-box-->
+
 
                         <div class="app-utilities col-auto">
                             <div class="app-utility-item app-notifications-dropdown dropdown">
@@ -168,7 +158,7 @@
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
                                     <span id="user-name">
-                                        <?php echo $userName; ?>
+
                                     </span> </a>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
@@ -254,7 +244,10 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="./categorys.html"
                                             class="submenu-link">Categorias</a></li>
-                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclos</a>
+                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Cíclos</a>
+                                    </li>
+                                    <li class="submenu-item"><a href="./proposals.html"
+                                            class="submenu-link">Propostas</a>
                                     </li>
                                     <li class="submenu-item"><a href="./users.html" class="submenu-link">Usuários</a>
                                     </li>
@@ -296,33 +289,37 @@
             <div class="container-xl">
                 <div class="row g-3 mb-4 align-items-center justify-content-between">
                     <div class="col-auto">
-                        <h1 class="app-page-title mb-0">Propostas</h1>
+                        <h1 class="app-page-title mb-0">[ADM] - Propostas</h1>
                     </div>
                     <!--//col-auto-->
                     <div class="col-auto">
                         <div class="page-utilities">
                             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                                 <div class="col-auto">
+                                    <form action="#" class="table-search-form row gx-1 align-items-center">
+                                        <div class="col-auto">
+                                            <input type="text" name="search-users" id="search-users"
+                                                class="form-control search-users" placeholder="Pesquisar">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn app-btn-secondary">Buscar</button>
+                                        </div>
+                                    </form>
+                                </div><!--//col-->
 
-                                    <select class="form-select w-auto">
-
-                                        <option selected value="option-1">Tudo</option>
-                                        <option value="option-2">Mais recente</option>
-                                        <option value="option-3">Mais antigo</option>
-                                        <option value="option-4">Menos votado</option>
-                                        <option value="option-5">Mais votado</option>
-
+                                <div class="col-auto">
+                                    <select class="form-select w=auto">
+                                        <option selected value="option-1">Todos</option>
+                                        <option value="option-2">Opção 2</option>
+                                        <option value="option-3">Opção 3</option>
+                                        <option value="option-4">Opção 4</option>
+                                        <option value="option-5">Opção 5</option>
                                     </select>
-                                </div>
-                                <!--//col-auto-->
+                                </div><!--//col-auto-->
 
-                            </div>
-                            <!--//row-->
-
-                        </div>
-                        <!--//page-utilities-->
-                    </div>
-                    <!--//col-auto-->
+                            </div><!--//row-->
+                        </div><!--//page-utilities-->
+                    </div><!--//col-auto-->
                 </div>
                 <!--//row-->
             </div>
@@ -427,8 +424,6 @@
 
                 para todos
                 do IFTM</small>
-
-
         </div>
 
     </footer>
@@ -437,11 +432,9 @@
     <script src="../../assets/plugins/popper.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-  
+
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-
-    <!-- <script src="../../assets/js/app/modal.js"></script> -->
     <script src="../../assets/js/admin/proposals.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

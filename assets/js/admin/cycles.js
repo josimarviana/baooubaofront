@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaooubao.iftmparacatu.app.br/cycles";
+  const apiUrl = "https://apibaooubao.iftmparacatu.app.br/cycle";
   const jwt = sessionStorage.getItem("jwt");
   let cycles = [];
 
@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-      <td class="cell">${cycle.title}</td>
-      <td class="cell">${formatDate(cycle.startDate)}</td>
-      <td class="cell">${formatDate(cycle.finishDate)}</td>
+            <td class="cell">${cycle.title}</td>
+            <td class="cell">${formatDate(cycle.startDate)}</td>
+            <td class="cell">${formatDate(cycle.finishDate)}</td>
       `;
 
       tableBody.appendChild(row);
