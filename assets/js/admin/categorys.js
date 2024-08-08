@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data.forEach((category) => {
       const row = document.createElement("tr");
       row.innerHTML = `
+        <td class="cell">${category.id}</td>
         <td class="cell">${category.title}</td>
         <td class="cell">${category.active ? "Sim" : "Não"}</td>
         <td class="cell">${category.icon || "-"}</td>

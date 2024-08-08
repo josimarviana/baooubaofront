@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/my-proposals`;
-  let proposals = [];
+  const jwt = sessionStorage.getItem("jwt");
+  let proposals = []; // Variável para armazenar os dados recebidos
 
   if (!sessionStorage.getItem("jwt")) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../erros/404.html";
-    return;
+    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
+    return; // Interrompe a execução da função
   }
   async function loadProposals() {
     try {
@@ -24,13 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Erro ao obter dados da API", error);
     }
   }
-  document
-    .getElementById("cancel-link")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      document.getElementById("hidden-reset-button").click();
-      window.location.href = "../../pages/logged/my-proposal.html";
-    });
+
   function displayProposals(data) {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
@@ -42,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
                             <div class="app-card-header p-3 border-bottom-0">
                                 <div class="row align-items-center gx-3">
-                                    <div class="col-auto">
+                                    <div>
                                         <div class="app-icon-holder">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">

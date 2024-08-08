@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const row = document.createElement("tr");
 
       row.innerHTML = `
+            <td class="cell">${cycle.id}</td>
             <td class="cell">${cycle.title}</td>
             <td class="cell">${formatDate(cycle.startDate)}</td>
             <td class="cell">${formatDate(cycle.finishDate)}</td>

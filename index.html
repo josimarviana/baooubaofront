@@ -107,7 +107,7 @@
 									// Para cada item na lista de dados
 									data.forEach(item => {
 										let iconClass = '';
-										switch (item.category){
+										switch (item.category) {
 											case 'Infraestrutura':
 												iconClass = 'fa-solid fa-building'
 												break;
@@ -127,6 +127,7 @@
 										newCard.innerHTML = `
 											<div class="card shadow-sm">
 												<div class="card-body">
+
 													<h5 class="card-title mb-3">
 														<span class="theme-icon-holder card-icon-holder me-2">
 															<i class="${iconClass}"></i>															
