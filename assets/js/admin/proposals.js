@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
 
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayProposals(data) {
-    console.log(data);
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 

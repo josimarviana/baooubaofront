@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const jwt = sessionStorage.getItem("jwt");
   const roles = sessionStorage.getItem("roles");
-  console.log(roles);
-  if (!jwt) {
-    console.error("Usuário não autenticado. Redirecionando para o login.");
+
+  if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
   }
-  if (!roles.includes("ROLE_ADMINISTRATOR")) {
+  if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATO")) {
     const adminContent = document.querySelectorAll(".admin-content");
     adminContent.forEach((element) => {
-      element.style.display = "none"; // Oculta elementos com a classe .admin-content
+      element.style.display = "none";
     });
   }
   ("use strict");

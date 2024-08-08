@@ -1,18 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/my-proposals`;
-  const jwt = sessionStorage.getItem("jwt");
-  let proposals = []; // Variável para armazenar os dados recebidos
+  let proposals = [];
 
-  if (!jwt) {
+  if (!sessionStorage.getItem("jwt")) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../erros/404.html"; // Redirecionar para a página de login
-    return; // Interrompe a execução da função
+    window.location.href = "../erros/404.html";
+    return;
   }
   async function loadProposals() {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
 
@@ -33,12 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "../../pages/logged/my-proposal.html";
     });
   function displayProposals(data) {
-    console.log(data);
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 
     data.forEach((item) => {
-      console.log(item);
       const newCard = document.createElement("div");
       newCard.className = "col-12 col-lg-4";
       newCard.innerHTML = `

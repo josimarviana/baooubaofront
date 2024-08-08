@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
 
@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     tableBody.innerHTML = "";
 
     data.forEach((user) => {
-      console.log(user);
       const row = document.createElement("tr");
 
       const friendlyRoles = user.roles

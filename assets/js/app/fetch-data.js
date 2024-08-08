@@ -1,21 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal/filter";
-  const jwt = sessionStorage.getItem("jwt");
-  let proposals = []; // Variável para armazenar os dados recebidos
-
-  if (!jwt) {
-    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
-    return; // Interrompe a execução da função
+  let proposals = [];
+  if (!sessionStorage.getItem("jwt")) {
+    window.location.href = "../errors/404.html";
+    return;
   }
 
-  // Função para carregar propostas
   async function loadProposals(query = "") {
     try {
       const response = await fetch(
         `${apiUrl}?contain=${encodeURIComponent(query)}`,
         {
           headers: {
-            Authorization: `Bearer ${jwt}`,
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
         }
       );
@@ -24,18 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      proposals = await response.json(); // Armazena os dados na variável
-      displayProposals(proposals); // Exibe as propostas
+      proposals = await response.json();
+      displayProposals(proposals);
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   }
 
-  // Função para exibir propostas
   function displayProposals(data) {
     const cardContainer = document.getElementById("card-container");
-    cardContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos cards
-
+    cardContainer.innerHTML = "";
     data.forEach((item) => {
       const newCard = document.createElement("div");
       newCard.className = "col-12 col-lg-4";
@@ -69,49 +64,45 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Função para ordenar propostas
   function sortProposals(criteria) {
     let sortedProposals;
     switch (criteria) {
-      case "option-2": // Mais recente
+      case "option-2":
         sortedProposals = [...proposals].sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
         break;
-      case "option-3": // Mais antigo
+      case "option-3":
         sortedProposals = [...proposals].sort(
           (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
         );
         break;
-      case "option-4": // Menos votado
+      case "option-4":
         sortedProposals = [...proposals].sort((a, b) => a.likes - b.likes);
         break;
-      case "option-5": // Mais votado
+      case "option-5":
         sortedProposals = [...proposals].sort((a, b) => b.likes - a.likes);
         break;
-      default: // Tudo
+      default:
         sortedProposals = proposals;
         break;
     }
-    displayProposals(sortedProposals); // Exibe as propostas ordenadas
+    displayProposals(sortedProposals);
   }
 
-  // Carregar propostas ao carregar a página
   loadProposals();
 
-  // Adicionar evento de submit ao formulário de pesquisa
   const searchForm = document.querySelector(".app-search-form");
   searchForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    event.preventDefault();
     const searchInput = document.getElementById("app-search-form");
     const query = searchInput.value.trim();
-    loadProposals(query); // Recarregar as propostas com o filtro de pesquisa
+    loadProposals(query);
   });
 
-  // Adicionar evento de mudança ao dropdown de ordenação
   const sortSelect = document.querySelector(".page-utilities .form-select");
   sortSelect.addEventListener("change", function () {
     const sortBy = sortSelect.value;
-    sortProposals(sortBy); // Ordena as propostas com base na seleção
+    sortProposals(sortBy);
   });
 });

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
       if (!response.ok) {
@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tableBody.innerHTML = "";
     data.forEach((cycle) => {
-      console.log(cycle);
       const row = document.createElement("tr");
 
       row.innerHTML = `

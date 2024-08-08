@@ -3,13 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const jwt = sessionStorage.getItem("jwt");
-    if (!jwt) {
+    if (!sessionStorage.getItem("jwt")) {
       console.error("JWT não encontrado no sessionStorage");
       return;
     }
 
-    // Cria o FormData a partir do formulário
     const formData = new FormData(form);
 
     try {
@@ -18,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${jwt}`,
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
             Accept: "application/json",
           },
           body: formData,
@@ -31,9 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
       console.log("Proposta enviada com sucesso:", result);
-      // Redireciona ou limpa o formulário conforme necessário
       form.reset();
-      window.location.href = "../../../pages/logged/my-proposal.html"; // Substitua pelo caminho correto para redirecionar
+      window.location.href = "../../../pages/logged/my-proposal.html";
     } catch (error) {
       console.error("Erro ao enviar proposta:", error);
     }
