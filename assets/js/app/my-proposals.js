@@ -25,7 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Erro ao obter dados da API", error);
     }
   }
-
+  document
+    .getElementById("cancel-link")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementById("hidden-reset-button").click();
+      window.location.href = "../../pages/logged/my-proposal.html";
+    });
   function displayProposals(data) {
     console.log(data);
     const cardContainer = document.getElementById("card-container");

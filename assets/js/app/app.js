@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const jwt = sessionStorage.getItem("jwt");
-  const userName = sessionStorage.getItem("userName");
-  const userEmail = sessionStorage.getItem("userEmail");
-
+  const roles = sessionStorage.getItem("roles");
+  console.log(roles);
   if (!jwt) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
-    return; // Interrompe a execução da função
+    window.location.href = "../errors/404.html";
+    return;
   }
-
+  if (!roles.includes("ROLE_ADMINISTRATOR")) {
+    const adminContent = document.querySelectorAll(".admin-content");
+    adminContent.forEach((element) => {
+      element.style.display = "none"; // Oculta elementos com a classe .admin-content
+    });
+  }
   ("use strict");
 
   const popoverTriggerList = document.querySelectorAll(
@@ -82,15 +86,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       searchMobileTriggerIcon.classList.add("fa-magnifying-glass");
     }
   });
-  document
-    .getElementById("cancel-link")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      document.getElementById("hidden-reset-button").click();
-      window.location.href = "../../pages/logged/my-proposal.html";
-    });
 });
 function logout() {
   sessionStorage.removeItem("jwt");
+  sessionStorage.removeItem("roles");
+
   window.location.href = "../../index.html";
 }

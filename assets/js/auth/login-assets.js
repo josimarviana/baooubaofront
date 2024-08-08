@@ -43,7 +43,6 @@ loginForm.addEventListener("submit", (event) => {
       return response.json();
     })
     .then((data) => {
-      // console.log("Dados completos da resposta:", data);
       const token = data.token;
       sessionStorage.setItem("jwt", token);
 
@@ -51,14 +50,7 @@ loginForm.addEventListener("submit", (event) => {
       const decodedToken = parseJwt(jwt);
 
       console.log("Decoded JWT:", decodedToken);
-
-      // const userId = data.id;
-      // const userEmail = data.email;
-      // const userName = data.name;
-
-      // sessionStorage.setItem("userId", userId);
-      // sessionStorage.setItem("userEmail", userEmail);
-      // sessionStorage.setItem("userName", userName);
+      sessionStorage.setItem("roles", decodedToken.roles.join(", "));
 
       errorMessage.textContent = "";
       loginForm.reset();
@@ -72,9 +64,9 @@ loginForm.addEventListener("submit", (event) => {
     });
 
   function parseJwt(token) {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
       atob(base64)
         .split("")
         .map(function (c) {

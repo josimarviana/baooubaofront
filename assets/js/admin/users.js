@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/user";
-  const jwt = sessionStorage.getItem("jwt");
+
   let users = [];
 
-  if (!jwt) {
+  if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
   }
-
+  if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
+    window.location.href = "../errors/404.html";
+    return;
+  }
   async function loadUsers() {
     try {
       const response = await fetch(apiUrl, {
