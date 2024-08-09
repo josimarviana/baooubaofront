@@ -36,7 +36,7 @@
                                         stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                                 </svg> </a>
                         </div><!--//col-->
-                     
+
                         <div class="app-utilities col-auto">
                             <div class="app-utility-item app-notifications-dropdown dropdown">
                                 <a href="#" class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
@@ -156,7 +156,7 @@
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
                                     <span id="user-name">
-                                      
+
                                     </span> </a>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
@@ -215,7 +215,7 @@
                         </li><!--//nav-item-->
 
 
-                        <li class="nav-item has-submenu">
+                        <li class="nav-item has-submenu admin-content">
                             <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse"
                                 data-bs-target="#submenu-1" aria-expanded="false" aria-controls="#submenu-1">
                                 <span class="nav-icon">
@@ -240,11 +240,17 @@
 
                             <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
                                 <ul class="submenu-list list-unstyled">
-                                    <li class="submenu-item"><a href="#" class="submenu-link">Usuários</a></li>
-                                    <li class="submenu-item"><a href="#" class="submenu-link">Propostas</a></li>
-                                    <li class="submenu-item"><a href="#" class="submenu-link">Anúncios</a></li>
-                                    <li class="submenu-item"><a href="../../pages/logged/analytics.html"
-                                            class="submenu-link">Analytics</a></li>
+                                    <li class="submenu-item"><a href="../../pages/admin/categorys.html"
+                                            class="submenu-link">Categorias</a></li>
+                                    <li class="submenu-item"><a href="../../pages/admin/cycles.html"
+                                            class="submenu-link">Ciclos</a>
+                                    </li>
+                                    <li class="submenu-item"><a href="../../pages/admin/proposals.html"
+                                            class="submenu-link">Propostas</a>
+                                    </li>
+                                    <li class="submenu-item"><a href="../../pages/admin/users.html"
+                                            class="submenu-link">Usuários</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li><!--//nav-item-->
@@ -308,8 +314,8 @@
 
                 <div class="row g-4" id="card-container">
                     <div class="col-12 col-lg-4">
-                        
-                    </div> 
+
+                    </div>
 
                 </div><!--//row-->
             </div><!--//container-xl-->
@@ -321,64 +327,56 @@
     <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header align-items-between">
+                <div class="modal-header align-items-center">
                     <h5 class="modal-title" id="proposalModalLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!--//modal-header-->
+
                 <div class="modal-body">
-                    <div class="app-card app-card-proposal shadown-sm mb-4">
+                    <div class="app-card app-card-proposal mb-4">
                         <div class="app-card-header px-4 py-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-12 col-lg-auto">
-                                    <span class="badge " id="proposal-situation"></span>
-                                    <div>
-                                        <h4 class="proposal-title mb-1" id="proposal-title"></h4>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <span class="badge mb-2" id="proposal-situation"></span>
+                                </div>
+                                <div class="col-12 d-flex align-items-center">
+                                    <h4 class="proposal-title mb-0" id="proposal-title"></h4>
+                                </div>
+                                <div class="col-12 col-lg-auto d-flex align-items-center">
+                                    <div class="text me-2">
+                                        <a href="#" class="text-action-links d-flex align-items-center"><i
+                                                class="fa-solid fa-thumbs-up me-1"></i><span
+                                                id="proposal-likes"></span></a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-auto">
-                                    <div class="text">
-                                        <a href="#" class="text-action-links"><i class="fa-solid fa-thumbs-up"></i>
-                                            <span id="proposal-likes"></span></a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-auto ms-auto ">
-                                    <div class="proposal-type mb-2">
-                                        <span class="badge bg-info" id="proposal-category"></span>
-                                    </div>
+                                <div class="col-12 col-lg-auto ms-auto d-flex align-items-center">
+                                    <span class="badge bg-info" id="proposal-category"></span>
                                 </div>
                             </div>
                         </div>
+                        <!--//app-card-header-->
+                    </div>
+                    <!--//app-card-->
 
-                        <!--//row-->
+                    <div class="d-flex justify-content-center align-items-center px-4 py-3">
+                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="img-fluid rounded">
                     </div>
-                    <!--//app-card-header-->
-                    <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
-                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
-                    </div>
+
                     <div class="app-card-body p-4">
                         <div class="proposal-content" id="proposal-description">
                             <!-- aqui vai a descrição da proposta -->
                         </div>
                     </div>
                     <!--//app-card-body-->
-
-
                 </div>
-
-
+                <!--//modal-body-->
             </div>
-
-
-
+            <!--//modal-content-->
         </div>
-        <!--//app-card-->
+        <!--//modal-dialog-->
     </div>
-    <!--//modal-body-->
-    </div>
-    <!--//modal-content-->
-    </div>
-    <!--//modal-dialog-->
+
 
     <footer class="footer">
 

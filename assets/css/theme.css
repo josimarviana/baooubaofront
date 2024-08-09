@@ -11815,7 +11815,7 @@ a.text-link:hover {
 }
 .theme-icon-holder {
   display: inline-block;
-  background: #f4fcf6;
+
   color: #28b76b;
   width: 32px;
   height: 32px;
@@ -11983,9 +11983,7 @@ a.text-link:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   background: #f4fcf6;
 }
-.docs-overview .card:hover .card-icon-holder {
-  background: #fff;
-}
+
 .docs-overview .card-icon-holder {
   width: 60px;
   height: 60px;

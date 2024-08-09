@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
-  const jwt = sessionStorage.getItem("jwt");
-  if (!jwt) {
+  if (!sessionStorage.getItem("jwt")) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
     window.location.href = "../errors/404.html"; // Redirecionar para a página de login
     return; // Interrompe a execução da função
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
       if (!response.ok) {
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
       if (!response.ok) {
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const response = await fetch(url, {
           method: method,
           headers: {
-            Authorization: `Bearer ${jwt}`,
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
             "Content-Type": "application/json",
             Accept: "application/json",
           },

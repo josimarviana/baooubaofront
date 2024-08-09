@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
-  const jwt = sessionStorage.getItem("jwt");
-  if (!jwt) {
-    console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
-    return; // Interrompe a execução da função
+
+  if (!sessionStorage.getItem("jwt")) {
+    window.location.href = "../errors/404.html";
+    return;
   }
 
   proposalModal.addEventListener("show.bs.modal", async function (event) {
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
       if (!response.ok) {
@@ -24,8 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const data = await response.json();
-      console.log(data);
-      // Atualizar o modal com os dados dinâmicos obtidos da API
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
       const proposalDescription = proposalModal.querySelector(

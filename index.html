@@ -107,7 +107,7 @@
 									// Para cada item na lista de dados
 									data.forEach(item => {
 										let iconClass = '';
-										switch (item.category){
+										switch (item.category) {
 											case 'Infraestrutura':
 												iconClass = 'fa-solid fa-building'
 												break;
@@ -125,21 +125,25 @@
 										const newCard = document.createElement('div');
 										newCard.className = 'col-12 col-lg-4 py-3';
 										newCard.innerHTML = `
-											<div class="card shadow-sm">
-												<div class="card-body">
-													<h5 class="card-title mb-3">
-														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="${iconClass}"></i>															
-														</span><!--//card-icon-holder-->
-														<span class="card-title-text">${item.title}</span>
-													</h5>
-													<div class="card-text">
-														${item.description}
-													</div>
-													<a class="card-link-mask" href="#"></a>
-												</div><!--//card-body-->
-											</div><!--//card-->
-										`;
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title mb-3 d-flex">
+                <span class="theme-icon-holder card-icon-holder d-inline-block me-2">
+                    <i class="${iconClass}"></i>                                                            
+                </span><!--//card-icon-holder-->
+                <span class="card-title-text align-self-center">${item.title}</span>
+            </h5>
+            <div class="card-text">
+                ${item.description}
+            </div>
+            <a class="card-link-mask" href="#"></a>
+        </div><!--//card-body-->
+    </div><!--//card-->
+`;
+
+
+
+
 										// Adicionar o novo elemento ao container
 										document.getElementById('card-container').appendChild(newCard);
 									});

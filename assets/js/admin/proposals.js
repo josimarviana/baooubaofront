@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal";
-  const jwt = sessionStorage.getItem("jwt");
+
   let proposals = [];
 
-  if (!jwt) {
+  if (!sessionStorage.getItem("jwt")) {
+    window.location.href = "../errors/404.html";
+    return;
+  }
+  if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
     window.location.href = "../errors/404.html";
     return;
   }
@@ -11,13 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
-
       }
       proposals = await response.json();
       displayProposals(proposals);
@@ -27,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayProposals(data) {
-    console.log(data);
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 

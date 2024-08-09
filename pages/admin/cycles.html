@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>[ADM] Cíclos - Bão ou Não</title>
+    <title>[ADM] Ciclos - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -180,8 +180,8 @@
             <div class="sidepanel-inner d-flex flex-column">
                 <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
                 <div class="app-branding">
-                    <a href="home.html" class="app-logo"><img src="../../assets/images/BaoOuNao.png" alt="logo"
-                            class="logo-icon">
+                    <a href="../logged/home.html" class="app-logo"><img src="../../assets/images/BaoOuNao.png"
+                            alt="logo" class="logo-icon">
                         <span class="logo-text">Bão ou Não</span>
                     </a>
                 </div><!--//app-branding-->
@@ -241,7 +241,7 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="./categorys.html"
                                             class="submenu-link">Categorias</a></li>
-                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Cíclos</a>
+                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclos</a>
                                     </li>
                                     <li class="submenu-item"><a href="./proposals.html"
                                             class="submenu-link">Propostas</a>
@@ -268,7 +268,7 @@
             <div class="container-xl">
                 <div class="row g-3 mb-4 alignt-items-center justify-content-between">
                     <div class="col-auto">
-                        <h1 class="app-page-title mb-0">[ADM] - Cíclos</h1>
+                        <h1 class="app-page-title mb-0">[ADM] - Ciclos</h1>
                     </div><!--//col-->
                     <div class="col-auto">
                         <div class="page-utilities">
@@ -294,7 +294,18 @@
                                         <option value="option-5">Opção 5</option>
                                     </select>
                                 </div><!--//col-auto-->
-
+                                <div class="col-auto">
+                                    <a href="./new-cycle.html" class="btn app-btn-primary">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M8 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2z" />
+                                            <path fill-rule="evenodd"
+                                                d="M2.5 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                                        </svg>
+                                        Novo ciclo
+                                    </a>
+                                </div>
                             </div><!--//row-->
                         </div><!--//page-utilities-->
                     </div><!--//col-auto-->
@@ -310,6 +321,7 @@
                                     <table class="table table-striped table-bordered app-table-hover mb-0 text-left">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Título</th>
                                                 <th>Criado em</th>
                                                 <th>Finalizado em</th>
@@ -317,7 +329,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-                                        <!-- Cíclos aparecerão aqui -->
+                                            <!-- Ciclos aparecerão aqui -->
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
