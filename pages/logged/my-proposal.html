@@ -327,64 +327,56 @@
     <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header align-items-between">
+                <div class="modal-header align-items-center">
                     <h5 class="modal-title" id="proposalModalLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!--//modal-header-->
+
                 <div class="modal-body">
-                    <div class="app-card app-card-proposal shadown-sm mb-4">
+                    <div class="app-card app-card-proposal mb-4">
                         <div class="app-card-header px-4 py-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-12 col-lg-auto">
-                                    <span class="badge " id="proposal-situation"></span>
-                                    <div>
-                                        <h4 class="proposal-title mb-1" id="proposal-title"></h4>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <span class="badge mb-2" id="proposal-situation"></span>
+                                </div>
+                                <div class="col-12 d-flex align-items-center">
+                                    <h4 class="proposal-title mb-0" id="proposal-title"></h4>
+                                </div>
+                                <div class="col-12 col-lg-auto d-flex align-items-center">
+                                    <div class="text me-2">
+                                        <a href="#" class="text-action-links d-flex align-items-center"><i
+                                                class="fa-solid fa-thumbs-up me-1"></i><span
+                                                id="proposal-likes"></span></a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-auto">
-                                    <div class="text">
-                                        <a href="#" class="text-action-links"><i class="fa-solid fa-thumbs-up"></i>
-                                            <span id="proposal-likes"></span></a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-auto ms-auto ">
-                                    <div class="proposal-type mb-2">
-                                        <span class="badge bg-info" id="proposal-category"></span>
-                                    </div>
+                                <div class="col-12 col-lg-auto ms-auto d-flex align-items-center">
+                                    <span class="badge bg-info" id="proposal-category"></span>
                                 </div>
                             </div>
                         </div>
+                        <!--//app-card-header-->
+                    </div>
+                    <!--//app-card-->
 
-                        <!--//row-->
+                    <div class="d-flex justify-content-center align-items-center px-4 py-3">
+                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="img-fluid rounded">
                     </div>
-                    <!--//app-card-header-->
-                    <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
-                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
-                    </div>
+
                     <div class="app-card-body p-4">
                         <div class="proposal-content" id="proposal-description">
                             <!-- aqui vai a descrição da proposta -->
                         </div>
                     </div>
                     <!--//app-card-body-->
-
-
                 </div>
-
-
+                <!--//modal-body-->
             </div>
-
-
-
+            <!--//modal-content-->
         </div>
-        <!--//app-card-->
+        <!--//modal-dialog-->
     </div>
-    <!--//modal-body-->
-    </div>
-    <!--//modal-content-->
-    </div>
-    <!--//modal-dialog-->
+
 
     <footer class="footer">
 
