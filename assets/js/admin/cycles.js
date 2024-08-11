@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/cycle";
   let cycles = [];
 
+  // Verifica autenticação e permissões
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  // Função para carregar os ciclos da API
   async function loadCycles() {
     try {
       const response = await fetch(apiUrl, {
@@ -24,13 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
       cycles = await response.json();
       displayCycles(cycles);
     } catch (error) {
-      console.log("Erro ao obter dados da API", error);
+      console.error("Erro ao obter dados da API", error);
     }
   }
 
+  // Função para exibir os ciclos na tabela
   function displayCycles(data) {
     const tableBody = document.querySelector("#cycles-all tbody");
-
     tableBody.innerHTML = "";
     data.forEach((cycle) => {
       const row = document.createElement("tr");
@@ -48,12 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
               </svg>
             </div>
             <ul class="dropdown-menu">
-              <li><a href="#?id=${
-                cycle.id
-              }" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#?id=${
-                cycle.id
-              }" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
+              <li><a href="#?id=${cycle.id}" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
+              <li><a href="#?id=${cycle.id}" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
             </ul>
           </div>
         </td>
@@ -63,15 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Função para formatar datas
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString();
   }
 
+  // Função para criar um ciclo
   async function createCycle(cycleData) {
     try {
       console.log("Enviando dados para a API:", cycleData);
-
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -81,68 +80,76 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(cycleData),
       });
 
-      console.log("Status da resposta:", response.status);
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Erro ao enviar dados: ${errorText}`);
+        let errorMessage = "Erro desconhecido";
+
+        try {
+          const errorData = JSON.parse(errorText);
+          errorMessage = errorData.mensagem || "Erro desconhecido";
+        } catch (jsonError) {
+          console.error("Erro ao processar JSON de erro:", jsonError);
+        }
+
+        console.error("Erro ao processar cadastro do ciclo:", errorText);
+        showToast(errorMessage, "error");
+        return;
       }
 
-      // Verificar se há um corpo de resposta para processar
-      let responseData = {};
-      try {
-        responseData = await response.json();
-      } catch (e) {
-        // Se a resposta não for JSON, apenas continue
-        console.log("Resposta não é JSON ou está vazia:", e);
-      }
-
-      // Se o status for 201, o ciclo foi criado com sucesso
       showToast("Ciclo criado com sucesso!");
-      return responseData; // Retornar os dados da resposta, se houver
+      return await response.json(); // Retorna os dados da resposta
     } catch (error) {
       console.error("Erro durante o cadastro do ciclo:", error);
-      showToast(
-        "Erro ao cadastrar o ciclo. Verifique os dados e tente novamente."
-      );
+      showToast("Erro ao cadastrar o ciclo. Verifique os dados e tente novamente.", "error");
     }
   }
 
-  document
-    .getElementById("createCycleForm")
-    .addEventListener("submit", async (event) => {
-      event.preventDefault();
+  // Manipula o envio do formulário de criação de ciclo
+  document.getElementById("createCycleForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-      const title = document.getElementById("cycleTitle").value;
-      const startDate = document.getElementById("startDate").value;
-      const endDate = document.getElementById("endDate").value;
+    const title = document.getElementById("cycleTitle").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
 
-      const cycleData = {
-        title: title.trim(),
-        startDate: startDate.trim(),
-        finishDate: endDate.trim(),
-      };
+    const cycleData = {
+      title: title.trim(),
+      startDate: startDate.trim(),
+      finishDate: endDate.trim(),
+    };
 
-      const newCycle = await createCycle(cycleData);
-      if (newCycle) {
-        document.getElementById("createCycleForm").reset();
-        setTimeout(() => {
-          const modal = new bootstrap.Modal(
-            document.getElementById("createCycleModal")
-          );
-          modal.hide();
-        }, 500); // Espera meio segundo antes de esconder o modal
-        loadCycles();
-      }
-    });
+    const newCycle = await createCycle(cycleData);
+    if (newCycle) {
+      document.getElementById("createCycleForm").reset();
+      setTimeout(() => {
+        const modal = new bootstrap.Modal(document.getElementById("createCycleModal"));
+        modal.hide();
+      }, 500); // Espera meio segundo antes de esconder o modal
+      loadCycles(); // Recarrega a lista de ciclos
+    }
+  });
 
-  function showToast(message) {
+  // Função para mostrar mensagens toast
+  function showToast(message, type = "success") {
+    const toastElement = document.getElementById("confirmationToast");
     const toastBody = document.getElementById("toast-body");
+
     toastBody.textContent = message;
-    const toastEl = document.getElementById("confirmationToast");
-    const toast = new bootstrap.Toast(toastEl);
+
+    toastElement.classList.remove("text-success", "text-danger");
+    if (type === "success") {
+      toastElement.classList.add("text-primary");
+    } else if (type === "error") {
+      toastElement.classList.add("text-danger");
+    }
+
+    const toast = new bootstrap.Toast(toastElement);
     toast.show();
   }
 
+  // Carrega os ciclos ao inicializar
   loadCycles();
 });
