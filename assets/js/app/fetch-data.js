@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal/filter";
+  const apiUrlAnalytics = "https://apibaoounao.iftmparacatu.app.br/proposal/dashboard"
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
@@ -9,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadProposals(query = "") {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(query)}`,
-        {
+        `${apiUrl}?contain=${encodeURIComponent(query)}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
@@ -26,6 +26,29 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
+  }
+  async function loadAnalyticsData() {
+    try {
+      const response = await fetch(apiUrlAnalytics, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      updateAnalyticsCards(data);
+    } catch (error) {
+      console.error("Erro ao obter dados analíticos:", error);
+    }
+  }
+
+  function updateAnalyticsCards(data) {
+    document.getElementById('openProposals').textContent = data.openProposals;
+    document.getElementById('votes').textContent = data.votes;
+    document.getElementById('deniedProposals').textContent = data.deniedProposals;
+    document.getElementById('acceptedProposals').textContent = data.acceptedProposals;
   }
 
   function displayProposals(data) {
@@ -90,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   loadProposals();
+  loadAnalyticsData();
 
   const searchForm = document.querySelector(".app-search-form");
   searchForm.addEventListener("submit", function (event) {
