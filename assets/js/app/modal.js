@@ -89,14 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const voteButton = proposalModal.querySelector("#btn-vote");
     if (hasVoted) {
       voteButton.classList.remove("app-btn-primary");
-      voteButton.textContent = "Desvotar";
-      voteButton.classList.add("app-btn-secondary");
+      voteButton.classList.add("app-btn-danger");
+      voteButton.innerHTML = '<i class="fa-regular fa-thumbs-down"></i> Não';
     } else {
-      voteButton.classList.remove("app-btn-secondary");
-      voteButton.textContent = "Votar";
+      voteButton.classList.remove("app-btn-danger");
       voteButton.classList.add("app-btn-primary");
+      voteButton.innerHTML = '<i class="fa-regular fa-thumbs-up"></i> Bão';
     }
   }
+
 
   proposalModal.addEventListener("click", async function (event) {
     if (event.target && event.target.matches("#btn-vote")) {
@@ -130,45 +131,46 @@ document.addEventListener("DOMContentLoaded", function () {
         }),
       });
 
-      console.log("Response status:", response.status); // Log do status da resposta
-      console.log("Response headers:", response.headers); // Log dos cabeçalhos da resposta
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
 
       if (!response.ok) {
-        const errorText = await response.text(); // Obtém o corpo da resposta em texto
-        let errorMessage = "Erro desconhecido"; // Mensagem padrão
+        const errorText = await response.text();
+        let errorMessage = "Erro desconhecido";
+        o
 
         try {
-          // Tenta analisar o JSON da resposta de erro
+
           const errorData = JSON.parse(errorText);
-          errorMessage = errorData.mensagem || "Erro desconhecido"; // Extraí a mensagem do JSON
+          errorMessage = errorData.mensagem || "Erro desconhecido";
         } catch (jsonError) {
           console.error("Erro ao processar JSON de erro:", jsonError);
         }
 
         console.error("Erro ao processar votação:", errorText);
 
-        // Mostra o Toast de erro com a mensagem da API
+
         showToast(`Erro: ${errorMessage}`, "error");
         return;
       }
 
-      // Mostra o Toast de confirmação
+
       showToast(
         hasVoted ?
         "Voto cancelado com sucesso!" :
         "Voto registrado com sucesso!"
       );
 
-      // Atualiza o estado do botão de votação
+
       hasVoted = !hasVoted;
       const voteButton = proposalModal.querySelector("#btn-vote");
       updateVoteButton(voteButton);
 
-      // Fecha o modal após mostrar o Toast
+
       setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(proposalModal);
         modal.hide();
-      }, 1500); // Ajustar o tempo se necessário
+      }, 1500);
     } catch (error) {
       console.error("Erro ao processar votação:", error);
       showToast(
@@ -182,13 +184,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const toastElement = document.getElementById("confirmationToast");
     const toastBody = document.getElementById("toast-body");
 
-    // Atualiza a mensagem do Toast
+
     toastBody.textContent = message;
 
-    // Remove classes antigas
+
     toastElement.classList.remove("text-success", "text-danger");
 
-    // Adiciona a classe de acordo com o tipo de notificação
+
     if (type === "success") {
       toastElement.classList.add("text-primary");
     } else if (type === "error") {
@@ -204,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await fetchProposalData(currentProposalId);
       updateModalContent(data);
       updateVoteButton();
-      // Fecha o modal após a votação
+
       const modal = bootstrap.Modal.getInstance(proposalModal);
       modal.hide();
     } catch (error) {
