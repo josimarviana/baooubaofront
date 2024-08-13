@@ -359,9 +359,10 @@
                     </div>
                     <!--//app-card-->
 
-                    <div class="d-flex justify-content-center align-items-center px-4 py-3">
+                    <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container">
                         <img id="proposal-image" alt="Imagem descritiva da proposta" class="img-fluid rounded">
                     </div>
+
 
                     <div class="app-card-body p-4">
                         <div class="proposal-content" id="proposal-description">
@@ -377,6 +378,38 @@
         <!--//modal-dialog-->
     </div>
 
+
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir esta proposta?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn app-btn-danger" id="confirmDelete">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
+
+        </div>
+    </div>
 
     <footer class="footer">
 

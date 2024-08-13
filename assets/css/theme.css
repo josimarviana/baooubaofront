@@ -6872,7 +6872,7 @@ fieldset:disabled .btn {
 }
 .text-bg-danger {
   color: #fff !important;
-  background-color: RGBA(210, 109, 105, var(--bs-bg-opacity, 1)) !important;
+  background-color: var(--bs-red) !important;
 }
 .text-bg-light {
   color: #000 !important;

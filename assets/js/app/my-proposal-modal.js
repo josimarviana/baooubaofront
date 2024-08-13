@@ -36,14 +36,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const proposalCategory =
         proposalModal.querySelector("#proposal-category");
       const proposalImage = proposalModal.querySelector("#proposal-image");
+      const imageContainer = proposalModal.querySelector("#image-container");
 
       const defaultImageUrl = "../../../assets/images/BaoOuNao.png";
       const imageData = data.image;
+
       if (imageData) {
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
         proposalImage.src = imageUrl;
+        imageContainer.style.display = "flex"; // Mostra o contêiner da imagem
       } else {
-        proposalImage.src = defaultImageUrl;
+        imageContainer.style.display = "none"; // Oculta o contêiner da imagem
       }
 
       proposalImage.onload = () => {
