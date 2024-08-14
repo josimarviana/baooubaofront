@@ -32,12 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.querySelector("#categorys-all tbody");
     tableBody.innerHTML = "";
     data.forEach((category) => {
+
       const row = document.createElement("tr");
       row.innerHTML = `
         <td class="cell py-3">${category.id}</td>
         <td class="cell py-3">${category.title}</td>
         <td class="cell py-3">${category.active ? "Sim" : "Não"}</td>
-        <td class="cell py-3">${category.icon || "-"}</td>
+       <td class="cell py-3">
+            ${category.icon ? `<i class="${category.icon}"></i>` : '-'}
+        </td>
+
         <td class="cell py-3">${formatDate(category.createdAt)}</td>
        <td class="cell py-3">${
          category.finishedAt ? formatDate(category.finishedAt) : "-"
@@ -67,6 +71,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
       tableBody.appendChild(row);
     });
+  }
+
+
+  async function createCategory(categoryData) {
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify(categoryData),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Erro ao enviar dados: ${errorText}`)
+      }
+      return await response.json();
+    } catch (error) {
+      console.log("Erro durante o cadastro da categoria:", error);
+      showToast("Erro ao cadastrar a categoria. Verifique os dados e tente novamente.", "error");
+    }
+  }
+
+  document.getElementById("createCategoryForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const title = document.getElementById("categoryTitle").value;
+    const icon = document.getElementById("categoryIcon").value;
+
+    const categoryData = {
+      title,
+      icon,
+    };
+
+    const newCategory = await createCategory(categoryData);
+
+    if (newCategory) {
+      loadCategorys();
+
+      const createCategoryModal = document.getElementById("createCategoryModal");
+      const modalInstance = bootstrap.Modal.getInstance(createCategoryModal);
+      if (modalInstance) {
+        modalInstance.hide();
+      } else {
+        console.log("Modal instance not found.");
+      }
+
+      document.getElementById("createCategoryForm").reset();
+
+      showToast(newCategory.mensagem);
+    }
+  });
+
+  function showToast(message, type = "success") {
+    const toastElement = document.getElementById("confirmationToast");
+    const toastBody = document.getElementById("toast-body");
+    toastBody.textContent = message;
+
+    toastElement.classList.remove("text-success", "text-danger");
+    if (type === "success") {
+      toastElement.classList.add("text-primary");
+    }
   }
 
   function formatDate(dateString) {
