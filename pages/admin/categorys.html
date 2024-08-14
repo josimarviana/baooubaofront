@@ -342,7 +342,6 @@
                                                 <th>Ativa</th>
                                                 <th>Ícone</th>
                                                 <th>Criada em</th>
-                                                <th>Finalizada em</th>
                                                 <th>Opções</th>
                                             </tr>
                                         </thead>
@@ -415,8 +414,26 @@
         </div>
     </div>
 
-
-
+    <!-- Modal de confirmação -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja realizar esta ação?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="confirmDeactivate" class="btn btn-danger">Desativar</button>
+                    <button type="button" id="confirmReactivate" class="btn btn-success">Reativar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
         <div class="toast-header">
@@ -443,7 +460,7 @@
                 <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
                 e
                 <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
-        
+
                 para todos
                 do IFTM</small>
 

@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       row.innerHTML = `
         <td class="cell py-3">${cycle.id}</td>
         <td class="cell py-3">${cycle.title}</td>
+        <td class="cell py-3">${cycle.active ? "Sim" : "Não"}</td>
         <td class="cell py-3">${formatDate(cycle.startDate)}</td>
         <td class="cell py-3">${formatDate(cycle.finishDate)}</td>
         <td class="cell py-3">

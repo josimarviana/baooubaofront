@@ -32,46 +32,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.querySelector("#categorys-all tbody");
     tableBody.innerHTML = "";
     data.forEach((category) => {
-
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td class="cell py-3">${category.id}</td>
-        <td class="cell py-3">${category.title}</td>
-        <td class="cell py-3">${category.active ? "Sim" : "Não"}</td>
-       <td class="cell py-3">
-            ${category.icon ? `<i class="${category.icon}"></i>` : '-'}
-        </td>
-
-        <td class="cell py-3">${formatDate(category.createdAt)}</td>
-       <td class="cell py-3">${
-         category.finishedAt ? formatDate(category.finishedAt) : "-"
-       }</td>
-       
-        
-       <td class="cell py-3">
-          <div class="dropdown">
-            <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-              </svg>
-            </div>
-            <ul class="dropdown-menu">
-              <li><a href="#?id=${
-                category.id
-              }" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#?id=${
-                category.id
-              }" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
-            </ul>
-          </div>
-        </td>
-        
-        
+            <td class="cell py-3">${category.id}</td>
+            <td class="cell py-3">${category.title}</td>
+            <td class="cell py-3">${category.active ? "Sim" : "Não"}</td>
+            <td class="cell py-3">
+                ${category.icon ? `<i class="${category.icon}"></i>` : '-'}
+            </td>
+            <td class="cell py-3">${formatDate(category.createdAt)}</td>
+           
+            <td class="cell py-3">
+                <div class="dropdown">
+                    <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="#?id=${category.id}" class="dropdown-item text-primary"><i class="fa-solid fa-edit"></i> Editar</a></li>
+                        <li>
+                            <a href="#" class="dropdown-item ${category.active ? 'text-danger deactivate-btn' : 'text-info reactivate-btn'}" data-category-id="${category.id}">
+                                <i class="fa-solid ${category.active ? 'fa-ban' : 'fa-check'}"></i> ${category.active ? 'Desativar' : 'Reativar'}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
         `;
-
       tableBody.appendChild(row);
     });
   }
+
 
 
   async function createCategory(categoryData) {
@@ -125,6 +117,90 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+  async function reactivateCategory(categoryId) {
+    try {
+      const response = await fetch(`${apiUrl}/${categoryId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({
+          active: true
+        }),
+      });
+
+      if (response.ok) {
+        showToast("Categoria reativada com sucesso!", "success");
+        loadCategorys();
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Erro ao reativar categoria: ${errorText}`);
+      }
+    } catch (error) {
+      console.log("Erro ao reativar a categoria: ", error);
+      showToast("Erro ao reativar a categoria. Tente novamente mais tarde.", "error");
+    }
+  }
+
+
+  async function deactivateCategory(categoryId) {
+    try {
+      const response = await fetch(`${apiUrl}/${categoryId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+      });
+
+      if (response.ok) {
+        showToast("Ciclo desativado com sucesso!", "success");
+        loadCategorys();
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Erro ao desativar categoria: ${errorText}`);
+      }
+    } catch (error) {
+      console.log("Erro ao desativar o ciclo: ", error);
+      showToast("Erro ao desativar a categoria. Tente novamente mais tarde.", "error");
+    }
+  }
+
+  document.getElementById("categorys-all").addEventListener("click", (event) => {
+    if (event.target.classList.contains("deactivate-btn")) {
+      categoryIdToDeactivate = event.target.getAttribute("data-category-id");
+      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    } else if (event.target.classList.contains("reactivate-btn")) {
+      categoryIdToReactivate = event.target.getAttribute("data-category-id");
+      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    }
+  });
+
+  document.getElementById("confirmDeactivate").addEventListener("click", () => {
+    if (categoryIdToDeactivate) {
+      deactivateCategory(categoryIdToDeactivate);
+      categoryIdToDeactivate = null;
+      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      if (confirmationModal) {
+        confirmationModal.hide();
+      }
+    }
+  });
+
+  document.getElementById("confirmReactivate").addEventListener("click", () => {
+    if (categoryIdToReactivate) {
+      reactivateCategory(categoryIdToReactivate);
+      categoryIdToReactivate = null;
+      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      if (confirmationModal) {
+        confirmationModal.hide();
+      }
+    }
+  });
+
   function showToast(message, type = "success") {
     const toastElement = document.getElementById("confirmationToast");
     const toastBody = document.getElementById("toast-body");
@@ -133,7 +209,12 @@ document.addEventListener("DOMContentLoaded", function () {
     toastElement.classList.remove("text-success", "text-danger");
     if (type === "success") {
       toastElement.classList.add("text-primary");
+    } else if (type === "error") {
+      toastElement.classList.add("text-danger");
     }
+
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
   }
 
   function formatDate(dateString) {
