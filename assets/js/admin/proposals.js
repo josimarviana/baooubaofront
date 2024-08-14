@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       displayProposals(proposals);
     } catch (error) {
       console.error("Erro ao obter dados da API: ", error);
-      showToast(error.message, "error"); // Exibe a mensagem de erro
+      showToast(error.message, "error");
     }
   }
 
@@ -126,10 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     toastBody.textContent = message;
 
-    // Remove existing classes
+
     toastElement.classList.remove("text-success", "text-danger");
 
-    // Add class based on the type
+
     if (type === "success") {
       toastElement.classList.add("text-primary");
     } else if (type === "error") {
