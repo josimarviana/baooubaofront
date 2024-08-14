@@ -21,13 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || 'Erro desconhecido');
       }
+
       proposals = await response.json();
       displayProposals(proposals);
     } catch (error) {
       console.error("Erro ao obter dados da API: ", error);
-      showToast("Erro ao carregar propostas. Tente novamente.");
+      showToast(error.message, "error"); // Exibe a mensagem de erro
     }
   }
 
@@ -83,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
       cardContainer.appendChild(newCard);
     });
 
-
     const dropdownItems = document.querySelectorAll(".dropdown-item");
     dropdownItems.forEach(item => {
       item.addEventListener("click", handleDropdownItemClick);
@@ -105,25 +106,37 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(result.mensagem || 'Erro desconhecido');
       }
 
-      const result = await response.json();
-      showToast(result.mensagem);
-
-
+      showToast(result.mensagem, "success");
       loadProposals();
     } catch (error) {
       console.error("Erro ao atualizar proposta: ", error);
-      showToast("Erro ao atualizar proposta. Tente novamente.");
+      showToast(error.message, "error");
     }
   }
 
-  function showToast(message) {
+  function showToast(message, type = "success") {
+    const toastElement = document.getElementById("confirmationToast");
     const toastBody = document.getElementById("toast-body");
+
     toastBody.textContent = message;
-    const toast = new bootstrap.Toast(document.getElementById("confirmationToast"));
+
+    // Remove existing classes
+    toastElement.classList.remove("text-success", "text-danger");
+
+    // Add class based on the type
+    if (type === "success") {
+      toastElement.classList.add("text-primary");
+    } else if (type === "error") {
+      toastElement.classList.add("text-danger");
+    }
+
+    const toast = new bootstrap.Toast(toastElement);
     toast.show();
   }
 
