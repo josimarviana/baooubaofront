@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -25,43 +26,37 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
-      const proposalDescription = proposalModal.querySelector(
-        "#proposal-description"
-      );
+      const proposalDescription = proposalModal.querySelector("#proposal-description");
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      const proposalSituation = proposalModal.querySelector(
-        "#proposal-situation"
-      );
-      const proposalAuthor = proposalModal.querySelector("#proposal-author");
-      const proposalCategory =
-        proposalModal.querySelector("#proposal-category");
-      const proposalImage = proposalModal.querySelector("#proposal-image");
+      const proposalSituation = proposalModal.querySelector("#proposal-situation");
+      const proposalCategory = proposalModal.querySelector("#proposal-category");
       const imageContainer = proposalModal.querySelector("#image-container");
 
-      const defaultImageUrl = "../../../assets/images/BaoOuNao.png";
       const imageData = data.image;
 
       if (imageData) {
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
+        // Cria o elemento de imagem e define seu src
+        const proposalImage = document.createElement("img");
         proposalImage.src = imageUrl;
+        proposalImage.alt = "Imagem descritiva da proposta";
+        proposalImage.classList.add("img-fluid", "rounded");
+
+        // Limpa o contêiner e adiciona a imagem
+        imageContainer.innerHTML = ""; // Limpa o conteúdo do contêiner
+        imageContainer.appendChild(proposalImage); // Adiciona a nova imagem
         imageContainer.style.display = "flex"; // Mostra o contêiner da imagem
       } else {
         imageContainer.style.display = "none"; // Oculta o contêiner da imagem
       }
 
-      proposalImage.onload = () => {
-        console.log("Imagem carregada com sucesso!");
-      };
-
-      proposalImage.onerror = (error) => {
-        console.error("Erro ao carregar a imagem:", error);
-      };
-      console.log(data);
-      modalTitle.textContent =
-        "Criada em: " + new Date(data.createdAt).toLocaleDateString();
+      modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
+
+      // Remove classes anteriores
+      proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
 
       const situation = data.situation;
       switch (situation) {
