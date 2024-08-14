@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/cycle";
   let cycles = [];
+  let cycleIdToDeactivate = null; // Armazenará o ID do ciclo a ser desativado
 
   // Verifica autenticação e permissões
   if (!sessionStorage.getItem("jwt")) {
@@ -38,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td class="cell">${cycle.id}</td>
-        <td class="cell">${cycle.title}</td>
-        <td class="cell">${formatDate(cycle.startDate)}</td>
-        <td class="cell">${formatDate(cycle.finishDate)}</td>
-        <td class="cell">
+        <td class="cell py-3">${cycle.id}</td>
+        <td class="cell py-3">${cycle.title}</td>
+        <td class="cell py-3">${formatDate(cycle.startDate)}</td>
+        <td class="cell py-3">${formatDate(cycle.finishDate)}</td>
+        <td class="cell py-3">
           <div class="dropdown">
             <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
             <ul class="dropdown-menu">
               <li><a href="#?id=${cycle.id}" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#?id=${cycle.id}" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
+              <li><a href="#" class="dropdown-item text-danger deactivate-btn" data-cycle-id="${cycle.id}"><i class="fa-solid fa-ban"></i> Desativar</a></li>
             </ul>
           </div>
         </td>
@@ -60,6 +61,50 @@ document.addEventListener("DOMContentLoaded", function () {
       tableBody.appendChild(row);
     });
   }
+
+  // Função para desativar um ciclo
+  async function deactivateCycle(cycleId) {
+    try {
+      const response = await fetch(`${apiUrl}/${cycleId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+      });
+
+      if (response.ok) {
+        showToast("Ciclo desativado com sucesso!", "success");
+        loadCycles();
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Erro ao desativar o ciclo: ${errorText}`);
+      }
+    } catch (error) {
+      console.error("Erro ao desativar o ciclo:", error);
+      showToast("Erro ao desativar o ciclo. Tente novamente mais tarde.", "error");
+    }
+  }
+
+  // Manipulador de eventos de desativação
+  document.getElementById("cycles-all").addEventListener("click", (event) => {
+    if (event.target.classList.contains("deactivate-btn")) {
+      cycleIdToDeactivate = event.target.getAttribute("data-cycle-id");
+      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    }
+  });
+
+  // Manipulador de eventos do botão de confirmação do modal
+  document.getElementById("confirmDeactivate").addEventListener("click", () => {
+    if (cycleIdToDeactivate) {
+      deactivateCycle(cycleIdToDeactivate);
+      cycleIdToDeactivate = null; // Limpar ID após a desativação
+      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      if (confirmationModal) {
+        confirmationModal.hide();
+      }
+    }
+  });
 
   // Função para cadastrar um novo ciclo
   async function createCycle(cycleData) {
@@ -148,6 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
-  // Carregar ciclos ao iniciar
+  // Carregar ciclos ao carregar a página
   loadCycles();
 });

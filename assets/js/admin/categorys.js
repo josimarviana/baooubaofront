@@ -27,23 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Erro ao obter dados da API ", error);
     }
   }
+
   function displayCategorys(data) {
     const tableBody = document.querySelector("#categorys-all tbody");
     tableBody.innerHTML = "";
     data.forEach((category) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td class="cell">${category.id}</td>
-        <td class="cell">${category.title}</td>
-        <td class="cell">${category.active ? "Sim" : "Não"}</td>
-        <td class="cell">${category.icon || "-"}</td>
-        <td class="cell">${formatDate(category.createdAt)}</td>
-       <td class="cell">${
+        <td class="cell py-3">${category.id}</td>
+        <td class="cell py-3">${category.title}</td>
+        <td class="cell py-3">${category.active ? "Sim" : "Não"}</td>
+        <td class="cell py-3">${category.icon || "-"}</td>
+        <td class="cell py-3">${formatDate(category.createdAt)}</td>
+       <td class="cell py-3">${
          category.finishedAt ? formatDate(category.finishedAt) : "-"
        }</td>
        
         
-       <td class="cell">
+       <td class="cell py-3">
           <div class="dropdown">
             <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tableBody.appendChild(row);
     });
   }
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString();

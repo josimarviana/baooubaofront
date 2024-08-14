@@ -47,14 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .join(", ");
 
       row.innerHTML = `
-        <td class="cell">${user.id}</td>
-        <td class="cell">${user.name}</td>
-        <td class="cell">${user.email}</td>
-        <td class="cell">${user.type}</td>
-        <td class="cell">${user.active ? "Sim" : "Não"}</td>
-        <td class="cell">${formatDate(user.createdAt)}</td>
-        <td class="cell">${friendlyRoles}</td>
-          <td class="cell">
+        <td class="cell py-3">${user.id}</td>
+        <td class="cell py-3">${user.name}</td>
+        <td class="cell py-3">${user.email}</td>
+        <td class="cell py-3">${user.type}</td>
+        <td class="cell py-3">${user.active ? "Sim" : "Não"}</td>
+        <td class="cell py-3">${formatDate(user.createdAt)}</td>
+        <td class="cell py-3">${friendlyRoles}</td>
+          <td class="cell py-3">
           <div class="dropdown">
             <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

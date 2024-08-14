@@ -295,7 +295,7 @@
                                     </select>
                                 </div><!--//col-auto-->
                                 <div class="col-auto">
-                                    <a href="./new-cycle.html" class="btn app-btn-primary" data-bs-toggle="modal"
+                                    <a href="#" class="btn app-btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#createCycleModal">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -327,7 +327,7 @@
                                                 <th>Título</th>
                                                 <th>Criado em</th>
                                                 <th>Finalizado em</th>
-
+                                                <th>Opções</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
@@ -339,6 +339,7 @@
                         </div><!--//app-card-users-table-->
                     </div><!--//tab-pane-->
                 </div><!--//users-table-tab-conten-->
+
             </div><!--//container-xl-->
         </div><!--//app-content-->
     </div><!--//app-wrapper-->
@@ -375,6 +376,25 @@
         </div>
     </div>
 
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmar Desativação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja desativar este ciclo?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn app-btn-danger" id="confirmDeactivate">Desativar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
         <div class="toast-header">
