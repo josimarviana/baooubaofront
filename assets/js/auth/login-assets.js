@@ -26,7 +26,7 @@ loginForm.addEventListener("submit", (event) => {
     password,
   };
 
-  fetch("https://apibaoounao.iftmparacatu.app.br/user/login", {
+  fetch("https://testes-apibaoounao.iftmparacatu.app.br/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

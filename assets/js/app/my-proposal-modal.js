@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = event.relatedTarget;
     const id = button.getAttribute("data-proposal-id");
 
-    const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/${id}`;
 
     try {
       const response = await fetch(apiUrl, {

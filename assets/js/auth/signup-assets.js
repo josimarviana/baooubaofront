@@ -71,13 +71,13 @@ signupForm.addEventListener("submit", (event) => {
       password,
     };
 
-    fetch("https://apibaoounao.iftmparacatu.app.br/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch("https://testes-apibaoounao.iftmparacatu.app.br/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
       .then((response) => {
         if (!response.ok) {
           return response.text().then((text) => {

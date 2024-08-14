@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   async function fetchProposalData(id) {
-    const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/${id}`;
     const response = await fetch(apiUrl, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function checkIfUserHasVoted(proposalId) {
-    const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/has-voted/${proposalId}`;
+    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/has-voted/${proposalId}`;
     try {
       const response = await fetch(apiUrl, {
         headers: {
@@ -112,8 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function handleVote() {
     const url = hasVoted ?
-      "https://apibaoounao.iftmparacatu.app.br/voting/unvote" :
-      "https://apibaoounao.iftmparacatu.app.br/voting";
+      "https://testes-apibaoounao.iftmparacatu.app.br/voting/unvote" :
+      "https://testes-apibaoounao.iftmparacatu.app.br/voting";
     const method = hasVoted ? "DELETE" : "POST";
 
     try {

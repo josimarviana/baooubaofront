@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "https://apibaoounao.iftmparacatu.app.br/proposal", {
+        "https://testes-apibaoounao.iftmparacatu.app.br/proposal", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,

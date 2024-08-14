@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/user";
+  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/user";
 
   let users = [];
 

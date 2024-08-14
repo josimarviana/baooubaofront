@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/my-proposals`;
+  const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/my-proposals`;
   const jwt = sessionStorage.getItem("jwt");
   let proposals = []; // Variável para armazenar os dados recebidos
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("confirmDelete").addEventListener("click", async function () {
       try {
-        const response = await fetch(`https://apibaoounao.iftmparacatu.app.br/proposal/${proposalToDelete}`, {
+        const response = await fetch(`https://testes-apibaoounao.iftmparacatu.app.br/proposal/${proposalToDelete}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${jwt}`,

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal";
+  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/proposal";
 
   let proposals = [];
 
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     const action = event.target.dataset.action;
     const id = event.target.dataset.id;
-    const url = `https://apibaoounao.iftmparacatu.app.br/proposal/moderate/${action}/${id}`;
+    const url = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/moderate/${action}/${id}`;
 
     try {
       const response = await fetch(url, {

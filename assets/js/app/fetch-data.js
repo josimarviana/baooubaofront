@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/proposal/filter";
-  const apiUrlAnalytics = "https://apibaoounao.iftmparacatu.app.br/proposal/dashboard"
+  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/proposal/filter";
+  const apiUrlAnalytics = "https://testes-apibaoounao.iftmparacatu.app.br/proposal/dashboard"
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/category";
+  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/category";
   let categorys = [];
 
   if (!sessionStorage.getItem("jwt")) {
