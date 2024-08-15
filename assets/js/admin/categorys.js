@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/category";
   let categories = [];
 
+  let categoryIdToDeactivate = null;
+  let categoryIdToReactivate = null;
+
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
