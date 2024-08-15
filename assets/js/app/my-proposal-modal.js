@@ -1,3 +1,4 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = event.relatedTarget;
     const id = button.getAttribute("data-proposal-id");
 
-    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+    const apiUrl = `${config.api}/proposal/${id}`;
 
     try {
       const response = await fetch(apiUrl, {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const imageContainer = proposalModal.querySelector("#image-container");
       const proposalVideo = proposalModal.querySelector("#proposal-video");
 
-      // Configuração da imagem
+
       const imageData = data.image;
       if (imageData) {
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
@@ -42,20 +43,20 @@ document.addEventListener("DOMContentLoaded", function () {
         proposalImage.alt = "Imagem descritiva da proposta";
         proposalImage.classList.add("img-fluid", "rounded");
 
-        imageContainer.innerHTML = ""; // Limpa o conteúdo do contêiner
-        imageContainer.appendChild(proposalImage); // Adiciona a nova imagem
-        imageContainer.style.display = "flex"; // Mostra o contêiner da imagem
+        imageContainer.innerHTML = "";
+        imageContainer.appendChild(proposalImage);
+        imageContainer.style.display = "flex";
       } else {
-        imageContainer.style.display = "none"; // Oculta o contêiner da imagem
+        imageContainer.style.display = "none";
       }
 
-      // Configuração do modal
+
       modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
 
-      // Remove classes anteriores e configura a situação
+
       proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
       const situation = data.situation;
       switch (situation) {

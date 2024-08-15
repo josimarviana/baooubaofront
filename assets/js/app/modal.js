@@ -1,3 +1,4 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   async function fetchProposalData(id) {
-    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+    const apiUrl = config.api + `/proposal/${id}`;
     const response = await fetch(apiUrl, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function checkIfUserHasVoted(proposalId) {
-    const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/has-voted/${proposalId}`;
+    const apiUrl = config.api + `/proposal/has-voted/${proposalId}`;
     try {
       const response = await fetch(apiUrl, {
         headers: {
@@ -130,8 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function handleVote() {
     const url = hasVoted ?
-      "https://testes-apibaoounao.iftmparacatu.app.br/voting/unvote" :
-      "https://testes-apibaoounao.iftmparacatu.app.br/voting";
+      config.api + "/voting/unvote" :
+      config.api + "/voting";
     const method = hasVoted ? "DELETE" : "POST";
 
     try {

@@ -1,3 +1,7 @@
+import config from '../environments/config.js';
+
+const apiUrl = config.api + "/user";
+
 document.getElementById("show-password").addEventListener("click", function () {
   var passwordField = document.getElementById("signup-password");
   var passwordIcon = document.getElementById("show-pass-icon");
@@ -71,7 +75,7 @@ signupForm.addEventListener("submit", (event) => {
       password,
     };
 
-    fetch("https://testes-apibaoounao.iftmparacatu.app.br/user", {
+    fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

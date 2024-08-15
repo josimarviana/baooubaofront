@@ -1,12 +1,15 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = `https://testes-apibaoounao.iftmparacatu.app.br/proposal/my-proposals`;
+  const apiUrl = `${config.api}/proposal/my-proposals`;
   const jwt = sessionStorage.getItem("jwt");
-  let proposals = []; // Variável para armazenar os dados recebidos
+
+  let proposals = [];
+  let proposalToDelete;
 
   if (!sessionStorage.getItem("jwt")) {
     console.error("Usuário não autenticado. Redirecionando para o login.");
-    window.location.href = "../errors/404.html"; // Redirecionar para a página de login
-    return; // Interrompe a execução da função
+    window.location.href = "../errors/404.html";
+    return;
   }
 
   async function loadProposals() {
@@ -88,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("confirmDelete").addEventListener("click", async function () {
       try {
-        const response = await fetch(`https://testes-apibaoounao.iftmparacatu.app.br/proposal/${proposalToDelete}`, {
+        const response = await fetch(`${config.api}/proposal/${proposalToDelete}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -98,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const modal = bootstrap.Modal.getInstance(document.getElementById("confirmationModal"));
-        modal.hide();
+        const modalInstance = bootstrap.Modal.getInstance(document.getElementById("confirmationModal"));
+        modalInstance.hide();
         loadProposals();
       } catch (error) {
         console.log("Erro ao excluir proposta", error);

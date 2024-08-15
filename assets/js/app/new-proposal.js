@@ -1,5 +1,7 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("new-proposal-form");
+  const apiUrl = config.api + "/proposal";
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "https://testes-apibaoounao.iftmparacatu.app.br/proposal", {
+        apiUrl, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,

@@ -1,5 +1,7 @@
+import config from '../environments/config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/user";
+  const apiUrl = config.api + "/user";
 
   let users = [];
 

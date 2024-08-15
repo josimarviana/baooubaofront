@@ -1,6 +1,7 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/proposal/filter";
-  const apiUrlAnalytics = "https://testes-apibaoounao.iftmparacatu.app.br/proposal/dashboard"
+  const apiUrl = config.api + "/proposal/filter";
+  const apiUrlAnalytics = config.api + "/proposal/dashboard"
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
