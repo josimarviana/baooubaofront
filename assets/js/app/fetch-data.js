@@ -1,6 +1,7 @@
 import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
+  console.log(apiUrl);
   const apiUrlAnalytics = config.api + "/proposal/dashboard"
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
