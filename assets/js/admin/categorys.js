@@ -1,16 +1,19 @@
+import config from '../environments/config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/category";
-  let categorys = [];
+  const apiUrl = config.api + "/category";
+  let categories = [];
 
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
   }
-  if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATO")) {
+  if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
     window.location.href = "../errors/404.html";
     return;
   }
-  async function loadCategorys() {
+
+  async function loadCategories() {
     try {
       const response = await fetch(apiUrl, {
         headers: {
@@ -21,15 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      categorys = await response.json();
-      displayCategorys(categorys);
+      categories = await response.json();
+      displayCategories(categories);
     } catch (error) {
       console.log("Erro ao obter dados da API ", error);
     }
   }
 
-  function displayCategorys(data) {
-    const tableBody = document.querySelector("#categorys-all tbody");
+  function displayCategories(data) {
+    const tableBody = document.querySelector("#categories-all tbody");
     tableBody.innerHTML = "";
     data.forEach((category) => {
       const row = document.createElement("tr");
@@ -41,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 ${category.icon ? `<i class="${category.icon}"></i>` : '-'}
             </td>
             <td class="cell py-3">${formatDate(category.createdAt)}</td>
-           
             <td class="cell py-3">
                 <div class="dropdown">
                     <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,8 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
       tableBody.appendChild(row);
     });
   }
-
-
 
   async function createCategory(categoryData) {
     try {
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const newCategory = await createCategory(categoryData);
 
     if (newCategory) {
-      loadCategorys();
+      loadCategories();
 
       const createCategoryModal = document.getElementById("createCategoryModal");
       const modalInstance = bootstrap.Modal.getInstance(createCategoryModal);
@@ -113,10 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.getElementById("createCategoryForm").reset();
 
-      showToast(newCategory.mensagem);
+      showToast(newCategory.message);
     }
   });
-
 
   async function reactivateCategory(categoryId) {
     try {
@@ -133,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         showToast("Categoria reativada com sucesso!", "success");
-        loadCategorys();
+        loadCategories();
       } else {
         const errorText = await response.text();
         throw new Error(`Erro ao reativar categoria: ${errorText}`);
@@ -143,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
       showToast("Erro ao reativar a categoria. Tente novamente mais tarde.", "error");
     }
   }
-
 
   async function deactivateCategory(categoryId) {
     try {
@@ -155,19 +153,19 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (response.ok) {
-        showToast("Ciclo desativado com sucesso!", "success");
-        loadCategorys();
+        showToast("Categoria desativada com sucesso!", "success");
+        loadCategories();
       } else {
         const errorText = await response.text();
         throw new Error(`Erro ao desativar categoria: ${errorText}`);
       }
     } catch (error) {
-      console.log("Erro ao desativar o ciclo: ", error);
+      console.log("Erro ao desativar a categoria: ", error);
       showToast("Erro ao desativar a categoria. Tente novamente mais tarde.", "error");
     }
   }
 
-  document.getElementById("categorys-all").addEventListener("click", (event) => {
+  document.getElementById("categories-all").addEventListener("click", (event) => {
     if (event.target.classList.contains("deactivate-btn")) {
       categoryIdToDeactivate = event.target.getAttribute("data-category-id");
       const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
@@ -221,5 +219,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const date = new Date(dateString);
     return date.toLocaleDateString();
   }
-  loadCategorys();
+
+  loadCategories();
 });

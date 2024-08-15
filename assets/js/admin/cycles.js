@@ -1,5 +1,6 @@
+import config from '../environments/config.js';
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://testes-apibaoounao.iftmparacatu.app.br/cycle";
+  const apiUrl = config.api + "/cycle";
   let cycles = [];
   let cycleIdToDeactivate = null;
   let cycleIdToActivate = null;
