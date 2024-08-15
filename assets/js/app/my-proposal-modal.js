@@ -31,18 +31,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const proposalSituation = proposalModal.querySelector("#proposal-situation");
       const proposalCategory = proposalModal.querySelector("#proposal-category");
       const imageContainer = proposalModal.querySelector("#image-container");
+      const proposalVideo = proposalModal.querySelector("#proposal-video");
 
+      // Configuração da imagem
       const imageData = data.image;
-
       if (imageData) {
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
-        // Cria o elemento de imagem e define seu src
         const proposalImage = document.createElement("img");
         proposalImage.src = imageUrl;
         proposalImage.alt = "Imagem descritiva da proposta";
         proposalImage.classList.add("img-fluid", "rounded");
 
-        // Limpa o contêiner e adiciona a imagem
         imageContainer.innerHTML = ""; // Limpa o conteúdo do contêiner
         imageContainer.appendChild(proposalImage); // Adiciona a nova imagem
         imageContainer.style.display = "flex"; // Mostra o contêiner da imagem
@@ -50,14 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
         imageContainer.style.display = "none"; // Oculta o contêiner da imagem
       }
 
+      // Configuração do modal
       modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
 
-      // Remove classes anteriores
+      // Remove classes anteriores e configura a situação
       proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
-
       const situation = data.situation;
       switch (situation) {
         case "OPEN_FOR_VOTING":
@@ -87,8 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       proposalCategory.textContent = data.category;
+
+      // Configuração do iframe do vídeo
+      const videoUrl = data.videoUrl;
+      if (videoUrl) {
+        // Converte a URL para o formato embed
+        const embedUrl = convertToEmbedUrl(videoUrl);
+        proposalVideo.innerHTML = `<iframe width="100%" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        proposalVideo.style.display = "flex"; // Mostra o contêiner do vídeo
+      } else {
+        proposalVideo.style.display = "none"; // Oculta o contêiner do vídeo se não houver URL
+      }
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   });
+
+  // Função para converter URL do YouTube para formato embed
+  function convertToEmbedUrl(url) {
+    const videoId = new URL(url).searchParams.get("v");
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+  }
 });
