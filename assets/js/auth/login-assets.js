@@ -27,14 +27,15 @@ loginForm.addEventListener("submit", (event) => {
   };
 
   fetch("https://testes-apibaoounao.iftmparacatu.app.br/user/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
     .then((response) => {
       if (!response.ok) {
+        showToast("Falha ao autenticar-se. Verifique suas credenciais e tente novamente", "error");
         throw new Error(
           "Falha na autenticação. Verifique suas credenciais e tente novamente."
         );
@@ -59,8 +60,7 @@ loginForm.addEventListener("submit", (event) => {
     .catch((error) => {
       console.error("Erro durante o login:", error);
 
-      errorMessage.textContent =
-        "Falha na autenticação. Verifique suas credenciais e tente novamente.";
+      showToast("Falha ao autenticar-se. Verifique suas credenciais e tente novamente", "error");
     });
 
   function parseJwt(token) {
@@ -68,13 +68,31 @@ loginForm.addEventListener("submit", (event) => {
     var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
     var jsonPayload = decodeURIComponent(
       atob(base64)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
     );
 
     return JSON.parse(jsonPayload);
   }
+
+
+  function showToast(message, type = "success") {
+    const toastElement = document.getElementById("confirmationToast");
+    const toastBody = document.getElementById("toast-body");
+    toastBody.textContent = message;
+
+    toastElement.classList.remove("text-success", "text-danger");
+    if (type === "success") {
+      toastElement.classList.add("text-primary");
+    } else if (type === "error") {
+      toastElement.classList.add("text-danger");
+    }
+
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+  }
+
 });
