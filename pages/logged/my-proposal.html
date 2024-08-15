@@ -353,19 +353,27 @@
                                 <div class="col-12 col-lg-auto ms-auto d-flex align-items-center">
                                     <span class="badge bg-info" id="proposal-category"></span>
                                 </div>
+
                             </div>
                         </div>
                         <!--//app-card-header-->
                     </div>
                     <!--//app-card-->
 
-                    <div class="d-flex justify-content-center align-items-center px-4 py-3">
-                        <img id="proposal-image" alt="Imagem descritiva da proposta" class="img-fluid rounded">
+
+                    <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container"
+                        style="display: none;">
+
                     </div>
+
 
                     <div class="app-card-body p-4">
                         <div class="proposal-content" id="proposal-description">
-                            <!-- aqui vai a descrição da proposta -->
+
+                        </div>
+                        <div class="proposal-video d-flex justify-content-center align-items-center px-4 py-3"
+                            id="proposal-video" style="display: none;">
+
                         </div>
                     </div>
                     <!--//app-card-body-->
@@ -378,9 +386,41 @@
     </div>
 
 
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir esta proposta?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn app-btn-danger" id="confirmDelete">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
+
+        </div>
+    </div>
+
     <footer class="footer">
 
-        <div class="footer-bottom text-center py-5 fixed-bottom">
+        <div class="footer-bottom text-center py-5">
 
 
             <small class="copyright">Desenvolvido por
@@ -389,8 +429,10 @@
                 <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
                 ,
                 <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-                e
+                ,
                 <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+                e
+                <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
 
                 para todos
                 do IFTM</small>
@@ -406,8 +448,8 @@
 
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-    <script src="../../assets/js/app/my-proposals.js"></script>
-    <script src="../../assets/js/app/my-proposal-modal.js"></script>
+    <script type="module" src="../../assets/js/app/my-proposals.js"></script>
+    <script type="module" src="../../assets/js/app/my-proposal-modal.js"></script>
 
 
 

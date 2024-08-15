@@ -1,8 +1,11 @@
+import config from '../environments/config.js';
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://apibaoounao.iftmparacatu.app.br/cycle";
+  const apiUrl = config.api + "/cycle";
   let cycles = [];
+  let cycleIdToDeactivate = null;
+  let cycleIdToActivate = null;
 
-  // Verifica autenticação e permissões
+
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
@@ -12,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // Função para carregar os ciclos da API
+
   async function loadCycles() {
     try {
       const response = await fetch(apiUrl, {
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Função para exibir os ciclos na tabela
+
   function displayCycles(data) {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
@@ -38,11 +41,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td class="cell">${cycle.id}</td>
-        <td class="cell">${cycle.title}</td>
-        <td class="cell">${formatDate(cycle.startDate)}</td>
-        <td class="cell">${formatDate(cycle.finishDate)}</td>
-        <td class="cell">
+        <td class="cell py-3">${cycle.id}</td>
+        <td class="cell py-3">${cycle.title}</td>
+        <td class="cell py-3">${cycle.active ? "Sim" : "Não"}</td>
+        <td class="cell py-3">${formatDate(cycle.startDate)}</td>
+        <td class="cell py-3">${formatDate(cycle.finishDate)}</td>
+        <td class="cell py-3">
           <div class="dropdown">
             <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
             <ul class="dropdown-menu">
               <li><a href="#?id=${cycle.id}" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#?id=${cycle.id}" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
+              <li><a href="#" class="dropdown-item ${cycle.active ? 'text-danger deactivate-btn' : 'text-success activate-btn'}" data-cycle-id="${cycle.id}">
+                <i class="fa-solid ${cycle.active ? 'fa-ban' : 'fa-undo'}"></i> ${cycle.active ? 'Desativar' : 'Reativar'}
+              </a></li>
             </ul>
           </div>
         </td>
@@ -61,7 +67,93 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Função para cadastrar um novo ciclo
+
+  async function deactivateCycle(cycleId) {
+    try {
+      const response = await fetch(`${apiUrl}/${cycleId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+      });
+
+      if (response.ok) {
+        showToast("Ciclo desativado com sucesso!", "success");
+        loadCycles();
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Erro ao desativar o ciclo: ${errorText}`);
+      }
+    } catch (error) {
+      console.error("Erro ao desativar o ciclo:", error);
+      showToast("Erro ao desativar o ciclo. Tente novamente mais tarde.", "error");
+    }
+  }
+
+
+  async function activateCycle(cycleId) {
+    try {
+      const response = await fetch(`${apiUrl}/${cycleId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({
+          active: true
+        }),
+      });
+
+      if (response.ok) {
+        showToast("Ciclo reativado com sucesso!", "success");
+        loadCycles();
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Erro ao reativar o ciclo: ${errorText}`);
+      }
+    } catch (error) {
+      console.error("Erro ao reativar o ciclo:", error);
+      showToast("Erro ao reativar o ciclo. Tente novamente mais tarde.", "error");
+    }
+  }
+
+
+  document.getElementById("cycles-all").addEventListener("click", (event) => {
+    if (event.target.classList.contains("deactivate-btn")) {
+      cycleIdToDeactivate = event.target.getAttribute("data-cycle-id");
+      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    } else if (event.target.classList.contains("activate-btn")) {
+      cycleIdToActivate = event.target.getAttribute("data-cycle-id");
+      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+    }
+  });
+
+
+  document.getElementById("confirmDeactivate").addEventListener("click", () => {
+    if (cycleIdToDeactivate) {
+      deactivateCycle(cycleIdToDeactivate);
+      cycleIdToDeactivate = null;
+      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      if (confirmationModal) {
+        confirmationModal.hide();
+      }
+    }
+  });
+
+  document.getElementById("confirmReactivate").addEventListener("click", () => {
+    if (cycleIdToActivate) {
+      activateCycle(cycleIdToActivate);
+      cycleIdToActivate = null;
+      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      if (confirmationModal) {
+        confirmationModal.hide();
+      }
+    }
+  });
+
+
   async function createCycle(cycleData) {
     try {
       const response = await fetch(apiUrl, {
@@ -85,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Manipulador de envio do formulário
+
   document.getElementById("createCycleForm").addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -103,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (newCycle) {
       loadCycles();
 
-      // Fechar o modal usando a API do Bootstrap
+
       const createCycleModal = document.getElementById("createCycleModal");
       const modalInstance = bootstrap.Modal.getInstance(createCycleModal);
       if (modalInstance) {
@@ -112,15 +204,15 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Modal instance not found.");
       }
 
-      // Resetar o formulário
+
       document.getElementById("createCycleForm").reset();
 
-      // Mostrar o toast
+
       showToast(newCycle.mensagem);
     }
   });
 
-  // Função para mostrar o toast
+
   function showToast(message, type = "success") {
     const toastElement = document.getElementById("confirmationToast");
     const toastBody = document.getElementById("toast-body");
@@ -138,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.show();
   }
 
-  // Função para formatar datas
+
   function formatDate(dateString) {
     const options = {
       year: 'numeric',
@@ -148,6 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
-  // Carregar ciclos ao iniciar
+
   loadCycles();
 });

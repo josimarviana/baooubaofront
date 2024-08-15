@@ -442,15 +442,20 @@
                         </div>
                         <!--//app-card-header-->
 
-                        <div class="d-flex justify-content-center align-items-center px-4 py-3">
-                            <img id="proposal-image" alt="Imagem descritiva da proposta" class="img-fluid rounded">
+                        <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container"
+                            style="display: none;">
+
                         </div>
+
 
                         <div class="app-card-body p-4">
                             <div class="proposal-content" id="proposal-description">
                                 <!-- aqui vai a descrição da proposta -->
                             </div>
+                            <div class="proposal-video d-flex justify-content-center align-items-center px-4 py-3"
+                                id="proposal-video" style="display: none;">
 
+                            </div>
                             <hr>
 
                             <div class="proposal-author" id="proposal-author">
@@ -460,7 +465,9 @@
                             <hr>
 
                             <div class="app-card-footer text-center text-lg-start">
-                                <button class="btn app-btn-primary" id="btn-vote">Votar</button>
+                                <button class="btn app-btn-primary" id="btn-vote"><i
+                                        class="fa-regular fa-thumbs-up"></i>
+                                    Votar</button>
                             </div>
                         </div>
                         <!--//app-card-body-->
@@ -490,14 +497,14 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div id="toast-body" class="toast-body">
-            <!-- A mensagem do Toast será inserida aqui -->
+
         </div>
     </div>
 
 
     <footer class="footer">
 
-        <div class="footer-bottom text-center py-5 fixed-bottom">
+        <div class="footer-bottom text-center py-5">
 
 
             <small class="copyright">Desenvolvido por
@@ -506,8 +513,10 @@
                 <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
                 ,
                 <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-                e
+                ,
                 <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+                e
+                <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
 
                 para todos
                 do IFTM</small>
@@ -528,8 +537,8 @@
 
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-    <script src="../../assets/js/app/fetch-data.js"></script>
-    <script src="../../assets/js/app/modal.js"></script>
+    <script type="module" src="../../assets/js/app/fetch-data.js"></script>
+    <script type="module" src="../../assets/js/app/modal.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

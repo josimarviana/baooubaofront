@@ -1811,7 +1811,7 @@ progress {
 }
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-color-type: var(--bs-table-striped-color);
-  --bs-table-bg-type:  rgba(40, 183, 107, 0.075);
+  --bs-table-bg-type: rgba(40, 183, 107, 0.075);
 }
 .table-striped-columns > :not(caption) > tr > :nth-child(even) {
   --bs-table-color-type: var(--bs-table-striped-color);
@@ -6760,7 +6760,7 @@ fieldset:disabled .btn {
 }
 .text-bg-danger {
   color: #fff !important;
-  background-color: RGBA(220, 53, 69, var(--bs-bg-opacity, 1)) !important;
+  background-color: var(--bs-red) !important;
 }
 .text-bg-warning {
   color: #fff !important;
@@ -11691,6 +11691,16 @@ button.close:focus {
 .app-btn-secondary:hover {
   color: #15a362;
   border: 1px solid #15a362;
+  background: #fff;
+}
+.app-btn-danger {
+  background: #fff;
+  color: red;
+  border: 1px solid red;
+}
+.app-btn-danger:hover {
+  color: var(--bs-red);
+  border: 1px solid var(--bs-red);
   background: #fff;
 }
 .btn-light {

@@ -1,3 +1,4 @@
+import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = event.relatedTarget;
     const id = button.getAttribute("data-proposal-id");
 
-    const apiUrl = `https://apibaoounao.iftmparacatu.app.br/proposal/${id}`;
+    const apiUrl = `${config.api}/proposal/${id}`;
 
     try {
       const response = await fetch(apiUrl, {
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -25,41 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
-      const proposalDescription = proposalModal.querySelector(
-        "#proposal-description"
-      );
+      const proposalDescription = proposalModal.querySelector("#proposal-description");
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      const proposalSituation = proposalModal.querySelector(
-        "#proposal-situation"
-      );
-      const proposalAuthor = proposalModal.querySelector("#proposal-author");
-      const proposalCategory =
-        proposalModal.querySelector("#proposal-category");
-      const proposalImage = proposalModal.querySelector("#proposal-image");
+      const proposalSituation = proposalModal.querySelector("#proposal-situation");
+      const proposalCategory = proposalModal.querySelector("#proposal-category");
+      const imageContainer = proposalModal.querySelector("#image-container");
+      const proposalVideo = proposalModal.querySelector("#proposal-video");
 
-      const defaultImageUrl = "../../../assets/images/BaoOuNao.png";
+
       const imageData = data.image;
       if (imageData) {
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
+        const proposalImage = document.createElement("img");
         proposalImage.src = imageUrl;
+        proposalImage.alt = "Imagem descritiva da proposta";
+        proposalImage.classList.add("img-fluid", "rounded");
+
+        imageContainer.innerHTML = "";
+        imageContainer.appendChild(proposalImage);
+        imageContainer.style.display = "flex";
       } else {
-        proposalImage.src = defaultImageUrl;
+        imageContainer.style.display = "none";
       }
 
-      proposalImage.onload = () => {
-        console.log("Imagem carregada com sucesso!");
-      };
 
-      proposalImage.onerror = (error) => {
-        console.error("Erro ao carregar a imagem:", error);
-      };
-      console.log(data);
-      modalTitle.textContent =
-        "Criada em: " + new Date(data.createdAt).toLocaleDateString();
+      modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
       proposalDescription.textContent = data.description;
       proposalLikes.textContent = data.likes;
 
+
+      proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
       const situation = data.situation;
       switch (situation) {
         case "OPEN_FOR_VOTING":
@@ -89,8 +87,25 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       proposalCategory.textContent = data.category;
+
+      // Configuração do iframe do vídeo
+      const videoUrl = data.videoUrl;
+      if (videoUrl) {
+        // Converte a URL para o formato embed
+        const embedUrl = convertToEmbedUrl(videoUrl);
+        proposalVideo.innerHTML = `<iframe width="100%" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        proposalVideo.style.display = "flex"; // Mostra o contêiner do vídeo
+      } else {
+        proposalVideo.style.display = "none"; // Oculta o contêiner do vídeo se não houver URL
+      }
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   });
+
+  // Função para converter URL do YouTube para formato embed
+  function convertToEmbedUrl(url) {
+    const videoId = new URL(url).searchParams.get("v");
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+  }
 });

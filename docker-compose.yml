@@ -1,8 +1,10 @@
+version: '3.8'
 services:
-  nginx:
+  nginx-testes:
     image: nginx:1-alpine
     ports:
-      - 82:80
+      -  ${FRONT_PORT}:80
     volumes:
       - ${FRONT_VOLUME}:/usr/share/nginx/html
-    container_name: baoounaofrontend
+    container_name: baoounaofrontend_tests
+    network_mode: worknet

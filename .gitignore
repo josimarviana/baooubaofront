@@ -1,3 +1,5 @@
 .DS_Store
 config.codekit3
 .vscode/
+/assets/js/environments/config.js
+

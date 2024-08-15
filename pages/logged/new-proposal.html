@@ -304,7 +304,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="proposal-url" class="form-label">URL</label>
+                                    <label for="proposal-url" class="form-label">Vídeo URL</label>
                                     <input type="text" name="url" id="proposal-url" class="form-control" />
                                 </div>
 
@@ -353,9 +353,18 @@
     </div><!--//app-wrapper-->
 
 
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
+
+        </div>
+    </div>
     <footer class="footer">
 
-        <div class="footer-bottom text-center py-5 fixed-bottom">
+        <div class="footer-bottom text-center py-5">
 
 
             <small class="copyright">Desenvolvido por
@@ -364,12 +373,13 @@
                 <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
                 ,
                 <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-                e
+                ,
                 <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+                e
+                <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
 
                 para todos
                 do IFTM</small>
-
 
         </div>
 
@@ -384,7 +394,7 @@
 
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
-    <script src="../../assets/js/app/new-proposal.js"></script>
+    <script type="module" src="../../assets/js/app/new-proposal.js"></script>
 
 </body>
 
