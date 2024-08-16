@@ -1,9 +1,9 @@
-import config from "../environments/config.js";
+import config from '../environments/config.js'
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
-
   const apiUrlAnalytics = config.api + "/proposal/dashboard";
   let proposals = [];
+ 
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadProposals(query = "", page = 0, size = 10) {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(
-          query
-        )}&page=${page}&size=${size}`,
+        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}`,
         {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
@@ -28,8 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const result = await response.json();
       proposals = result.proposals;
+      console.log(proposals);
       displayProposals(proposals);
-      updatePagination(result.currentPage, result.totalPages); // Chama a função para atualizar a paginação
+      updatePagination(result.currentPage, result.totalPages);
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
@@ -41,9 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (currentPage > 0) {
       const prevButton = document.createElement("button");
-      
       prevButton.textContent = "Anterior";
-      prevButton.className = "btn app-btn-primary me-2"
+      prevButton.className = "btn app-btn-primary me-2";
       prevButton.onclick = () => loadProposals("", currentPage - 1);
       paginationContainer.appendChild(prevButton);
     }
@@ -51,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentPage < totalPages - 1) {
       const nextButton = document.createElement("button");
       nextButton.textContent = "Próxima";
-      nextButton.className = "btn app-btn-primary"
+      nextButton.className = "btn app-btn-primary";
       nextButton.onclick = () => loadProposals("", currentPage + 1);
       paginationContainer.appendChild(nextButton);
     }
@@ -77,10 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateAnalyticsCards(data) {
     document.getElementById("openProposals").textContent = data.openProposals;
     document.getElementById("votes").textContent = data.votes;
-    document.getElementById("deniedProposals").textContent =
-      data.deniedProposals;
-    document.getElementById("acceptedProposals").textContent =
-      data.acceptedProposals;
+    document.getElementById("deniedProposals").textContent = data.deniedProposals;
+    document.getElementById("acceptedProposals").textContent = data.acceptedProposals;
   }
 
   function displayProposals(data) {
@@ -118,47 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function sortProposals(criteria) {
-    let sortedProposals;
-    switch (criteria) {
-      case "option-2":
-        sortedProposals = [...proposals].sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        break;
-      case "option-3":
-        sortedProposals = [...proposals].sort(
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-        );
-        break;
-      case "option-4":
-        sortedProposals = [...proposals].sort((a, b) => a.likes - b.likes);
-        break;
-      case "option-5":
-        sortedProposals = [...proposals].sort((a, b) => b.likes - a.likes);
-        break;
-      default:
-        sortedProposals = proposals;
-        break;
-    }
-    displayProposals(sortedProposals);
-  }
-
   loadProposals();
   loadAnalyticsData();
-
-  const searchForm = document.querySelector(".app-search-form");
-
-  searchForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const searchInput = document.getElementById("app-search-form");
-    const query = searchInput.value.trim();
-    loadProposals(query); // Chama a função para buscar na página 0
-  });
-
-  const sortSelect = document.querySelector(".page-utilities .form-select");
-  sortSelect.addEventListener("change", function () {
-    const sortBy = sortSelect.value;
-    sortProposals(sortBy);
-  });
 });
