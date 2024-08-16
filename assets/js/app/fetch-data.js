@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
           <div class="app-card-body px-4">
-            <div class="intro">
+            <div class="intro overflow-hidden" style="max-height: 4.6em;">
               ${item.description}
             </div>
           </div>

@@ -92,7 +92,7 @@
 						document.addEventListener('DOMContentLoaded', function () {
 
 							const apiUrl = config.api + '/proposal/trending';
-							console.log(apiUrl);
+
 
 							fetch(apiUrl)
 								.then(response => response.json())
@@ -126,17 +126,13 @@
                 </span><!--//card-icon-holder-->
                 <span class="card-title-text align-self-center">${item.title}</span>
             </h5>
-            <div class="card-text">
+            <div class="card-text overflow-hidden" style="max-height: 4.6em;">
                 ${item.description}
             </div>
             <a class="card-link-mask" href="#"></a>
         </div><!--//card-body-->
     </div><!--//card-->
 `;
-
-
-
-
 
 										document.getElementById('card-container').appendChild(newCard);
 									});
