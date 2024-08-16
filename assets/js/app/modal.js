@@ -25,7 +25,37 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Erro ao carregar dados da proposta:", error);
     }
   });
-
+  proposalModal.addEventListener("hide.bs.modal", function () {
+    clearModalContent();
+  });
+  
+  function clearModalContent() {
+    const modalTitle = proposalModal.querySelector("#proposalModalLabel");
+    const proposalTitle = proposalModal.querySelector("#proposal-title");
+    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalLikes = proposalModal.querySelector("#proposal-likes");
+    const proposalAuthor = proposalModal.querySelector("#proposal-author");
+    const proposalCategory = proposalModal.querySelector("#proposal-category");
+    const imageContainer = proposalModal.querySelector("#image-container");
+    const proposalVideo = proposalModal.querySelector("#proposal-video");
+  
+    // Limpa o conteúdo do modal
+    modalTitle.textContent = "";
+    proposalTitle.textContent = "";
+    proposalDescription.textContent = "";
+    proposalLikes.textContent = "";
+    proposalAuthor.textContent = "";
+    proposalCategory.textContent = "";
+  
+    // Remove a imagem e esconde o contêiner
+    imageContainer.innerHTML = "";
+    imageContainer.style.display = "none";
+  
+    // Remove o vídeo e esconde o contêiner
+    proposalVideo.innerHTML = "";
+    proposalVideo.style.display = "none";
+  }
+  
   async function fetchProposalData(id) {
     const apiUrl = config.api + `/proposal/${id}`;
     const response = await fetch(apiUrl, {

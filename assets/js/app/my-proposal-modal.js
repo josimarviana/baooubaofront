@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
       const situation = data.situation;
+      console.log(situation);
       switch (situation) {
         case "OPEN_FOR_VOTING":
           proposalSituation.textContent = "Em votação";
@@ -102,7 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Erro ao obter dados da API:", error);
     }
   });
+  proposalModal.addEventListener("hidden.bs.modal", function () {
+    const modalTitle = proposalModal.querySelector("#proposalModalLabel");
+    const proposalTitle = proposalModal.querySelector("#proposal-title");
+    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalLikes = proposalModal.querySelector("#proposal-likes");
+    const proposalSituation = proposalModal.querySelector("#proposal-situation");
+    const proposalCategory = proposalModal.querySelector("#proposal-category");
+    const imageContainer = proposalModal.querySelector("#image-container");
+    const proposalVideo = proposalModal.querySelector("#proposal-video");
 
+    modalTitle.textContent = "";
+    proposalTitle.textContent = "";
+    proposalDescription.textContent = "";
+    proposalLikes.textContent = "";
+    proposalSituation.textContent = "";
+    proposalCategory.textContent = "";
+
+    imageContainer.innerHTML = "";
+    imageContainer.style.display = "none";
+
+    proposalVideo.innerHTML = "";
+    proposalVideo.style.display = "none";
+  });
   // Função para converter URL do YouTube para formato embed
   function convertToEmbedUrl(url) {
     const videoId = new URL(url).searchParams.get("v");

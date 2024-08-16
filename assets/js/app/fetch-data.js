@@ -1,7 +1,7 @@
 import config from "../environments/config.js"
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
-  console.log(apiUrl);
+  
   const apiUrlAnalytics = config.api + "/proposal/dashboard"
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
@@ -18,17 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         }
       );
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      proposals = await response.json();
+  
+      const result = await response.json();
+      proposals = result.proposals; // Acessa o array de propostas dentro do objeto result
       displayProposals(proposals);
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   }
+  
   async function loadAnalyticsData() {
     try {
       const response = await fetch(apiUrlAnalytics, {
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
           <div class="app-card-body px-4">
-            <div class="intro">
+            <div class="intro overflow-hidden" style="max-height: 5.6em;">
               ${item.description}
             </div>
           </div>
