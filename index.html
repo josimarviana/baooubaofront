@@ -87,11 +87,12 @@
 					<div id="card-container" class="row">
 
 					</div>
-					<script>
+					<script type="module">
+						import config from "/assets/js/environments/config.js"
 						document.addEventListener('DOMContentLoaded', function () {
 
-							const apiUrl = 'https://testes-apibaoounao.iftmparacatu.app.br/proposal/trending';
-
+							const apiUrl = config.api + '/proposal/trending';
+							console.log(apiUrl);
 
 							fetch(apiUrl)
 								.then(response => response.json())
