@@ -1,36 +1,62 @@
-import config from "../environments/config.js"
+import config from "../environments/config.js";
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
-  
-  const apiUrlAnalytics = config.api + "/proposal/dashboard"
+
+  const apiUrlAnalytics = config.api + "/proposal/dashboard";
   let proposals = [];
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
   }
 
-  async function loadProposals(query = "") {
+  async function loadProposals(query = "", page = 0, size = 10) {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(query)}`, {
+        `${apiUrl}?contain=${encodeURIComponent(
+          query
+        )}&page=${page}&size=${size}`,
+        {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
         }
       );
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       const result = await response.json();
-      proposals = result.proposals; // Acessa o array de propostas dentro do objeto result
+      proposals = result.proposals;
       displayProposals(proposals);
+      updatePagination(result.currentPage, result.totalPages); // Chama a função para atualizar a paginação
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   }
-  
+
+  function updatePagination(currentPage, totalPages) {
+    const paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
+
+    if (currentPage > 0) {
+      const prevButton = document.createElement("button");
+      
+      prevButton.textContent = "Anterior";
+      prevButton.className = "btn app-btn-primary me-2"
+      prevButton.onclick = () => loadProposals("", currentPage - 1);
+      paginationContainer.appendChild(prevButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const nextButton = document.createElement("button");
+      nextButton.textContent = "Próxima";
+      nextButton.className = "btn app-btn-primary"
+      nextButton.onclick = () => loadProposals("", currentPage + 1);
+      paginationContainer.appendChild(nextButton);
+    }
+  }
+
   async function loadAnalyticsData() {
     try {
       const response = await fetch(apiUrlAnalytics, {
@@ -49,10 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateAnalyticsCards(data) {
-    document.getElementById('openProposals').textContent = data.openProposals;
-    document.getElementById('votes').textContent = data.votes;
-    document.getElementById('deniedProposals').textContent = data.deniedProposals;
-    document.getElementById('acceptedProposals').textContent = data.acceptedProposals;
+    document.getElementById("openProposals").textContent = data.openProposals;
+    document.getElementById("votes").textContent = data.votes;
+    document.getElementById("deniedProposals").textContent =
+      data.deniedProposals;
+    document.getElementById("acceptedProposals").textContent =
+      data.acceptedProposals;
   }
 
   function displayProposals(data) {
@@ -120,11 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
   loadAnalyticsData();
 
   const searchForm = document.querySelector(".app-search-form");
+
   searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const searchInput = document.getElementById("app-search-form");
     const query = searchInput.value.trim();
-    loadProposals(query);
+    loadProposals(query); // Chama a função para buscar na página 0
   });
 
   const sortSelect = document.querySelector(".page-utilities .form-select");
