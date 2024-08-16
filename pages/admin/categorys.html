@@ -13,6 +13,8 @@
         content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
     <meta name="author" content="Cristian Alves Silva">
     <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 
     <!-- FontAwesome JS -->
     <script defer src="../../assets/fontawesome/js/all.min.js"></script>
@@ -359,6 +361,60 @@
     </div><!--//app-wrapper-->
 
 
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryLabel">Editar Categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoryForm">
+                        <div class="mb-3">
+                            <label for="editCategoryTitle" class="form-label">Título da Categoria</label>
+                            <input type="text" id="editCategoryTitle" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategoryIcon" class="form-label">Ícone da Categoria <span class="ms-2"
+                                    data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                    data-bs-placement="top" data-bs-html="true" data-bs-content="<p class='popover-text'>
+                                                    Visite o site <a href='https://fontawesome.com/icons' target='_blank'>Font Awesome</a>
+                                                    <br> ou o site <a href='https://icons.getbootstrap.com/' target='_blank'>Icons Bootstrap</a>
+                                                    e escolha o ícone que deseja para a categoria.
+                                                    </p>
+                                                    <p class='popover-text'>
+                                                    Depois de selecionar o ícone, copie a classe contida na tag i.
+                                                    </p>
+                                                    <p class='popover-example'>
+                                                    Exemplo: Para o ícone de usuário <i class='fa-solid fa-user'></i>, insira 'fa-solid fa-user' no campo abaixo.
+                                                    </p>
+                                                    <p class='popover-text text-warning'>
+                                                        Apenas Ícones gratuitos poderão ser utilizados.
+                                                    </p>
+                                                    
+                                                    ">
+
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
+                                        </path>
+                                        <path
+                                            d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z">
+                                        </path>
+                                        <circle cx="8" cy="4.5" r="1"></circle>
+                                    </svg>
+                                </span>
+                            </label>
+                            <input type="text" id="editCategoryIcon" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn app-btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModal"
         aria-hidden="true">
@@ -379,19 +435,21 @@
                                 <span class="ms-2" data-bs-container="body" data-bs-toggle="popover"
                                     data-bs-trigger="hover focus" data-bs-placement="top" data-bs-html="true"
                                     data-bs-content="<p class='popover-text'>
-                                                        Visite o site <a href='https://fontawesome.com/icons' target='_blank'>Font Awesome</a> e escolha o ícone que deseja para a categoria.
-                                                        </p>
-                                                        <p class='popover-text'>
-                                                        Depois de selecionar o ícone, copie a classe contida na tag i.
-                                                        </p>
-                                                        <p class='popover-example'>
-                                                        Exemplo: Para o ícone de usuário <i class='fa-solid fa-user'></i>, insira 'fa-solid fa-user' no campo abaixo.
-                                                        </p>
-                                                        <p class='popover-text text-warning'>
-                                                            Apenas Ícones gratuitos poderão ser utilizados.
-                                                        </p>
-                                                        
-                                                        ">
+                                                    Visite o site <a href='https://fontawesome.com/icons' target='_blank'>Font Awesome</a>
+                                                    <br> ou o site <a href='https://icons.getbootstrap.com/' target='_blank'>Icons Bootstrap</a>
+                                                    e escolha o ícone que deseja para a categoria.
+                                                    </p>
+                                                    <p class='popover-text'>
+                                                    Depois de selecionar o ícone, copie a classe contida na tag i.
+                                                    </p>
+                                                    <p class='popover-example'>
+                                                    Exemplo: Para o ícone de usuário <i class='fa-solid fa-user'></i>, insira 'fa-solid fa-user' no campo abaixo.
+                                                    </p>
+                                                    <p class='popover-text text-warning'>
+                                                        Apenas Ícones gratuitos poderão ser utilizados.
+                                                    </p>
+                                                    
+                                                    ">
 
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -428,8 +486,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="confirmDeactivate" class="btn btn-danger">Desativar</button>
-                    <button type="button" id="confirmReactivate" class="btn btn-success">Reativar</button>
+                    <button type="button" id="confirmDeactivate" class="btn app-btn-danger">Desativar</button>
+                    <button type="button" id="confirmReactivate" class="btn app-btn-primary">Reativar</button>
                 </div>
             </div>
         </div>

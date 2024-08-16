@@ -1,4 +1,6 @@
 import config from '../environments/config.js';
+import showToast from '../app/toast.js';
+
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal";
 
@@ -121,25 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function showToast(message, type = "success") {
-    const toastElement = document.getElementById("confirmationToast");
-    const toastBody = document.getElementById("toast-body");
 
-    toastBody.textContent = message;
-
-
-    toastElement.classList.remove("text-success", "text-danger");
-
-
-    if (type === "success") {
-      toastElement.classList.add("text-primary");
-    } else if (type === "error") {
-      toastElement.classList.add("text-danger");
-    }
-
-    const toast = new bootstrap.Toast(toastElement);
-    toast.show();
-  }
 
   loadProposals();
 });

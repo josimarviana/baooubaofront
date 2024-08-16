@@ -1,4 +1,5 @@
 import config from '../environments/config.js';
+import showToast from '../app/toast.js';
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/cycle";
   let cycles = [];
@@ -24,12 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
       cycles = await response.json();
       displayCycles(cycles);
     } catch (error) {
-      console.error("Erro ao obter dados da API", error);
+      showToast(error.message, "error");
     }
   }
 
@@ -67,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-
   async function deactivateCycle(cycleId) {
     try {
       const response = await fetch(`${apiUrl}/${cycleId}`, {
@@ -77,19 +78,19 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
 
-      if (response.ok) {
-        showToast("Ciclo desativado com sucesso!", "success");
-        loadCycles();
-      } else {
-        const errorText = await response.text();
-        throw new Error(`Erro ao desativar o ciclo: ${errorText}`);
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao desativar ciclo");
       }
+
+      showToast("Ciclo desativado com sucesso!", "success");
+      loadCycles();
+
     } catch (error) {
-      console.error("Erro ao desativar o ciclo:", error);
-      showToast("Erro ao desativar o ciclo. Tente novamente mais tarde.", "error");
+
+      showToast(error.message, "error");
     }
   }
-
 
   async function activateCycle(cycleId) {
     try {
@@ -103,17 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
           active: true
         }),
       });
-
-      if (response.ok) {
-        showToast("Ciclo reativado com sucesso!", "success");
-        loadCycles();
-      } else {
-        const errorText = await response.text();
-        throw new Error(`Erro ao reativar o ciclo: ${errorText}`);
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao ativar ciclo");
       }
+
+      showToast("Ciclo ativado com sucesso!", "success");
+      loadCycles();
     } catch (error) {
-      console.error("Erro ao reativar o ciclo:", error);
-      showToast("Erro ao reativar o ciclo. Tente novamente mais tarde.", "error");
+      showToast(error.message, "error");
     }
   }
 
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
   async function createCycle(cycleData) {
     try {
       const response = await fetch(apiUrl, {
@@ -166,14 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Erro ao enviar dados: ${errorText}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao criar ciclo");
       }
-
       return await response.json();
     } catch (error) {
-      console.error("Erro durante o cadastro do ciclo:", error);
-      showToast("Erro ao cadastrar o ciclo. Verifique os dados e tente novamente.", "error");
+      showToast(error.message, "error");
     }
   }
 
@@ -211,25 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
       showToast(newCycle.mensagem);
     }
   });
-
-
-  function showToast(message, type = "success") {
-    const toastElement = document.getElementById("confirmationToast");
-    const toastBody = document.getElementById("toast-body");
-
-    toastBody.textContent = message;
-
-    toastElement.classList.remove("text-success", "text-danger");
-    if (type === "success") {
-      toastElement.classList.add("text-primary");
-    } else if (type === "error") {
-      toastElement.classList.add("text-danger");
-    }
-
-    const toast = new bootstrap.Toast(toastElement);
-    toast.show();
-  }
-
 
   function formatDate(dateString) {
     const options = {
