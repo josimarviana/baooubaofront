@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  async function loadProposals(query = "", page = 0, size = 9) {
+  async function loadProposals(query = "", page = 0, size = 9, sort = "") {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}`, {
+        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}&sort=${sort}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
@@ -155,12 +155,39 @@ document.addEventListener("DOMContentLoaded", function () {
       cardContainer.appendChild(newCard);
     });
   }
+
   const searchForm = document.querySelector(".app-search-form");
   searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const searchInput = document.getElementById("app-search-form");
     const query = searchInput.value.trim();
     loadProposals(query);
+  });
+
+  const sortSelect = document.getElementById("sortSelect");
+
+  sortSelect.addEventListener("change", function () {
+    const selectedOption = sortSelect.options[sortSelect.selectedIndex].value;
+    let sortCriteria = "";
+
+    switch (selectedOption) {
+      case "option-2":
+        sortCriteria = "recent";
+        break;
+      case "option-3":
+        sortCriteria = "oldest";
+        break;
+      case "option-4":
+        sortCriteria = "least_votes";
+        break;
+      case "option-5":
+        sortCriteria = "most_votes";
+        break;
+      default:
+        sortCriteria = "";
+        break;
+    }
+    loadProposals("", 0, 9, sortCriteria);
   });
   loadProposals();
   loadAnalyticsData();
