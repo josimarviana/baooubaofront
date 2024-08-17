@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
   const apiUrlAnalytics = config.api + "/proposal/dashboard";
   let proposals = [];
- 
+
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadProposals(query = "", page = 0, size = 9) {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}`,
-        {
+        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const result = await response.json();
       proposals = result.proposals;
-      console.log(proposals);
       displayProposals(proposals);
       updatePagination(result.currentPage, result.totalPages);
     } catch (error) {
@@ -38,21 +36,65 @@ document.addEventListener("DOMContentLoaded", function () {
     const paginationContainer = document.getElementById("paginationContainer");
     paginationContainer.innerHTML = "";
 
+    // Botão para a primeira página
+    const firstPageButton = document.createElement("li");
+    firstPageButton.className = `page-item ${currentPage === 0 ? 'disabled' : ''}`;
+    firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira" tabindex="-1">Primeira</a>`;
     if (currentPage > 0) {
-      const prevButton = document.createElement("button");
-      prevButton.textContent = "Anterior";
-      prevButton.className = "btn app-btn-primary me-2";
-      prevButton.onclick = () => loadProposals("", currentPage - 1);
-      paginationContainer.appendChild(prevButton);
+      firstPageButton.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProposals("", 0);
+      });
+    }
+    paginationContainer.appendChild(firstPageButton);
+
+    // Botão "Anterior"
+    const prevButton = document.createElement("li");
+    prevButton.className = `page-item ${currentPage === 0 ? 'disabled' : ''}`;
+    prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior" tabindex="-1">&laquo;</a>`;
+    if (currentPage > 0) {
+      prevButton.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProposals("", currentPage - 1);
+      });
+    }
+    paginationContainer.appendChild(prevButton);
+
+    // Números das páginas
+    for (let i = 0; i < totalPages; i++) {
+      const pageButton = document.createElement("li");
+      pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
+      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${i + 1}</a>`;
+      pageButton.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProposals("", i);
+      });
+      paginationContainer.appendChild(pageButton);
     }
 
+    // Botão "Próxima"
+    const nextButton = document.createElement("li");
+    nextButton.className = `page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`;
+    nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
     if (currentPage < totalPages - 1) {
-      const nextButton = document.createElement("button");
-      nextButton.textContent = "Próxima";
-      nextButton.className = "btn app-btn-primary";
-      nextButton.onclick = () => loadProposals("", currentPage + 1);
-      paginationContainer.appendChild(nextButton);
+      nextButton.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProposals("", currentPage + 1);
+      });
     }
+    paginationContainer.appendChild(nextButton);
+
+    // Botão para a última página
+    const lastPageButton = document.createElement("li");
+    lastPageButton.className = `page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`;
+    lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
+    if (currentPage < totalPages - 1) {
+      lastPageButton.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProposals("", totalPages - 1);
+      });
+    }
+    paginationContainer.appendChild(lastPageButton);
   }
 
   async function loadAnalyticsData() {
