@@ -155,7 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
       cardContainer.appendChild(newCard);
     });
   }
-
+  const searchForm = document.querySelector(".app-search-form");
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const searchInput = document.getElementById("app-search-form");
+    const query = searchInput.value.trim();
+    loadProposals(query);
+  });
   loadProposals();
   loadAnalyticsData();
 });
