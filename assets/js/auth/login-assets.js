@@ -18,7 +18,7 @@ document.getElementById("show-password").addEventListener("click", function () {
 });
 
 const loginForm = document.querySelector("#loginForm");
-const errorMessage = document.getElementById("loginError");
+
 
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -54,7 +54,7 @@ loginForm.addEventListener("submit", async (event) => {
     console.log("Decoded JWT:", decodedToken);
     sessionStorage.setItem("roles", decodedToken.roles.join(", "));
 
-    errorMessage.textContent = "";
+
     loginForm.reset();
     window.location.href = "../../../pages/logged/home.html";
   } catch (error) {
