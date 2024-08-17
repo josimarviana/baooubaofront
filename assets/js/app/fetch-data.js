@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  async function loadProposals(query = "", page = 0, size = 10) {
+  async function loadProposals(query = "", page = 0, size = 9) {
     try {
       const response = await fetch(
         `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}`,
