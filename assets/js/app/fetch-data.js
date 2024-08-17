@@ -1,4 +1,6 @@
 import config from '../environments/config.js'
+import showToast from './toast.js';
+
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
   const apiUrlAnalytics = config.api + "/proposal/dashboard";
@@ -20,15 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
 
       const result = await response.json();
       proposals = result.proposals;
+
       displayProposals(proposals);
       updatePagination(result.currentPage, result.totalPages);
+
     } catch (error) {
-      console.error("Erro ao obter dados da API:", error);
+      showToast(error.message, "error");
     }
   }
 
@@ -105,12 +110,13 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
       const data = await response.json();
       updateAnalyticsCards(data);
     } catch (error) {
-      console.error("Erro ao obter dados analíticos:", error);
+      showToast(error.message, "error");
     }
   }
 
@@ -165,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const sortSelect = document.getElementById("sortSelect");
-
   sortSelect.addEventListener("change", function () {
     const selectedOption = sortSelect.options[sortSelect.selectedIndex].value;
     let sortCriteria = "";
@@ -189,6 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     loadProposals("", 0, 9, sortCriteria);
   });
+
+
   loadProposals();
   loadAnalyticsData();
 });
