@@ -18,6 +18,6 @@ export default function showToast(message, type) {
 
 
     setTimeout(() => {
-        toastElement.hide();
+        toast.hide();
     }, 3000);
 }
