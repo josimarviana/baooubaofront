@@ -312,51 +312,57 @@
     <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header align-items-between">
+                <div class="modal-header align-items-center">
                     <h5 class="modal-title" id="proposalModalLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!--//modal-header-->
 
-                <div class="modal-body">
-                    <div class="app-card app-card-proposal shadown-sm mb-4">
+                <div class="modal-body position-relative">
+                    <div class="app-card app-card-proposal mb-4">
                         <div class="app-card-header px-4 py-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-12 col-lg-auto">
-                                    <div>
-                                        <h4 class="proposal-title mb-1" id="proposal-title"></h4>
-                                    </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <h4 class="proposal-title mb-0" id="proposal-title"></h4>
                                 </div>
-                                <div class="col-12 col-lg-auto">
-                                    <div class="text">
-                                        <a href="#" class="text-action-links"><i class="fa-solid fa-thumbs-up"></i>
-                                            <span id="proposal-likes"></span></a>
-                                    </div>
+                                <div class="col-12 col-lg-auto d-flex align-items-center">
+                                    <a href="#" class="text-action-links d-flex align-items-center">
+                                        <i class="fa-solid fa-thumbs-up me-1"></i>
+                                        <span id="proposal-likes"></span>
+                                    </a>
                                 </div>
-                                <div class="col-12 col-lg-auto ms-auto">
-                                    <div class="proposal-type mb-2">
-                                        <span class="badge bg-info" id="proposal-category"></span>
-                                    </div>
+                                <div class="col-12 col-lg-auto ms-lg-auto d-flex align-items-center">
+                                    <span class="badge bg-info" id="proposal-category"></span>
                                 </div>
                             </div>
                         </div>
                         <!--//app-card-header-->
 
-                        <div class="col-12 col-lg-auto d-flex justify-content-center align-items-center px-4 py-3">
-                            <img id="proposal-image" alt="Imagem descritiva da proposta" class="w-100">
+                        <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container"
+                            style="display: none;">
+
                         </div>
+
+
                         <div class="app-card-body p-4">
                             <div class="proposal-content" id="proposal-description">
                                 <!-- aqui vai a descrição da proposta -->
                             </div>
+                            <div class="proposal-video d-flex justify-content-center align-items-center px-4 py-3"
+                                id="proposal-video" style="display: none;">
+
+                            </div>
+                            <hr>
+
+                            <div class="proposal-author" id="proposal-author">
+                                <!-- Aqui vai o autor da proposta -->
+                            </div>
+
+                            <hr>
+
+
                         </div>
                         <!--//app-card-body-->
-                        <hr>
-                        <div class="col-12 col-lg-auto text-center text-lg-start" id="proposal-author"></div>
-                        <hr>
-                        <div class="app-card-footer px-4 py-3">
-                            <button class="btn app-btn-primary" href="#" id="btn-vote">Votar</a>
-                        </div>
                     </div>
                     <!--//app-card-->
 
@@ -419,7 +425,7 @@
 
     <script src="../../assets/js/app/app.js"></script>
     <script type="module" src="../../assets/js/admin/proposals.js"></script>
-    <script src="../../assets/js/app/modal.js"></script>
+    <script type="module" src="../../assets/js/app/modal.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
