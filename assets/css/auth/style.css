@@ -11838,6 +11838,14 @@ button.close:focus {
   background: #ec776c;
   border: 2px solid #fff;
 }
+#votingLimit {
+  background: RGBA(var(--bs-primary-rgb), var(--bs-link-opacity, 1));
+  border: 2px solid #fff;
+}
+#proposalLimit {
+  background: var(--bs-success);
+  border: 2px solid #fff;
+}
 .app-notifications-dropdown .dropdown-menu {
   width: 300px;
 }

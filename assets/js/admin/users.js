@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
               <i class="bi bi-three-dots-vertical"></i>
             </div>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Ação 1</a></li>
-              <li><a class="dropdown-item" href="#">Ação 2</a></li>
+              <li><a class="dropdown-item" href="#">Desativar</a></li>
+              <li><a class="dropdown-item" href="#">Alterar Cargo</a></li>
             </ul>
           </div>
         </td>
@@ -110,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const searchForm = document.getElementById("searchForm");
   searchForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Impede o reload da página
+    e.preventDefault();
     const query = document.getElementById("search-users").value;
     const sortCriteria = sortSelect.value;
-    loadUsers(query, sortCriteria); // Chama a função loadUsers com o termo de busca e critério de ordenação
+    loadUsers(query, sortCriteria);
   });
 
-  loadUsers(); // Carrega os usuários inicialmente
+  loadUsers();
 });
