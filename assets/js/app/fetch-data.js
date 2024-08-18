@@ -40,33 +40,36 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePagination(currentPage, totalPages) {
     const paginationContainer = document.getElementById("paginationContainer");
     paginationContainer.innerHTML = "";
-
-    // Botão para a primeira página
-    const firstPageButton = document.createElement("li");
-    firstPageButton.className = `page-item ${currentPage === 0 ? 'disabled' : ''}`;
-    firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira" tabindex="-1">Primeira</a>`;
+  
+    // Botão para a primeira página (apenas se não estiver na primeira página)
     if (currentPage > 0) {
+      const firstPageButton = document.createElement("li");
+      firstPageButton.className = "page-item";
+      firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira">Primeira</a>`;
       firstPageButton.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         loadProposals("", 0);
       });
+      paginationContainer.appendChild(firstPageButton);
     }
-    paginationContainer.appendChild(firstPageButton);
-
-    // Botão "Anterior"
-    const prevButton = document.createElement("li");
-    prevButton.className = `page-item ${currentPage === 0 ? 'disabled' : ''}`;
-    prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior" tabindex="-1">&laquo;</a>`;
+  
+    // Botão "Anterior" (apenas se não estiver na primeira página)
     if (currentPage > 0) {
+      const prevButton = document.createElement("li");
+      prevButton.className = "page-item";
+      prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior">&laquo;</a>`;
       prevButton.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         loadProposals("", currentPage - 1);
       });
+      paginationContainer.appendChild(prevButton);
     }
-    paginationContainer.appendChild(prevButton);
-
-    // Números das páginas
-    for (let i = 0; i < totalPages; i++) {
+  
+    // Números das páginas (apenas 3 visíveis)
+    const startPage = Math.max(0, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+  
+    for (let i = startPage; i <= endPage; i++) {
       const pageButton = document.createElement("li");
       pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
       pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${i + 1}</a>`;
@@ -76,30 +79,30 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       paginationContainer.appendChild(pageButton);
     }
-
-    // Botão "Próxima"
-    const nextButton = document.createElement("li");
-    nextButton.className = `page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`;
-    nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
+  
+    // Botão "Próxima" (apenas se não estiver na última página)
     if (currentPage < totalPages - 1) {
+      const nextButton = document.createElement("li");
+      nextButton.className = "page-item";
+      nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
       nextButton.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         loadProposals("", currentPage + 1);
       });
+      paginationContainer.appendChild(nextButton);
     }
-    paginationContainer.appendChild(nextButton);
-
-    // Botão para a última página
-    const lastPageButton = document.createElement("li");
-    lastPageButton.className = `page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`;
-    lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
+  
+    // Botão para a última página (apenas se não estiver na última página)
     if (currentPage < totalPages - 1) {
+      const lastPageButton = document.createElement("li");
+      lastPageButton.className = "page-item";
+      lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
       lastPageButton.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         loadProposals("", totalPages - 1);
       });
+      paginationContainer.appendChild(lastPageButton);
     }
-    paginationContainer.appendChild(lastPageButton);
   }
 
   async function loadAnalyticsData() {

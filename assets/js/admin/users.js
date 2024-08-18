@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const data = await response.json();
-      displayUsers(data.users); // Use data.users para acessar a lista de usuários
+      displayUsers(data.users);
     } catch (error) {
       showToast("Erro ao obter dados da API", "error");
     }
@@ -104,8 +104,17 @@ document.addEventListener("DOMContentLoaded", function () {
         sortCriteria = "";
         break;
     }
-    loadUsers("", sortCriteria);
+    const query = document.getElementById("search-users").value;
+    loadUsers(query, sortCriteria);
   });
 
-  loadUsers();
+  const searchForm = document.getElementById("searchForm");
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Impede o reload da página
+    const query = document.getElementById("search-users").value;
+    const sortCriteria = sortSelect.value;
+    loadUsers(query, sortCriteria); // Chama a função loadUsers com o termo de busca e critério de ordenação
+  });
+
+  loadUsers(); // Carrega os usuários inicialmente
 });
