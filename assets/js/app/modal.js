@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return await response.json(); // Retorna o JSON diretamente
+    return await response.json();
   }
 
   function updateModalContent(data) {
@@ -81,20 +81,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageContainer = proposalModal.querySelector("#image-container");
     const proposalVideo = proposalModal.querySelector("#proposal-video");
 
-    // Configuração da imagem
-    const imageData = data.image;
-    if (imageData) {
-      const imageUrl = `data:image/jpeg;base64,${imageData}`;
+
+    const imageUrl = data.image;
+    if (imageUrl) {
       const proposalImage = document.createElement("img");
       proposalImage.src = imageUrl;
       proposalImage.alt = "Imagem descritiva da proposta";
       proposalImage.classList.add("img-fluid", "rounded");
 
-      imageContainer.innerHTML = ""; // Limpa o conteúdo do contêiner
-      imageContainer.appendChild(proposalImage); // Adiciona a nova imagem
-      imageContainer.style.display = "flex"; // Mostra o contêiner da imagem
+      imageContainer.innerHTML = "";
+      imageContainer.appendChild(proposalImage);
+      imageContainer.style.display = "flex";
     } else {
-      imageContainer.style.display = "none"; // Oculta o contêiner da imagem
+      imageContainer.style.display = "none";
     }
 
     modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
@@ -204,10 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Voto cancelado com sucesso!" :
         "Voto registrado com sucesso!"
       );
-
       hasVoted = !hasVoted;
       updateVoteButton();
-
       setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(proposalModal);
         modal.hide();
@@ -252,7 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Função para converter URL do YouTube para formato embed
   function convertToEmbedUrl(url) {
     const videoId = new URL(url).searchParams.get("v");
     return videoId ? `https://www.youtube.com/embed/${videoId}` : "";

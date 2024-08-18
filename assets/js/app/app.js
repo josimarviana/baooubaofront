@@ -48,11 +48,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   sidePanelToggler.addEventListener("click", () => {
     if (sidePanel.classList.contains("sidepanel-visible")) {
-      console.log("visible");
       sidePanel.classList.remove("sidepanel-visible");
       sidePanel.classList.add("sidepanel-hidden");
     } else {
-      console.log("hidden");
       sidePanel.classList.remove("sidepanel-hidden");
       sidePanel.classList.add("sidepanel-visible");
     }
@@ -85,6 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 });
+
 function logout() {
   sessionStorage.removeItem("jwt");
   sessionStorage.removeItem("roles");

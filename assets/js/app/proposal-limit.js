@@ -1,5 +1,5 @@
 import config from "../environments/config.js";
-
+import showToast from './toast.js';
 document.addEventListener("DOMContentLoaded", async () => {
     const proposalLimitElement = document.getElementById("proposalLimit");
     const votingLimitElement = document.getElementById("votingLimit");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             proposalLimitElement.textContent = data.available;
 
         } catch (error) {
-            console.error("Erro ao carregar limite de propostas:", error);
+            showToast(error.message, "error");
         }
     }
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             votingLimitElement.textContent = data.available;
 
         } catch (error) {
-            console.error("Erro ao carregar limite de votos:", error);
+            showToast(error.message, "error");
         }
     }
 

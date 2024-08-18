@@ -30,12 +30,14 @@ signupForm.addEventListener("submit", async (event) => {
   const selectedType = document.querySelector('input[name="type"]:checked');
   const type = selectedType ? selectedType.value : "";
 
-  // Verifica se as senhas coincidem
+  if (!name.trim()) {
+    showToast("Nome não pode ser vazio", "error");
+    return;
+  }
   if (password !== confirmPassword) {
     showToast("As senhas não coincidem. Por favor, verifique e tente novamente.", "error");
-    return; // Encerra a função para evitar enviar a requisição
+    return;
   }
-
   const formData = {
     email,
     name,
@@ -51,11 +53,13 @@ signupForm.addEventListener("submit", async (event) => {
       },
       body: JSON.stringify(formData),
     });
-
-    if (!response.ok) {
+    console.log(response.status);
+    if (response.status === 201) {
+      console.log("Cadastro realizado com sucesso.");
+      localStorage.setItem("userEmail", email);
+      window.location.href = "../../../pages/messages/confirmation.html";
+    } else {
       const errorResponse = await response.json();
-
-      // Verifica se há detalhes de erro na resposta e exibe a mensagem correspondente
       if (errorResponse.detalhes) {
         const errorMessages = Object.values(errorResponse.detalhes).join(" ");
         throw new Error(errorMessages);
@@ -63,13 +67,7 @@ signupForm.addEventListener("submit", async (event) => {
         throw new Error(errorResponse.mensagem || "Falha no cadastro. Verifique os dados e tente novamente.");
       }
     }
-
-    const responseData = await response.json();
-    console.log("Dados enviados com sucesso: ", responseData);
-    localStorage.setItem("userEmail", email);
-    window.location.href = "../../../pages/messages/confirmation.html";
   } catch (error) {
-    console.error("Erro durante o cadastro:", error);
-    showToast(error.message, "error"); // Exibe o erro no toast
+    showToast(error.message, "error");
   }
 });

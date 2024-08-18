@@ -99,21 +99,6 @@
 								.then(data => {
 
 									data.forEach(item => {
-										let iconClass = '';
-										switch (item.category) {
-											case 'Infraestrutura':
-												iconClass = 'fa-solid fa-building'
-												break;
-											case 'Ensino':
-												iconClass = 'fa-solid fa-graduation-cap'
-												break;
-											case 'Alimentação':
-												iconClass = 'fa-solid fa-utensils'
-												break;
-											default:
-												iconClass = 'fa-solid fa-file'
-												break;
-										}
 										const newCard = document.createElement('div');
 										newCard.className = 'col-12 col-lg-4 py-3';
 										newCard.innerHTML = `
@@ -121,7 +106,7 @@
 										        <div class="card-body">
 										            <h5 class="card-title mb-3 d-flex">
 										                <span class="theme-icon-holder card-icon-holder d-inline-block me-2">
-										                    <i class="${iconClass}"></i>                                                            
+										                    <i class="${item.icon}"></i>                                                            
 										                </span><!--//card-icon-holder-->
 										                <span class="card-title-text align-self-center">${item.title}</span>
 										            </h5>
