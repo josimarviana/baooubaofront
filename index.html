@@ -29,7 +29,7 @@
 		<div class="branding docs-branding">
 			<div class="container-fluid position-relative py-2">
 				<div class="docs-logo-wrapper">
-					<div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2"
+					<div class="site-logo"><a class="navbar-brand" href="#"><img class="logo-icon me-2"
 								src="assets/images/BaoOuNao.png" alt="logo" style="width: 50px;"><span
 								class="logo-text">Bão<span class="text-alt">ou</span></span><span
 								class="logo-text">Não</span></a></div>
@@ -61,7 +61,7 @@
 						Contribua com propostas, vote e ajude a moldar o futuro da nossa comunidade acadêmica.
 					</div>
 					<div class="cta-btns mb-lg-3">
-						<a href="#" class="btn btn-primary me-2 mb-3">Vote até dezembro, 2024</a>
+						<a href="pages/auth/login.html" class="btn btn-primary me-2 mb-3">Vote até dezembro, 2024</a>
 
 					</div>
 				</div>
@@ -99,25 +99,10 @@
 								.then(data => {
 
 									data.forEach(item => {
-										let iconClass = '';
-										switch (item.category) {
-											case 'Infraestrutura':
-												iconClass = 'fa-solid fa-building'
-												break;
-											case 'Ensino':
-												iconClass = 'fa-solid fa-graduation-cap'
-												break;
-											case 'Alimentação':
-												iconClass = 'fa-solid fa-utensils'
-												break;
-											default:
-												iconClass = 'fa-solid fa-file'
-												break;
-										}
-
 										const newCard = document.createElement('div');
 										newCard.className = 'col-12 col-lg-4 py-3';
 										newCard.innerHTML = `
+<<<<<<< HEAD
     <div class="card shadow-sm">
         <div class="card-body">
             <h5 class="card-title mb-3 d-flex">
@@ -134,6 +119,23 @@
     </div><!--//card-->
 `;
 
+=======
+										    <div class="card shadow-sm">
+										        <div class="card-body">
+										            <h5 class="card-title mb-3 d-flex">
+										                <span class="theme-icon-holder card-icon-holder d-inline-block me-2">
+										                    <i class="${item.icon}"></i>                                                            
+										                </span><!--//card-icon-holder-->
+										                <span class="card-title-text align-self-center">${item.title}</span>
+										            </h5>
+										            <div class="card-text overflow-hidden" style="max-height: 5.6em;">
+										                ${item.description}
+										            </div>
+										            <a class="card-link-mask" href="pages/auth/login.html"></a>
+										        </div><!--//card-body-->
+										    </div><!--//card-->
+										`;
+>>>>>>> dev
 										document.getElementById('card-container').appendChild(newCard);
 									});
 								})
@@ -152,11 +154,11 @@
 		<div class="theme-bg-shapes-left"></div>
 		<div class="container">
 			<h3 class="mb-2 text-white mb-3">Instituto Federal do Triângulo Mineiro</h3>
-			<div class="section-intro text-white mb-3 single-col-max mx-auto">
+			<!-- <div class="section-intro text-white mb-3 single-col-max mx-auto">
 				Acesse o site oficial
 				do
 				<a class="text-white" href="https://iftm.edu.br/" target="_blank">IFTM</a> para mais informações
-			</div>
+			</div> -->
 
 		</div>
 	</section><!--//cta-section-->
@@ -172,8 +174,10 @@
 				<a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>
 				,
 				<a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>
-				e
+				,
 				<a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+				e
+				<a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
 
 				para todos
 				do IFTM</small>

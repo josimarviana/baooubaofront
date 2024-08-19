@@ -61,7 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
           <div class="app-card-body px-4">
+<<<<<<< HEAD
             <div class="intro overflow-hidden" style="max-height: 4.6em;">${item.description}</div>
+=======
+            <div class="intro overflow-hidden" style="max-height: 5.6em;">${item.description}</div>
+>>>>>>> dev
             <div class="app-card-actions">
               <div class="dropdown">
                 <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">

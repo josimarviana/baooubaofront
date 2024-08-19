@@ -1,4 +1,5 @@
 import config from '../environments/config.js';
+import showToast from '../app/toast.js'; // Importa a função de toast
 
 const apiUrl = config.api + "/user";
 
@@ -18,94 +19,55 @@ document.getElementById("show-password").addEventListener("click", function () {
 });
 
 const signupForm = document.getElementById("signup-form");
-const signupName = document.getElementById("signup-name");
-const signupEmail = document.getElementById("signup-email");
-const signupPassword = document.getElementById("signup-password");
-const signupConfirmPassword = document.getElementById(
-  "signup-confirm-password"
-);
 
-const passwordError = document.getElementById("passwordError");
-const confirmPasswordError = document.getElementById("confirmPasswordError");
-const emailError = document.getElementById("emailError");
-const typeError = document.getElementById("typeError");
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-signupForm.addEventListener("submit", (event) => {
+signupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  passwordError.textContent = "";
-  confirmPasswordError.textContent = "";
-  emailError.textContent = "";
-  typeError.textContent = "";
-
-  const name = signupName.value;
-  const email = signupEmail.value;
-  const password = signupPassword.value;
-  const confirmPassword = signupConfirmPassword.value;
-
+  const name = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+  const confirmPassword = document.getElementById("signup-confirm-password").value;
   const selectedType = document.querySelector('input[name="type"]:checked');
   const type = selectedType ? selectedType.value : "";
 
-  let isValid = true;
-
-  if (password.length < 8) {
-    passwordError.textContent = "A senha deve ter no mínimo 8 caracteres.";
-    isValid = false;
+  if (!name.trim()) {
+    showToast("Nome não pode ser vazio", "error");
+    return;
   }
   if (password !== confirmPassword) {
-    confirmPasswordError.textContent = "As senhas não coincidem.";
-    isValid = false;
+    showToast("As senhas não coincidem. Por favor, verifique e tente novamente.", "error");
+    return;
   }
-  if (!emailRegex.test(email)) {
-    emailError.textContent = "Email inválido.";
-    isValid = false;
-  }
-  if (!type) {
-    typeError.textContent = "Selecione um tipo de usuário.";
-    isValid = false;
-  }
+  const formData = {
+    email,
+    name,
+    type,
+    password,
+  };
 
-  if (isValid) {
-    const formData = {
-      email,
-      name,
-      type,
-      password,
-    };
-
-    fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            throw new Error(`Erro ao enviar dados para a API: ${text}`);
-          });
-        }
-        // Verificar se a resposta possui corpo e tratar conforme
-        return response.text().then((text) => {
-          if (text) {
-            try {
-              const data = JSON.parse(text);
-              console.log("Dados enviados com sucesso: ", data);
-            } catch (e) {
-              console.warn("Resposta da API não é JSON válido: ", text);
-            }
-          } else {
-            console.log("Dados enviados com sucesso, mas sem resposta JSON.");
-          }
-          localStorage.setItem("userEmail", email);
-          window.location.href = "../../../pages/messages/confirmation.html";
-        });
-      })
-      .catch((error) => {
-        console.error("Erro: ", error);
-      });
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    console.log(response.status);
+    if (response.status === 201) {
+      console.log("Cadastro realizado com sucesso.");
+      localStorage.setItem("userEmail", email);
+      window.location.href = "../../../pages/messages/confirmation.html";
+    } else {
+      const errorResponse = await response.json();
+      if (errorResponse.detalhes) {
+        const errorMessages = Object.values(errorResponse.detalhes).join(" ");
+        throw new Error(errorMessages);
+      } else {
+        throw new Error(errorResponse.mensagem || "Falha no cadastro. Verifique os dados e tente novamente.");
+      }
+    }
+  } catch (error) {
+    showToast(error.message, "error");
   }
 });

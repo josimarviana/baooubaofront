@@ -1,51 +1,57 @@
 import config from '../environments/config.js';
 import showToast from '../app/toast.js';
-document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/user";
 
-  let users = [];
+document.addEventListener("DOMContentLoaded", function () {
+  const apiUrl = config.api + "/user/filter";
 
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
     return;
   }
+
   if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
     window.location.href = "../errors/404.html";
     return;
   }
-  async function loadUsers() {
+
+  async function loadUsers(query = "", sort = "") {
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(`${apiUrl}?contain=${encodeURIComponent(query)}&sort=${sort}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
-      users = await response.json();
-      displayUsers(users);
+
+      const data = await response.json();
+      displayUsers(data.users);
     } catch (error) {
-      console.log("Erro ao obter dados da API", error);
+      showToast("Erro ao obter dados da API", "error");
     }
   }
 
-  function displayUsers(data) {
+  function displayUsers(users) {
     const tableBody = document.querySelector("#users-all tbody");
 
     const roleMapping = {
       ROLE_USER: "Usuário",
       ROLE_ADMINISTRATOR: "Administrador",
+      ESTUDANTE: "Estudante",
+      DOCENTE: "Docente",
+      TAE: "TAE"
     };
 
     tableBody.innerHTML = "";
 
-    data.forEach((user) => {
+    users.forEach((user) => {
       const row = document.createElement("tr");
 
       const friendlyRoles = user.roles
-        .map((role) => roleMapping[role.name] || role.name)
+        .map((role) => roleMapping[role] || role)
         .join(", ");
 
       row.innerHTML = `
@@ -54,31 +60,16 @@ document.addEventListener("DOMContentLoaded", function () {
         <td class="cell py-3">${user.email}</td>
         <td class="cell py-3">${user.type}</td>
         <td class="cell py-3">${user.active ? "Sim" : "Não"}</td>
-        <td class="cell py-3">${formatDate(user.createdAt)}</td>
+        <td class="cell py-3">${new Date(user.createdAt).toLocaleDateString()}</td>
         <td class="cell py-3">${friendlyRoles}</td>
-          <td class="cell py-3">
+        <td class="cell py-3">
           <div class="dropdown">
             <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-              </svg>
+              <i class="bi bi-three-dots-vertical"></i>
             </div>
             <ul class="dropdown-menu">
-              <li><a href="#?id=${
-                user.id
-              }" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#?id=${
-                user.id
-              }" class="dropdown-item text-danger"><i class="fa-solid fa-ban"></i> Desativar</a></li>
-               <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-               <li><a href="#?id=${
-                 user.id
-               }" class="dropdown-item text-info"><i class="fa-solid fa-arrow-up"></i> Tornar Administrador</a></li>
-               <li><a href="#?id=${
-                 user.id
-               }" class="dropdown-item text-warning"><i class="fa-solid fa-arrow-down"></i> Revogar Administrador</a></li>
+              <li><a class="dropdown-item" href="#">Desativar</a></li>
+              <li><a class="dropdown-item" href="#">Alterar Cargo</a></li>
             </ul>
           </div>
         </td>
@@ -88,10 +79,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString();
-  }
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", function () {
+    const selectedOption = sortSelect.value;
+    let sortCriteria = "";
+
+    switch (selectedOption) {
+      case "role_administrator":
+        sortCriteria = "role_administrator";
+        break;
+      case "role_user":
+        sortCriteria = "role_user";
+        break;
+      case "estudante":
+        sortCriteria = "estudante";
+        break;
+      case "docente":
+        sortCriteria = "docente";
+        break;
+      case "tae":
+        sortCriteria = "tae";
+        break;
+      default:
+        sortCriteria = "";
+        break;
+    }
+    const query = document.getElementById("search-users").value;
+    loadUsers(query, sortCriteria);
+  });
+
+  const searchForm = document.getElementById("searchForm");
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById("search-users").value;
+    const sortCriteria = sortSelect.value;
+    loadUsers(query, sortCriteria);
+  });
 
   loadUsers();
 });

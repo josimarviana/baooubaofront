@@ -35,9 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const proposalVideo = proposalModal.querySelector("#proposal-video");
 
 
-      const imageData = data.image;
-      if (imageData) {
-        const imageUrl = `data:image/jpeg;base64,${imageData}`;
+      const imageUrl = data.image;
+      if (imageUrl) {
         const proposalImage = document.createElement("img");
         proposalImage.src = imageUrl;
         proposalImage.alt = "Imagem descritiva da proposta";
@@ -59,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
       const situation = data.situation;
+
       switch (situation) {
         case "OPEN_FOR_VOTING":
           proposalSituation.textContent = "Em votação";
@@ -88,22 +88,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
       proposalCategory.textContent = data.category;
 
-      // Configuração do iframe do vídeo
+
       const videoUrl = data.videoUrl;
       if (videoUrl) {
-        // Converte a URL para o formato embed
+
         const embedUrl = convertToEmbedUrl(videoUrl);
         proposalVideo.innerHTML = `<iframe width="100%" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-        proposalVideo.style.display = "flex"; // Mostra o contêiner do vídeo
+        proposalVideo.style.display = "flex";
       } else {
-        proposalVideo.style.display = "none"; // Oculta o contêiner do vídeo se não houver URL
+        proposalVideo.style.display = "none";
       }
     } catch (error) {
       console.error("Erro ao obter dados da API:", error);
     }
   });
+  proposalModal.addEventListener("hidden.bs.modal", function () {
+    const modalTitle = proposalModal.querySelector("#proposalModalLabel");
+    const proposalTitle = proposalModal.querySelector("#proposal-title");
+    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalLikes = proposalModal.querySelector("#proposal-likes");
+    const proposalSituation = proposalModal.querySelector("#proposal-situation");
+    const proposalCategory = proposalModal.querySelector("#proposal-category");
+    const imageContainer = proposalModal.querySelector("#image-container");
+    const proposalVideo = proposalModal.querySelector("#proposal-video");
 
-  // Função para converter URL do YouTube para formato embed
+    modalTitle.textContent = "";
+    proposalTitle.textContent = "";
+    proposalDescription.textContent = "";
+    proposalLikes.textContent = "";
+    proposalSituation.textContent = "";
+    proposalCategory.textContent = "";
+
+    imageContainer.innerHTML = "";
+    imageContainer.style.display = "none";
+
+    proposalVideo.innerHTML = "";
+    proposalVideo.style.display = "none";
+  });
+
   function convertToEmbedUrl(url) {
     const videoId = new URL(url).searchParams.get("v");
     return videoId ? `https://www.youtube.com/embed/${videoId}` : "";

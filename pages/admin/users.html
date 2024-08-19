@@ -137,23 +137,11 @@
                                 </div><!--//dropdown-menu-->
                             </div><!--//app-notifications-dropdown-->
 
-                            <div class="app-utility-item">
-                                <a href="settings.html" title="Settings">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />
-                                        <path fill-rule="evenodd"
-                                            d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
-                                    </svg>
-                                </a>
-                            </div><!--//app-utility-item-->
-
                             <div class="app-utility-item app-user-dropdown dropdown">
-                                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false">
+                                <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle"
+                                    data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                        class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                        class="bi bi-person-lines-fill icon" viewBox="0 0 16 16">
                                         <path
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
@@ -162,12 +150,12 @@
                                     </span> </a>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                    <li><a class="dropdown-item" href="#">Conta</a></li>  
+                                    <!-- <li><a class="dropdown-item" href="#">Conta</a></li>  
 
                                     <li><a class="dropdown-item" href="#">Configurações</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
-                                    </li>
+                                    </li> -->
                                     <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
                                 </ul>
                             </div><!--//app-user-dropdown-->
@@ -276,7 +264,8 @@
                         <div class="page-utilities">
                             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                                 <div class="col-auto">
-                                    <form action="#" class="table-search-form row gx-1 align-items-center">
+                                    <form action="#" id="searchForm"
+                                        class="table-search-form row gx-1 align-items-center">
                                         <div class="col-auto">
                                             <input type="text" name="search-users" id="search-users"
                                                 class="form-control search-users" placeholder="Pesquisar">
@@ -288,12 +277,12 @@
                                 </div><!--//col-->
 
                                 <div class="col-auto">
-                                    <select class="form-select w=auto">
+                                    <select class="form-select w=auto" id="sortSelect">
                                         <option selected value="option-1">Todos</option>
-                                        <option value="option-2">Opção 2</option>
-                                        <option value="option-3">Opção 3</option>
-                                        <option value="option-4">Opção 4</option>
-                                        <option value="option-5">Opção 5</option>
+                                        <option value="estudante">Estudante</option>
+                                        <option value="docente">Docente</option>
+                                        <option value="tae">Tae</option>
+                                        <option value="role_administrator">Administrador</option>
                                     </select>
                                 </div><!--//col-auto-->
 
@@ -350,7 +339,15 @@
             </div><!--//container-xl-->
         </div><!--//app-content-->
     </div><!--//app-wrapper-->
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
 
+        </div>
+    </div>
     <footer class="footer">
 
         <div class="footer-bottom text-center py-5">
