@@ -1,11 +1,10 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js';
+import config from "../environments/config.js";
+import showToast from "../app/toast.js";
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/cycle";
   let cycles = [];
   let cycleIdToDeactivate = null;
   let cycleIdToActivate = null;
-
 
   if (!sessionStorage.getItem("jwt")) {
     window.location.href = "../errors/404.html";
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html";
     return;
   }
-
 
   async function loadCycles() {
     try {
@@ -35,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
   function displayCycles(data) {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
@@ -54,9 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
               <i class="bi bi-three-dots-vertical"></i>
             </div>
             <ul class="dropdown-menu">            
-              <li><a href="#?id=${cycle.id}" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
-              <li><a href="#" class="dropdown-item ${cycle.active ? 'text-danger deactivate-btn' : 'text-success activate-btn'}" data-cycle-id="${cycle.id}">
-                <i class="fa-solid ${cycle.active ? 'fa-ban' : 'fa-undo'}"></i> ${cycle.active ? 'Desativar' : 'Reativar'}
+              <li><a href="#?id=${
+                cycle.id
+              }" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
+              <li><a href="#" class="dropdown-item ${
+                cycle.active
+                  ? "text-danger deactivate-btn"
+                  : "text-success activate-btn"
+              }" data-cycle-id="${cycle.id}">
+                <i class="fa-solid ${
+                  cycle.active ? "fa-ban" : "fa-undo"
+                }"></i> ${cycle.active ? "Desativar" : "Reativar"}
               </a></li>
             </ul>
           </div>
@@ -83,9 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       showToast("Ciclo desativado com sucesso!", "success");
       loadCycles();
-
     } catch (error) {
-
       showToast(error.message, "error");
     }
   }
@@ -99,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
         body: JSON.stringify({
-          active: true
+          active: true,
         }),
       });
       if (!response.ok) {
@@ -114,25 +117,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
   document.getElementById("cycles-all").addEventListener("click", (event) => {
     if (event.target.classList.contains("deactivate-btn")) {
       cycleIdToDeactivate = event.target.getAttribute("data-cycle-id");
-      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      const confirmationModal = new bootstrap.Modal(
+        document.getElementById("confirmationModal")
+      );
       confirmationModal.show();
     } else if (event.target.classList.contains("activate-btn")) {
       cycleIdToActivate = event.target.getAttribute("data-cycle-id");
-      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      const confirmationModal = new bootstrap.Modal(
+        document.getElementById("confirmationModal")
+      );
       confirmationModal.show();
     }
   });
-
 
   document.getElementById("confirmDeactivate").addEventListener("click", () => {
     if (cycleIdToDeactivate) {
       deactivateCycle(cycleIdToDeactivate);
       cycleIdToDeactivate = null;
-      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      const confirmationModal = bootstrap.Modal.getInstance(
+        document.getElementById("confirmationModal")
+      );
       if (confirmationModal) {
         confirmationModal.hide();
       }
@@ -143,7 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cycleIdToActivate) {
       activateCycle(cycleIdToActivate);
       cycleIdToActivate = null;
-      const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+      const confirmationModal = bootstrap.Modal.getInstance(
+        document.getElementById("confirmationModal")
+      );
       if (confirmationModal) {
         confirmationModal.hide();
       }
@@ -171,50 +180,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  document
+    .getElementById("createCycleForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-  document.getElementById("createCycleForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+      const title = document.getElementById("cycleTitle").value;
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
 
-    const title = document.getElementById("cycleTitle").value;
-    const startDate = document.getElementById("startDate").value;
-    const endDate = document.getElementById("endDate").value;
+      const cycleData = {
+        title,
+        startDate,
+        finishDate: endDate,
+      };
 
-    const cycleData = {
-      title,
-      startDate,
-      finishDate: endDate,
-    };
-
-    const newCycle = await createCycle(cycleData);
-    if (newCycle) {
-      loadCycles();
-
-
-      const createCycleModal = document.getElementById("createCycleModal");
-      const modalInstance = bootstrap.Modal.getInstance(createCycleModal);
-      if (modalInstance) {
-        modalInstance.hide();
-      } else {
-        console.error("Modal instance not found.");
+      const newCycle = await createCycle(cycleData);
+      if (newCycle) {
+        loadCycles();
+        const createCycleModal = document.getElementById("createCycleModal");
+        const modalInstance = bootstrap.Modal.getInstance(createCycleModal);
+        if (modalInstance) {
+          modalInstance.hide();
+        } else {
+          console.error("Modal instance not found.");
+        }
+        document.getElementById("createCycleForm").reset();
+        showToast(newCycle.mensagem);
       }
-
-
-      document.getElementById("createCycleForm").reset();
-
-
-      showToast(newCycle.mensagem);
-    }
-  });
+    });
 
   function formatDate(dateString) {
+    const date = new Date(dateString);
+    const correctedDate = new Date(
+      date.getTime() + date.getTimezoneOffset() * 60000
+    );
     const options = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
     };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return correctedDate.toLocaleDateString(undefined, options);
   }
-
 
   loadCycles();
 });

@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePagination(currentPage, totalPages) {
     const paginationContainer = document.getElementById("paginationContainer");
     paginationContainer.innerHTML = "";
-  
-    
+
+
     if (currentPage > 0) {
       const firstPageButton = document.createElement("li");
       firstPageButton.className = "page-item";
@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       paginationContainer.appendChild(firstPageButton);
     }
-  
-  
+
+
     if (currentPage > 0) {
       const prevButton = document.createElement("li");
       prevButton.className = "page-item";
@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       paginationContainer.appendChild(prevButton);
     }
-  
- 
+
+
     const startPage = Math.max(0, currentPage - 1);
     const endPage = Math.min(totalPages - 1, currentPage + 1);
-  
+
     for (let i = startPage; i <= endPage; i++) {
       const pageButton = document.createElement("li");
       pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       paginationContainer.appendChild(pageButton);
     }
-  
- 
+
+
     if (currentPage < totalPages - 1) {
       const nextButton = document.createElement("li");
       nextButton.className = "page-item";
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       paginationContainer.appendChild(nextButton);
     }
-  
-   
+
+
     if (currentPage < totalPages - 1) {
       const lastPageButton = document.createElement("li");
       lastPageButton.className = "page-item";
