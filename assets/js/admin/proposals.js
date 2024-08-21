@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="row align-items-center gx-3">
               <div class="col-auto">
                 <div class="app-icon-holder">
-                  <i class="${item.icon}"></icon>
+                  <i class="${item.icon}"></i>
                 </div>
               </div>
               <div class="col-auto">

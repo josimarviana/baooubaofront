@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       proposalLimitElement.addEventListener("click", (event) => {
         if (data.available > 0) {
           window.location.href = "new-proposal.html";
+          return;
         }
       });
     } catch (error) {
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       showToast(error.message, "error");
     }
   }
+
 
   await fetchProposalLimit();
   await fetchVotingLimit();
