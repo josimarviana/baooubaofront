@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const apiUrl = config.api + "/proposal";
   const categorySelect = document.getElementById("categorySelect");
 
-  // Inicialize o Quill
+
   const quill = new Quill('#editor-container', {
     theme: 'snow',
     placeholder: 'Descreva sua proposta...',
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const formData = new FormData(form);
 
-    // Pegue o conteúdo HTML formatado do Quill e adicione ao FormData
+   
     const quillContent = quill.root.innerHTML;
     formData.set("description", quillContent);
 

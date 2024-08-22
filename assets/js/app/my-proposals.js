@@ -1,5 +1,5 @@
-import config from "../environments/config.js"
-import showToast from './toast.js';
+import config from "../environments/config.js";
+import showToast from "./toast.js";
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = `${config.api}/proposal/my-proposals`;
   const jwt = sessionStorage.getItem("jwt");
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     cardContainer.innerHTML = "";
 
     data.forEach((item) => {
-
       const newCard = document.createElement("div");
       newCard.className = "col-12 col-lg-4";
       newCard.innerHTML = `
@@ -86,30 +85,41 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showConfirmationModal() {
-    const modal = new bootstrap.Modal(document.getElementById("confirmationModal"));
+    const modal = new bootstrap.Modal(
+      document.getElementById("confirmationModal")
+    );
     modal.show();
 
-    document.getElementById("confirmDelete").addEventListener("click", async function () {
-      try {
-        const response = await fetch(`${config.api}/proposal/${proposalToDelete}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        });
+    document
+      .getElementById("confirmDelete")
+      .addEventListener("click", async function () {
+        try {
+          const response = await fetch(
+            `${config.api}/proposal/${proposalToDelete}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${jwt}`,
+              },
+            }
+          );
 
-        if (!response.ok) {
-          const errorResponse = await response.json();
-          throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
+          if (!response.ok) {
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
+          }
+          const modalInstance = bootstrap.Modal.getInstance(
+            document.getElementById("confirmationModal")
+          );
+          modalInstance.hide();
+          loadProposals();
+        } catch (error) {
+          showToast(error.message, "error");
         }
-        const modalInstance = bootstrap.Modal.getInstance(document.getElementById("confirmationModal"));
-        modalInstance.hide();
-        loadProposals();
-      } catch (error) {
-        showToast(error.message, "error");
-      }
-    });
+      });
   }
   loadProposals();
-  document.getElementById("card-container").addEventListener("click", handleDeleteButtonClick);
+  document
+    .getElementById("card-container")
+    .addEventListener("click", handleDeleteButtonClick);
 });
