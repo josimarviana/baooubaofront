@@ -1,4 +1,4 @@
-import config from "../environments/config.js"
+import config from "../environments/config.js";
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function clearModalContent() {
     const modalTitle = proposalModal.querySelector("#proposalModalLabel");
     const proposalTitle = proposalModal.querySelector("#proposal-title");
-    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalDescription = proposalModal.querySelector(
+      "#proposal-description"
+    );
     const proposalLikes = proposalModal.querySelector("#proposal-likes");
     const proposalAuthor = proposalModal.querySelector("#proposal-author");
     const proposalCategory = proposalModal.querySelector("#proposal-category");
@@ -74,13 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateModalContent(data) {
     const modalTitle = proposalModal.querySelector("#proposalModalLabel");
     const proposalTitle = proposalModal.querySelector("#proposal-title");
-    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalDescription = proposalModal.querySelector(
+      "#proposal-description"
+    );
     const proposalLikes = proposalModal.querySelector("#proposal-likes");
     const proposalAuthor = proposalModal.querySelector("#proposal-author");
     const proposalCategory = proposalModal.querySelector("#proposal-category");
     const imageContainer = proposalModal.querySelector("#image-container");
     const proposalVideo = proposalModal.querySelector("#proposal-video");
-
 
     const imageUrl = data.image;
     if (imageUrl) {
@@ -96,9 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
       imageContainer.style.display = "none";
     }
 
-    modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
+    modalTitle.textContent =
+      "Criada em: " + new Date(data.createdAt).toLocaleDateString();
     proposalTitle.textContent = data.title;
-    proposalDescription.textContent = data.description;
+    proposalDescription.innerHTML = data.description;
     proposalLikes.textContent = data.likes;
     proposalAuthor.textContent = "Autor: " + data.author;
     proposalCategory.textContent = data.category;
@@ -159,9 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   async function handleVote() {
-    const url = hasVoted ?
-      config.api + "/voting/unvote" :
-      config.api + "/voting";
+    const url = hasVoted
+      ? config.api + "/voting/unvote"
+      : config.api + "/voting";
     const method = hasVoted ? "DELETE" : "POST";
 
     try {
@@ -199,9 +203,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       showToast(
-        hasVoted ?
-        "Voto cancelado com sucesso!" :
-        "Voto registrado com sucesso!"
+        hasVoted
+          ? "Voto cancelado com sucesso!"
+          : "Voto registrado com sucesso!"
       );
       hasVoted = !hasVoted;
       updateVoteButton();
