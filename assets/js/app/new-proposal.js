@@ -1,10 +1,16 @@
-import config from "../environments/config.js"
+import config from "../environments/config.js";
 import showToast from './toast.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("new-proposal-form");
   const apiUrl = config.api + "/proposal";
   const categorySelect = document.getElementById("categorySelect");
 
+  // Inicialize o Quill
+  const quill = new Quill('#editor-container', {
+    theme: 'snow',
+    placeholder: 'Descreva sua proposta...',
+  });
 
   async function loadActiveCategories() {
     try {
@@ -20,10 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const categories = await response.json();
-
-
       categorySelect.innerHTML = "";
-
 
       categories.forEach(category => {
         const option = document.createElement("option");
@@ -37,7 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-
   await loadActiveCategories();
 
   form.addEventListener("submit", async (event) => {
@@ -50,6 +52,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const formData = new FormData(form);
 
+    // Pegue o conteúdo HTML formatado do Quill e adicione ao FormData
+    const quillContent = quill.root.innerHTML;
+    formData.set("description", quillContent);
 
     const selectedCategory = categorySelect.options[categorySelect.selectedIndex].text;
     formData.set("category", selectedCategory);
@@ -72,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const result = await response.json();
       console.log("Proposta enviada com sucesso:", result);
       form.reset();
+      quill.setContents([]); 
       showToast(result.mensagem, "success");
       window.location.href = "../../../pages/logged/my-proposal.html";
     } catch (error) {

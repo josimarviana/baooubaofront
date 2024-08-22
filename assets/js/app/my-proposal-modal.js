@@ -1,4 +1,4 @@
-import config from "../environments/config.js"
+import config from "../environments/config.js";
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -27,13 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
       const modalTitle = proposalModal.querySelector("#proposalModalLabel");
       const proposalTitle = proposalModal.querySelector("#proposal-title");
-      const proposalDescription = proposalModal.querySelector("#proposal-description");
+      const proposalDescription = proposalModal.querySelector(
+        "#proposal-description"
+      );
       const proposalLikes = proposalModal.querySelector("#proposal-likes");
-      const proposalSituation = proposalModal.querySelector("#proposal-situation");
-      const proposalCategory = proposalModal.querySelector("#proposal-category");
+      const proposalSituation = proposalModal.querySelector(
+        "#proposal-situation"
+      );
+      const proposalCategory =
+        proposalModal.querySelector("#proposal-category");
       const imageContainer = proposalModal.querySelector("#image-container");
       const proposalVideo = proposalModal.querySelector("#proposal-video");
-
 
       const imageUrl = data.image;
       if (imageUrl) {
@@ -49,14 +53,19 @@ document.addEventListener("DOMContentLoaded", function () {
         imageContainer.style.display = "none";
       }
 
-
-      modalTitle.textContent = "Criada em: " + new Date(data.createdAt).toLocaleDateString();
+      modalTitle.textContent =
+        "Criada em: " + new Date(data.createdAt).toLocaleDateString();
       proposalTitle.textContent = data.title;
-      proposalDescription.textContent = data.description;
+      proposalDescription.innerHTML = data.description;
       proposalLikes.textContent = data.likes;
 
-
-      proposalSituation.classList.remove("text-bg-info", "text-bg-success", "text-bg-primary", "text-bg-danger", "text-bg-warning");
+      proposalSituation.classList.remove(
+        "text-bg-info",
+        "text-bg-success",
+        "text-bg-primary",
+        "text-bg-danger",
+        "text-bg-warning"
+      );
       const situation = data.situation;
 
       switch (situation) {
@@ -88,10 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       proposalCategory.textContent = data.category;
 
-
       const videoUrl = data.videoUrl;
       if (videoUrl) {
-
         const embedUrl = convertToEmbedUrl(videoUrl);
         proposalVideo.innerHTML = `<iframe width="100%" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
         proposalVideo.style.display = "flex";
@@ -105,9 +112,13 @@ document.addEventListener("DOMContentLoaded", function () {
   proposalModal.addEventListener("hidden.bs.modal", function () {
     const modalTitle = proposalModal.querySelector("#proposalModalLabel");
     const proposalTitle = proposalModal.querySelector("#proposal-title");
-    const proposalDescription = proposalModal.querySelector("#proposal-description");
+    const proposalDescription = proposalModal.querySelector(
+      "#proposal-description"
+    );
     const proposalLikes = proposalModal.querySelector("#proposal-likes");
-    const proposalSituation = proposalModal.querySelector("#proposal-situation");
+    const proposalSituation = proposalModal.querySelector(
+      "#proposal-situation"
+    );
     const proposalCategory = proposalModal.querySelector("#proposal-category");
     const imageContainer = proposalModal.querySelector("#image-container");
     const proposalVideo = proposalModal.querySelector("#proposal-video");

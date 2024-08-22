@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html";
     return;
   }
-
   if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
     window.location.href = "../errors/404.html";
     return;
   }
+
 
   async function loadUsers(query = "", sort = "") {
     try {

@@ -50,10 +50,7 @@ loginForm.addEventListener("submit", async (event) => {
 
     const jwt = sessionStorage.getItem("jwt");
     const decodedToken = parseJwt(jwt);
-
-    console.log("Decoded JWT:", decodedToken);
     sessionStorage.setItem("roles", decodedToken.roles.join(", "));
-
 
     loginForm.reset();
     window.location.href = "../../../pages/logged/home.html";
