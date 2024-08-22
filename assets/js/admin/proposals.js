@@ -2,7 +2,7 @@ import config from "../environments/config.js";
 import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/proposal";
+  const apiUrl = config.api + "/proposal/adm";
 
   let proposals = [];
 
