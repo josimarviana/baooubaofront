@@ -19,6 +19,11 @@
     <script defer src="../../assets/fontawesome/js/all.min.js"></script>
     <!-- App CSS-->
     <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
+
+
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
 
 <body class="app">
@@ -416,47 +421,52 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="edit-proposal-form">
-                        <div class="mb-3">
-                            <label for="edit-title" class="form-label">Título</label>
-                            <input type="text" class="form-control" id="edit-title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-description" class="form-label">Descrição</label>
-                            <textarea class="form-control" id="edit-description" rows="4" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-category" class="form-label">Categoria</label>
-                            <select class="form-select" id="edit-category" required>
-                                <option value="categoria1">Categoria 1</option>
-                                <option value="categoria2">Categoria 2</option>
-                                <!-- Adicionar mais categorias conforme necessário -->
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-video-url" class="form-label">URL do Vídeo</label>
-                            <input type="url" class="form-control" id="edit-video-url" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-image" class="form-label">Imagem</label>
-                            <div class="position-relative">
-                                <img id="current-image" src="" alt="Imagem da Proposta" class="img-fluid mb-2">
-                                <button type="button" class="btn btn-light btn-sm position-absolute top-0 end-0"
-                                    id="edit-image-btn">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
+                    <div class="app-card-boddy">
+                        <form action="#" class="new-proposal-form" id="edit-proposal-form">
+                            <div class="mb-3">
+                                <label for="proposal-title" class="form-label">Título</label>
+                                <input type="text" name="title" id="proposal-title" class="form-control" required />
                             </div>
-                            <input type="file" class="form-control d-none" id="edit-image-input" accept="image/*">
-                        </div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Salvar alterações</button>
-                        </div>
-                    </form>
+
+                            <div class="mb-3">
+                                <label for="proposal-description" class="form-label">Descrição</label>
+                                <div id="editor-container" style="height: 200px;"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="proposal-url" class="form-label">Vídeo URL</label>
+                                <input type="text" name="url" id="proposal-url" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="proposal-image">Imagem</label>
+                                <input type="file" name="image" id="proposal-image" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                <p class="mb-1">Categorias:</p>
+                                <select id="categorySelect" name="category" class="form-select" required>
+                                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
+                                </select>
+                            </div>
+
+                            <hr>
+                            <div class="row justify-content-between">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn app-btn-primary">Salvar</button>
+                                </div>
+                                <div class="col-auto">
+                                    <a class="btn app-btn-secondary" href="../../pages/logged/my-proposal.html"
+                                        id="cancel-link">Cancelar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">

@@ -2,9 +2,10 @@ import config from "../environments/config.js";
 import showToast from "./toast.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const form = document.getElementById("new-proposal-form");
+  const form = document.getElementById("edit-proposal-form");
   const apiUrl = config.api + "/proposal";
   const categorySelect = document.getElementById("categorySelect");
+  const proposalId = new URLSearchParams(window.location.search).get("id");
 
   const quill = new Quill("#editor-container", {
     theme: "snow",
@@ -40,7 +41,53 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  async function loadProposalData() {
+    try {
+      const response = await fetch(`${apiUrl}/${proposalId}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(
+          errorResponse.mensagem || "Erro ao carregar dados da proposta"
+        );
+      }
+
+      const proposal = await response.json();
+      console.log(proposal);
+
+      document.getElementById("proposal-title").value = proposal.title;
+      quill.root.innerHTML = proposal.description || "";
+      document.getElementById("proposal-url").value = proposal.videoUrl || "";
+
+      const currentImageContainer = document.getElementById(
+        "current-image-container"
+      );
+      const currentImage = document.getElementById("current-image");
+
+      if (proposal.image) {
+        currentImage.src = proposal.image;
+        currentImageContainer.style.display = "block";
+      } else {
+        currentImageContainer.style.display = "none";
+      }
+
+      const categoryOption = Array.from(categorySelect.options).find(
+        (option) => option.text === proposal.category
+      );
+      if (categoryOption) {
+        categorySelect.value = categoryOption.value;
+      }
+    } catch (error) {
+      showToast(error.message, "error");
+    }
+  }
+
   await loadActiveCategories();
+  await loadProposalData();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -60,8 +107,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     formData.set("category", selectedCategory);
 
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
+      const response = await fetch(`${apiUrl}/${proposalId}`, {
+        method: "PATCH",
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -71,13 +118,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        throw new Error(errorResponse.mensagem || "Erro desconhecido");
+        throw new Error(errorResponse.mensagem || "Erro ao atualizar proposta");
       }
 
       const result = await response.json();
-      console.log("Proposta enviada com sucesso:", result);
-      form.reset();
-      quill.setContents([]);
+      console.log("Proposta atualizada com sucesso:", result);
       showToast(result.mensagem, "success");
       window.location.href = "../../../pages/logged/my-proposal.html";
     } catch (error) {

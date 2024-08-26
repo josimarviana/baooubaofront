@@ -2,12 +2,9 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Nova Proposta - Bão ou Não</title>
+    <title>Editar Proposta - Bão ou Não</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description"
         content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
     <meta name="author" content="Cristian Alves Silva">
@@ -285,34 +282,40 @@
             </div><!--//sidepanel-inner-->
             </di><!--//app-sidepanel-->
     </header><!--//app-header-->
+
     <div class="app-wrapper">
         <div class="app-content p-3 p-md-3 p-lg-4">
-            <h1 class="app-page-title">Nova proposta</h1>
+            <h1 class="app-page-title">Editar Proposta</h1>
 
-            <div class="row g-4 new-proposal-section justify-content-center">
+            <div class="row g-4 edit-proposal-section justify-content-center">
                 <div class="col-12 col-md-12">
-                    <div class="app-card app-card-new-proposal shadow-sm p-4">
-                        <div class="app-card-boddy">
-                            <form action="#" class="new-proposal-form" id="new-proposal-form">
+                    <div class="app-card app-card-edit-proposal shadow-sm p-4">
+                        <div class="app-card-body">
+                            <form action="#" class="edit-proposal-form" id="edit-proposal-form">
                                 <div class="mb-3">
                                     <label for="proposal-title" class="form-label">Título</label>
                                     <input type="text" name="title" id="proposal-title" class="form-control" required />
                                 </div>
-
                                 <div class="mb-3">
-                                    <label for="editor-container" class="form-label">Descrição</label>
+                                    <label for="proposal-description" class="form-label">Descrição</label>
                                     <div id="editor-container" style="height: 200px;"></div>
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="proposal-url" class="form-label">Vídeo URL</label>
                                     <input type="text" name="url" id="proposal-url" class="form-control" />
                                 </div>
+                                <!-- Imagem existente -->
+                                <div class="mb-3" id="current-image-container" style="display: none;">
+                                    <label for="current-image" class="form-label">Imagem Atual</label>
+                                    <img id="current-image" src="" alt="Imagem da Proposta" class="img-fluid mb-3" />
+                                </div>
 
+                                <!-- Upload de nova imagem -->
                                 <div class="mb-3">
-                                    <label class="form-label" for="proposal-image">Imagem</label>
+                                    <label for="proposal-image" class="form-label">Alterar Imagem</label>
                                     <input type="file" name="image" id="proposal-image" class="form-control" />
                                 </div>
+
 
                                 <div class="mb-3">
                                     <p class="mb-1">Categorias:</p>
@@ -320,28 +323,25 @@
                                         <!-- As opções serão preenchidas dinamicamente via JavaScript -->
                                     </select>
                                 </div>
-
                                 <div class="row justify-content-between">
                                     <div class="col-auto">
                                         <button type="submit" class="btn app-btn-primary">Salvar</button>
                                     </div>
                                     <div class="col-auto">
-                                        <a class="btn app-btn-secondary" href="../../pages/logged/my-proposal.html"
+                                        <a href="../../pages/logged/my-proposal.html" class="btn app-btn-secondary"
                                             id="cancel-link">Cancelar</a>
                                     </div>
                                 </div>
-                            </form>
-
-                        </div>
-                    </div><!--//app-card-body-->
-                </div><!--//app-card-->
-            </div><!--//col-->
-        </div><!--//row-->
-    </div><!--//app-content-->
+                            </form><!--//edit-proposal-form-->
+                        </div><!--//app-card-body-->
+                    </div><!--//app-card-->
+                </div><!--//col-12-->
+            </div><!--//edit-proposal-section-->
+        </div><!--//app-content-->
     </div><!--//app-wrapper-->
 
 
-    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index:1050;">
         <div class="toast-header">
             <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -350,6 +350,7 @@
 
         </div>
     </div>
+
     <footer class="footer">
 
         <div class="footer-bottom text-center py-5">
@@ -374,17 +375,15 @@
     </footer>
 
 
-
-
     <!-- Javascript-->
     <script src="../../assets/plugins/popper.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!--Specific page Js-->
-    <script src="../../assets/js/app/app.js"></script>
-    <script type="module" src="../../assets/js/app/new-proposal.js"></script>
-    <script type="module" src="../../assets/js/app/proposal-limit.js"></script>
 
+    <script src="../../assets/js/app/app.js"></script>
+
+    <script type="module" src="../../assets/js/app/edit-proposal.js"></script>
+    <script type="module" src="../../assets/js/app/proposal-limit.js"></script>
 </body>
 
 </html>
