@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<title>Confirmação de E-mail - Bão ou Não</title>
+<title>Conta Ativada - Bão ou Não</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,54 +8,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description"
-  content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
+    content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
 <meta name="author" content="Cristian Alves Silva">
 <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 <!-- FontAwesome JS -->
 <script defer src="../../assets/fontawesome/js/all.min.js"></script>
 <!-- App CSS-->
 <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
 
 <body class="app app-404-page">
-  <div class="container mb-5">
-    <div class="row">
-      <div class="col-12 col-mg-11 col-lg-7 col-xl-6 mx-auto">
-        <div class="app-branding text-center mb-5">
-          <a href="../../index.html" class="app-logo me-2"><img src="../../assets/images/BaoOuNao.png" alt="logo"
-              class="logo-icon"><span class="logo-text">Bão ou Não</span></a>
-        </div><!--//app-branding-->
-        <div class="app-card p-5 text-center shadown-sm">
-          <h5 class="font-weight-light mb-4">Confirme seu <span class="text-primary">E-email</span></h5>
-          <div class="mb-4">Enviamos um e-mail para <span id="confirmation-email" class="text-primary"></span>
-            com um link para
-            confirmar seu cadastro!
-            Após confirmar seu email acesse a página de Login para se autenticar.</div>
-          <a href="../../index.html" class="btn app-btn-primary">Voltar</a>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12 col-mg-11 col-lg-7 col-xl-6 mx-auto">
+                <div class="app-branding text-center mb-5">
+                    <a href="../../index.html" class="app-logo me-2"><img src="../../assets/images/BaoOuNao.png"
+                            alt="logo" class="logo-icon"><span class="logo-text">Bão ou Não</span></a>
+                </div><!--//app-branding-->
+                <div class="app-card p-5 text-center shadown-sm">
+                    <h5 class="font-weight-light mb-4"><span class="text-primary">E-email </span>confirmado com sucesso
+                    </h5>
+                    <div class="mb-4">Prossiga para a página de Login para acessar o sistema.</div>
+                    <a href="../auth/login.html" class="btn app-btn-primary">Login</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Obtém o e-mail do localStorage e atualiza o texto na página
-      const email = localStorage.getItem("userEmail");
-      if (email) {
-        document.getElementById("confirmation-email").textContent = email;
-      } else {
-        // Se o e-mail não estiver disponível, redirecione para a página de cadastro
-        window.location.href = "/signup.html";
-      }
-
-      // Opcional: Redireciona para a página de login após um tempo
-      // setTimeout(() => {
-      //   window.location.href = "/login.html";
-      // }, 10000); // Redireciona após 10 segundos
-    });
-  </script>
 </body>
 
 </html>

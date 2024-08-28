@@ -57,7 +57,7 @@ signupForm.addEventListener("submit", async (event) => {
     if (response.status === 201) {
       console.log("Cadastro realizado com sucesso.");
       localStorage.setItem("userEmail", email);
-      window.location.href = "../../../pages/messages/confirmation.html";
+      window.location.href = "../../../pages/messages/email.html";
     } else {
       const errorResponse = await response.json();
       if (errorResponse.detalhes) {
