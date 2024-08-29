@@ -165,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const cycle = await response.json();
 
-          // Preencher os campos do modal com os dados do ciclo
           document.getElementById("editCycleTitle").value = cycle.title;
           document.getElementById("editStartDate").value = cycle.startDate;
           document.getElementById("editEndDate").value = cycle.finishDate;
@@ -173,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .getElementById("editCycleModal")
             .setAttribute("data-cycle-id", cycleId);
 
-          // Abrir o modal de edição
           const editModal = new bootstrap.Modal(
             document.getElementById("editCycleModal")
           );
