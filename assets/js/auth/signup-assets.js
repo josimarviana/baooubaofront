@@ -53,7 +53,6 @@ signupForm.addEventListener("submit", async (event) => {
       },
       body: JSON.stringify(formData),
     });
-    console.log(response.status);
     if (response.status === 201) {
       console.log("Cadastro realizado com sucesso.");
       localStorage.setItem("userEmail", email);
