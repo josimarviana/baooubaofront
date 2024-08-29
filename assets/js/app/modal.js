@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(proposalModal);
         modal.hide();
-      }, 1500);
+      }, 3000);
     } catch (error) {
       console.error("Erro ao processar votação:", error);
       showToast(

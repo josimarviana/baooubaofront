@@ -138,8 +138,8 @@
                             </div><!--//app-notifications-dropdown-->
 
                             <div class="app-utility-item app-user-dropdown dropdown">
-                                <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false">
+                                <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle"
+                                    data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                         class="bi bi-person-lines-fill icon" viewBox="0 0 16 16">
                                         <path
@@ -367,26 +367,28 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editCycleModal" tabindex="-1" aria-labelledby="editCycleModal" aria-hidden="true">
+    <!-- Modal para Editar o Ciclo-->
+
+    <div class="modal fade" id="editCycleModal" tabindex="-1" aria-labelledby="editCycleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editCycleModal">Editar Ciclo</h5>
+                    <h5 class="modal-title" id="editCycleModalLabel">Editar Ciclo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editCycleModal">
+                    <form id="editCycleForm">
                         <div class="mb-3">
-                            <label for="editCycleTitle" class="form-label"></label>
-                            <input type="text" id="editCycleTitle" class="form-control" required>
+                            <label for="editCycleTitle" class="form-label">Título do Ciclo</label>
+                            <input type="text" class="form-control" id="editCycleTitle" required>
                         </div>
                         <div class="mb-3">
                             <label for="editStartDate" class="form-label">Data de Início</label>
-                            <input type="date" id="editStartDate" class="form-controll" required>
+                            <input type="date" class="form-control" id="editStartDate" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editEndDate" class="form-label">Data de Encerramento</label>
-                            <input type="date" id="editEndDate" class="form-control" required>
+                            <label for="editEndDate" class="form-label">Data de Término</label>
+                            <input type="date" class="form-control" id="editEndDate" required>
                         </div>
                         <button type="submit" class="btn app-btn-primary">Salvar</button>
                     </form>
@@ -394,6 +396,8 @@
             </div>
         </div>
     </div>
+
+
 
     <!-- Modal de confirmação -->
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
@@ -409,8 +413,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="confirmDeactivate" class="btn btn-danger">Desativar</button>
-                    <button type="button" id="confirmReactivate" class="btn btn-success">Reativar</button>
+                    <button type="button" id="confirmDeactivate" class="btn app-btn-danger">Desativar</button>
+                    <button type="button" id="confirmReactivate" class="btn app-btn-primary">Reativar</button>
                 </div>
             </div>
         </div>

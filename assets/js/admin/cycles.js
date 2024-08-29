@@ -1,5 +1,6 @@
 import config from "../environments/config.js";
 import showToast from "../app/toast.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/cycle";
   let cycles = [];
@@ -51,9 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
               <i class="bi bi-three-dots-vertical"></i>
             </div>
             <ul class="dropdown-menu">            
-              <li><a href="#?id=${
+              <li><a href="#" class="dropdown-item text-primary edit-btn" data-cycle-id="${
                 cycle.id
-              }" class="dropdown-item text-primary"> <i class="fa-solid fa-edit"></i> Editar</a></li>
+              }"> 
+                <i class="fa-solid fa-edit"></i> Editar
+              </a></li>
               <li><a href="#" class="dropdown-item ${
                 cycle.active
                   ? "text-danger deactivate-btn"
@@ -117,21 +120,81 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("cycles-all").addEventListener("click", (event) => {
-    if (event.target.classList.contains("deactivate-btn")) {
-      cycleIdToDeactivate = event.target.getAttribute("data-cycle-id");
-      const confirmationModal = new bootstrap.Modal(
-        document.getElementById("confirmationModal")
-      );
-      confirmationModal.show();
-    } else if (event.target.classList.contains("activate-btn")) {
-      cycleIdToActivate = event.target.getAttribute("data-cycle-id");
-      const confirmationModal = new bootstrap.Modal(
-        document.getElementById("confirmationModal")
-      );
-      confirmationModal.show();
+  async function editCycle(cycleId, cycleData) {
+    try {
+      const response = await fetch(`${apiUrl}/${cycleId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify(cycleData),
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao atualizar ciclo");
+      }
+
+      showToast("Ciclo atualizado com sucesso!", "success");
+      loadCycles();
+    } catch (error) {
+      showToast(error.message, "error");
     }
-  });
+  }
+
+  document
+    .getElementById("cycles-all")
+    .addEventListener("click", async (event) => {
+      if (event.target.classList.contains("edit-btn")) {
+        const cycleId = event.target.getAttribute("data-cycle-id");
+
+        try {
+          const response = await fetch(`${apiUrl}/${cycleId}`, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+            },
+          });
+
+          if (!response.ok) {
+            const errorResponse = await response.json();
+            throw new Error(
+              errorResponse.mensagem || "Erro ao carregar dados do ciclo"
+            );
+          }
+
+          const cycle = await response.json();
+
+          // Preencher os campos do modal com os dados do ciclo
+          document.getElementById("editCycleTitle").value = cycle.title;
+          document.getElementById("editStartDate").value = cycle.startDate;
+          document.getElementById("editEndDate").value = cycle.finishDate;
+          document
+            .getElementById("editCycleModal")
+            .setAttribute("data-cycle-id", cycleId);
+
+          // Abrir o modal de edição
+          const editModal = new bootstrap.Modal(
+            document.getElementById("editCycleModal")
+          );
+          editModal.show();
+        } catch (error) {
+          showToast(error.message, "error");
+        }
+      } else if (event.target.classList.contains("deactivate-btn")) {
+        cycleIdToDeactivate = event.target.getAttribute("data-cycle-id");
+        const confirmationModal = new bootstrap.Modal(
+          document.getElementById("confirmationModal")
+        );
+        confirmationModal.show();
+      } else if (event.target.classList.contains("activate-btn")) {
+        cycleIdToActivate = event.target.getAttribute("data-cycle-id");
+        const confirmationModal = new bootstrap.Modal(
+          document.getElementById("confirmationModal")
+        );
+        confirmationModal.show();
+      }
+    });
 
   document.getElementById("confirmDeactivate").addEventListener("click", () => {
     if (cycleIdToDeactivate) {
@@ -158,6 +221,33 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+  document
+    .getElementById("editCycleForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const cycleId = document
+        .getElementById("editCycleModal")
+        .getAttribute("data-cycle-id");
+      const title = document.getElementById("editCycleTitle").value;
+      const startDate = document.getElementById("editStartDate").value;
+      const endDate = document.getElementById("editEndDate").value;
+
+      const cycleData = {
+        title,
+        startDate,
+        finishDate: endDate,
+      };
+
+      await editCycle(cycleId, cycleData);
+      const editModal = bootstrap.Modal.getInstance(
+        document.getElementById("editCycleModal")
+      );
+      if (editModal) {
+        editModal.hide();
+      }
+    });
 
   async function createCycle(cycleData) {
     try {
@@ -199,28 +289,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (newCycle) {
         loadCycles();
         const createCycleModal = document.getElementById("createCycleModal");
-        const modalInstance = bootstrap.Modal.getInstance(createCycleModal);
-        if (modalInstance) {
-          modalInstance.hide();
-        } else {
-          console.error("Modal instance not found.");
+        const bootstrapModal = bootstrap.Modal.getInstance(createCycleModal);
+        if (bootstrapModal) {
+          bootstrapModal.hide();
         }
-        document.getElementById("createCycleForm").reset();
-        showToast(newCycle.mensagem);
       }
     });
 
   function formatDate(dateString) {
-    const date = new Date(dateString);
-    const correctedDate = new Date(
-      date.getTime() + date.getTimezoneOffset() * 60000
-    );
-    const options = {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    };
-    return correctedDate.toLocaleDateString(undefined, options);
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    return new Date(dateString).toLocaleDateString("pt-BR", options);
   }
 
   loadCycles();
