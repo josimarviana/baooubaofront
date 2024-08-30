@@ -1,4 +1,5 @@
 import config from "../environments/config.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 

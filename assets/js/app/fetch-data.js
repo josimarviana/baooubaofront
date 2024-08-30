@@ -1,6 +1,7 @@
 import config from "../environments/config.js";
 import showToast from "./toast.js";
 
+
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
   const apiUrlAnalytics = config.api + "/proposal/dashboard";
@@ -188,6 +189,9 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "option-5":
         sortCriteria = "most_votes";
+        break;
+      case "option-6":
+        sortCriteria = "most_votes&voted=show";
         break;
       default:
         sortCriteria = "";
