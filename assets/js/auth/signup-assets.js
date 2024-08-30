@@ -1,5 +1,5 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js'; // Importa a função de toast
+import config from "../environments/config.js";
+import showToast from "../app/toast.js"; // Importa a função de toast
 
 const apiUrl = config.api + "/user";
 
@@ -26,7 +26,9 @@ signupForm.addEventListener("submit", async (event) => {
   const name = document.getElementById("signup-name").value;
   const email = document.getElementById("signup-email").value;
   const password = document.getElementById("signup-password").value;
-  const confirmPassword = document.getElementById("signup-confirm-password").value;
+  const confirmPassword = document.getElementById(
+    "signup-confirm-password"
+  ).value;
   const selectedType = document.querySelector('input[name="type"]:checked');
   const type = selectedType ? selectedType.value : "";
 
@@ -35,9 +37,13 @@ signupForm.addEventListener("submit", async (event) => {
     return;
   }
   if (password !== confirmPassword) {
-    showToast("As senhas não coincidem. Por favor, verifique e tente novamente.", "error");
+    showToast(
+      "As senhas não coincidem. Por favor, verifique e tente novamente.",
+      "error"
+    );
     return;
   }
+
   const formData = {
     email,
     name,
@@ -53,19 +59,17 @@ signupForm.addEventListener("submit", async (event) => {
       },
       body: JSON.stringify(formData),
     });
-    if (response.status === 201) {
-      console.log("Cadastro realizado com sucesso.");
-      localStorage.setItem("userEmail", email);
-      window.location.href = "../../../pages/messages/email.html";
-    } else {
+
+    if (!response.ok) {
       const errorResponse = await response.json();
-      if (errorResponse.detalhes) {
-        const errorMessages = Object.values(errorResponse.detalhes).join(" ");
-        throw new Error(errorMessages);
-      } else {
-        throw new Error(errorResponse.mensagem || "Falha no cadastro. Verifique os dados e tente novamente.");
-      }
+      throw new Error(errorResponse.mensagem || "Erro desconhecido");
     }
+
+    const result = await response.json();
+    console.log("Cadastro realizado com sucesso:", result);
+    showToast(result.mensagem, "success");
+    localStorage.setItem("userEmail", email);
+    window.location.href = "../../../pages/messages/email.html";
   } catch (error) {
     showToast(error.message, "error");
   }

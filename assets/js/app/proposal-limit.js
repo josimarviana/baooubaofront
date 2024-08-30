@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchVotingLimit() {
     try {
-      const response = await fetch(config.api + "/voting/limit", {
+      const response = await fetch(config.api + "/voting", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },

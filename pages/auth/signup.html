@@ -84,56 +84,27 @@
             <div class="auth-option text-center pt-5">Já possui conta? <a href="login.html" class="text-link">Login</a>
             </div>
           </div><!--//auth-form-container-->
-
         </div><!--//app-auth-body-->
       </div><!--//flex-column-->
     </div><!--//col-->
   </div><!-- //row-->
-
-
-
   <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
     <div class="toast-header">
       <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body" id="toast-body">
-
     </div>
   </div>
 
 
-  <div class="modal fade" id="redirect-email-modal" tabindex="-1" aria-labelledby="redirect-email" aria-hidden="true">
-    <div class="modal-dialog small-modal">
-      <div class="modal-contet">
-        <div class="modal-body">
-          <div class="app-card shaddown-sm mb-4">
-            <div class="app-card-body p-4">
-              <div class="card-content">
-                <div class="container mb-5">
-                  <div class="row">
-                    <div class="col-12 col-mg-11 col-lg-7 col-xl-6 mx-auto">
-                      <div class="app-branding text-center mb-5">
-                        <a href="../../index.html" class="app-logo me-2">
-                          <img src="../../assets/images/BaoOuNao.png" alt="logo" />
-                          <span class="logo-text">Bão ou Não</span>
-                        </a>
-                      </div>
-                      <div class="app-card p-5 text-center shadown-sm">
-                        <h1 class="page-title mb-4">Confirme seu <span class="font-weight-light">Email</span></h1>
-                        <div class="mb-4">Enviamos um email para <span id="user-email"
-                            class="link-active">@cristiansilva.gmail.com</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div id="loading-spinner" class="spinner-border text-primary" role="status" style="display: none;">
+    <span class="visually-hidden">Loading...</span>
   </div>
+
+
+  
   <script src="../../assets/plugins/popper.min.js"></script>
   <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script type="module" src="../../assets/js/auth/signup-assets.js">

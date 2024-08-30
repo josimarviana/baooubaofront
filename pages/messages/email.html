@@ -12,7 +12,7 @@
 <meta name="author" content="Cristian Alves Silva">
 <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+  integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 <!-- FontAwesome JS -->
 <script defer src="../../assets/fontawesome/js/all.min.js"></script>
 <!-- App CSS-->
@@ -39,28 +39,28 @@
   </div>
   <footer class="footer mt-auto">
     <div class="footer-bottom text-center py-5">
-        <small class="copyright">
-            Desenvolvido pelos alunos
-            <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves</a>,
-            <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>,
-            <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>,
-            <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
-            com orientações do Professor
-            <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
-            do IFTM Paracatu
-        </small>
+      <small class="copyright">
+        Desenvolvido pelos alunos
+        <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves</a>,
+        <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>,
+        <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>,
+        <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+        com orientações do Professor
+        <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
+        do IFTM Paracatu
+      </small>
     </div>
-</footer>
+  </footer>
 
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Obtém o e-mail do localStorage e atualiza o texto na página
+
       const email = localStorage.getItem("userEmail");
       if (email) {
         document.getElementById("confirmation-email").textContent = email;
       } else {
-        // Se o e-mail não estiver disponível, redirecione para a página de cadastro
+
         window.location.href = "/signup.html";
       }
 
