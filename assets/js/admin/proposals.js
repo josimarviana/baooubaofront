@@ -161,6 +161,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  const searchForm = document.querySelector(".table-search-form");
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const searchInput = document.getElementById("search-proposals");
+    const query = searchInput.value.trim();
+    loadProposals(query);
+  });
+
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", function () {
+    const selectedOption = sortSelect.options[sortSelect.selectedIndex].value;
+    let sortCriteria = "";
+
+    switch (selectedOption) {
+      case "option-2":
+        sortCriteria = "recent";
+        break;
+      case "option-3":
+        sortCriteria = "oldest";
+        break;
+      default:
+        sortCriteria = "";
+        break;
+    }
+    loadProposals("", 0, 9, sortCriteria);
+  });
+
   async function handleDropdownItemClick(event) {
     event.preventDefault();
     const action = event.target.dataset.action;
