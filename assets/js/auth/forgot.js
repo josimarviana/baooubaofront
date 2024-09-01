@@ -9,7 +9,6 @@ forgotForm.addEventListener("submit", async (event) => {
 
     const email = document.getElementById("forgot-email").value;
 
-  
     const urlWithParams = `${apiUrl}/${encodeURIComponent(email)}`;
 
     try {
@@ -26,9 +25,23 @@ forgotForm.addEventListener("submit", async (event) => {
                 errorResponse.mensagem || "Erro ao enviar email. Verifique os dados e tente novamente."
             );
         }
+    
+        const contentType = response.headers.get("content-type");
+        let message;
 
-        const result = await response.json();
-        showToast(result.mensagem || "Email enviado, verifique sua caixa de mensagens!", "success");
+        if (contentType && contentType.includes("application/json")) {
+            const result = await response.json();
+            message = result.mensagem || "Email enviado, verifique sua caixa de mensagens!";
+        } else {
+            message = await response.text();
+        }
+
+        showToast(message, "success");
+        forgotForm.reset();
+        setTimeout(() => {
+            window.location.href = "../../index.html"; 
+        }, 2000);
+
     } catch (error) {
         showToast(error.message, "error");
     }
