@@ -37,8 +37,8 @@
                     <div class="auth-form-container text-start mx-auto">
                         <form id="forgotForm" action="#" class="auth-form auth-forgot-form">
                             <div class="email mb-3">
-                                <label for="reg-email" class="sr-only">Seu email</label>
-                                <input type="email" name="reg-email" id="reg-email" class="form-control forgot-email"
+                                <label for="forgot-email" class="sr-only">Seu email</label>
+                                <input type="email" name="forgot-email" id="forgot-email" class="form-control forgot-email"
                                     required="required" placeholder="Seu email" />
                             </div>
 
@@ -69,9 +69,20 @@
     <!-- //row-->
 
 
+
+    
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+          <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
+        </div>
+      </div>
+
     <script src="../../assets/plugins/popper.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="module" src="../../assets/js/auth/login-assets.js"></script>
+    <script type="module" src="../../assets/js/auth/forgot.js"></script>
 </body>
 
 </html>
