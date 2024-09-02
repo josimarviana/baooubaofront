@@ -1,5 +1,5 @@
 import config from "../environments/config.js";
-
+import { fetchVotingLimit } from "./proposal-limit.js";
 document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
@@ -184,9 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }),
       });
 
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
-
+     
       if (!response.ok) {
         const errorText = await response.text();
         let errorMessage = "Erro desconhecido";
@@ -210,10 +208,13 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       hasVoted = !hasVoted;
       updateVoteButton();
+
       setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(proposalModal);
         modal.hide();
       }, 3000);
+
+      fetchVotingLimit();
     } catch (error) {
       console.error("Erro ao processar votação:", error);
       showToast(
@@ -246,6 +247,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await fetchProposalData(currentProposalId);
       updateModalContent(data);
       updateVoteButton();
+      
+      fetchVotingLimit();
 
       const modal = bootstrap.Modal.getInstance(proposalModal);
       modal.hide();

@@ -1,5 +1,6 @@
 import config from "../environments/config.js";
 import showToast from "./toast.js";
+import { fetchProposalLimit } from "./proposal-limit.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("new-proposal-form");
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       form.reset();
       quill.setContents([]);
       showToast(result.mensagem, "success");
+      fetchProposalLimit();
       window.location.href = "../../../pages/logged/my-proposal.html";
     } catch (error) {
       showToast(error.message, "error");
