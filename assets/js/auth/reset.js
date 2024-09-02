@@ -55,7 +55,7 @@ resetForm.addEventListener("submit", async (event) => {
       resetForm.reset();
       setTimeout(() => {
         window.location.href = "/pages/auth/login.html";
-      }, 2000); // Redireciona após 2 segundos
+      }, 2000);
     } else {
       const errorResponse = await response.json();
       throw new Error(errorResponse.message || "Erro ao redefinir a senha.");
