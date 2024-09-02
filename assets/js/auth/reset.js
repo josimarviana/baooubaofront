@@ -58,10 +58,24 @@ resetForm.addEventListener("submit", async (event) => {
       }, 2000);
     } else {
       const errorResponse = await response.json();
-      throw new Error(errorResponse.message || "Erro ao redefinir a senha.");
+      handleApiError(errorResponse);
     }
   } catch (error) {
     console.error("Erro durante a redefinição de senha:", error);
     showToast(error.message, "error");
   }
 });
+
+function handleApiError(errorResponse) {
+  const details = errorResponse.detalhes;
+
+  if (details) {
+    for (const key in details) {
+      if (details.hasOwnProperty(key)) {
+        showToast(details[key], "error");
+      }
+    }
+  } else {
+    showToast("Erro ao redefinir a senha.", "error");
+  }
+}
