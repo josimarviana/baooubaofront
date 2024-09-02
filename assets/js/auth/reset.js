@@ -1,10 +1,9 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js'; // Importa a função de toast
+import config from "../environments/config.js";
+import showToast from "../app/toast.js";
 
-
-const apiUrl = config.api + "/user";
 const urlParams = new URLSearchParams(window.location.search);
-const token = urlParams.get('token');
+const token = urlParams.get("token");
+const apiUrl = `${config.api}/user/email/senha/${token}`;
 
 document.getElementById("show-password").addEventListener("click", function () {
   const passwordField = document.getElementById("reset-password");
@@ -26,6 +25,7 @@ const resetForm = document.querySelector("#resetForm");
 
 resetForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   const password = document.querySelector("#reset-password").value;
   const confirmPassword = document.querySelector(
     "#reset-confirm-password"
@@ -39,23 +39,29 @@ resetForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const formData = {
-    password,
-    confirmPassword
-  };
+  const formData = { password, confirmPassword };
 
-  try{
+  try {
     const response = await fetch(apiUrl, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-
-        },
-        body: JSON.stringify(formData),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     });
-  
-    }catch(error){
 
+    if (response.ok) {
+      showToast("Senha alterada com sucesso!", "success");
+      resetForm.reset();
+      setTimeout(() => {
+        window.location.href = "/pages/auth/login.html";
+      }, 2000); // Redireciona após 2 segundos
+    } else {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Erro ao redefinir a senha.");
     }
-  
+  } catch (error) {
+    console.error("Erro durante a redefinição de senha:", error);
+    showToast(error.message, "error");
+  }
 });
