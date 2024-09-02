@@ -3,6 +3,8 @@ import showToast from '../app/toast.js'; // Importa a função de toast
 
 
 const apiUrl = config.api + "/user";
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get('token');
 
 document.getElementById("show-password").addEventListener("click", function () {
   const passwordField = document.getElementById("reset-password");
@@ -39,6 +41,7 @@ resetForm.addEventListener("submit", async (event) => {
 
   const formData = {
     password,
+    confirmPassword
   };
 
   try{
