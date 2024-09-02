@@ -43,7 +43,7 @@ resetForm.addEventListener("submit", async (event) => {
 
   try {
     const response = await fetch(apiUrl, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
