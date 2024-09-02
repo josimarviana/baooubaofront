@@ -1,5 +1,6 @@
-import config from '../environments/config.js'
-import showToast from './toast.js';
+import config from "../environments/config.js";
+import showToast from "./toast.js";
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/proposal/filter";
@@ -14,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadProposals(query = "", page = 0, size = 9, sort = "") {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(query)}&page=${page}&size=${size}&sort=${sort}`, {
+        `${apiUrl}?contain=${encodeURIComponent(
+          query
+        )}&page=${page}&size=${size}&sort=${sort}`,
+        {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
           },
@@ -31,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       displayProposals(proposals);
       updatePagination(result.currentPage, result.totalPages);
-
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -40,64 +43,61 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePagination(currentPage, totalPages) {
     const paginationContainer = document.getElementById("paginationContainer");
     paginationContainer.innerHTML = "";
-  
-    
+
     if (currentPage > 0) {
       const firstPageButton = document.createElement("li");
       firstPageButton.className = "page-item";
       firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira">Primeira</a>`;
-      firstPageButton.querySelector('a').addEventListener('click', (e) => {
+      firstPageButton.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         loadProposals("", 0);
       });
       paginationContainer.appendChild(firstPageButton);
     }
-  
-  
+
     if (currentPage > 0) {
       const prevButton = document.createElement("li");
       prevButton.className = "page-item";
       prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior">&laquo;</a>`;
-      prevButton.querySelector('a').addEventListener('click', (e) => {
+      prevButton.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         loadProposals("", currentPage - 1);
       });
       paginationContainer.appendChild(prevButton);
     }
-  
- 
+
     const startPage = Math.max(0, currentPage - 1);
     const endPage = Math.min(totalPages - 1, currentPage + 1);
-  
+
     for (let i = startPage; i <= endPage; i++) {
       const pageButton = document.createElement("li");
-      pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
-      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${i + 1}</a>`;
-      pageButton.querySelector('a').addEventListener('click', (e) => {
+      pageButton.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${
+        i + 1
+      }</a>`;
+      pageButton.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         loadProposals("", i);
       });
       paginationContainer.appendChild(pageButton);
     }
-  
- 
+
     if (currentPage < totalPages - 1) {
       const nextButton = document.createElement("li");
       nextButton.className = "page-item";
       nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
-      nextButton.querySelector('a').addEventListener('click', (e) => {
+      nextButton.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         loadProposals("", currentPage + 1);
       });
       paginationContainer.appendChild(nextButton);
     }
-  
-   
+
     if (currentPage < totalPages - 1) {
       const lastPageButton = document.createElement("li");
       lastPageButton.className = "page-item";
       lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
-      lastPageButton.querySelector('a').addEventListener('click', (e) => {
+      lastPageButton.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         loadProposals("", totalPages - 1);
       });
@@ -126,8 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateAnalyticsCards(data) {
     document.getElementById("openProposals").textContent = data.openProposals;
     document.getElementById("votes").textContent = data.votes;
-    document.getElementById("deniedProposals").textContent = data.deniedProposals;
-    document.getElementById("acceptedProposals").textContent = data.acceptedProposals;
+    document.getElementById("deniedProposals").textContent =
+      data.deniedProposals;
+    document.getElementById("acceptedProposals").textContent =
+      data.acceptedProposals;
   }
 
   function displayProposals(data) {
@@ -188,13 +190,15 @@ document.addEventListener("DOMContentLoaded", function () {
       case "option-5":
         sortCriteria = "most_votes";
         break;
+      case "option-6":
+        sortCriteria = "most_votes&voted=show";
+        break;
       default:
         sortCriteria = "";
         break;
     }
     loadProposals("", 0, 9, sortCriteria);
   });
-
 
   loadProposals();
   loadAnalyticsData();

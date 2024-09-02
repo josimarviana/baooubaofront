@@ -1,5 +1,5 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js';
+import config from "../environments/config.js";
+import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/category";
@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        throw new Error(errorResponse.mensagem || "Erro ao carregar categorias");
+        throw new Error(
+          errorResponse.mensagem || "Erro ao carregar categorias"
+        );
       }
       categories = await response.json();
       displayCategories(categories);
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <td class="cell py-3">${category.title}</td>
         <td class="cell py-3">${category.active ? "Sim" : "Não"}</td>
         <td class="cell py-3">
-          ${category.icon ? `<i class="${category.icon}"></i>` : '-'}
+          ${category.icon ? `<i class="${category.icon}"></i>` : "-"}
         </td>
         <td class="cell py-3">${formatDate(category.createdAt)}</td>
         <td class="cell py-3">
@@ -58,10 +60,18 @@ document.addEventListener("DOMContentLoaded", function () {
               </svg>
             </div>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item text-primary" data-category-id="${category.id}"><i class="fa-solid fa-edit"></i> Editar</a></li>
+              <li><a href="#" class="dropdown-item text-primary" data-category-id="${
+                category.id
+              }"><i class="fa-solid fa-edit"></i> Editar</a></li>
               <li>
-                <a href="#" class="dropdown-item ${category.active ? 'text-danger deactivate-btn' : 'text-info reactivate-btn'}" data-category-id="${category.id}">
-                  <i class="fa-solid ${category.active ? 'fa-ban' : 'fa-check'}"></i> ${category.active ? 'Desativar' : 'Reativar'}
+                <a href="#" class="dropdown-item ${
+                  category.active
+                    ? "text-danger deactivate-btn"
+                    : "text-info reactivate-btn"
+                }" data-category-id="${category.id}">
+                  <i class="fa-solid ${
+                    category.active ? "fa-ban" : "fa-check"
+                  }"></i> ${category.active ? "Desativar" : "Reativar"}
                 </a>
               </li>
             </ul>
@@ -85,7 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        throw new Error(errorResponse.mensagem || "Erro ao cadastrar categoria. Verifique os dados e tente novamente.");
+        throw new Error(
+          errorResponse.mensagem ||
+            "Erro ao cadastrar categoria. Verifique os dados e tente novamente."
+        );
       }
       const result = await response.json();
       return result;
@@ -94,33 +107,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("createCategoryForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const title = document.getElementById("categoryTitle").value;
-    const icon = document.getElementById("categoryIcon").value;
+  document
+    .getElementById("createCategoryForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const title = document.getElementById("categoryTitle").value;
+      const icon = document.getElementById("categoryIcon").value;
 
-    const categoryData = {
-      title,
-      icon,
-    };
+      const categoryData = {
+        title,
+        icon,
+      };
 
-    const newCategory = await createCategory(categoryData);
+      const newCategory = await createCategory(categoryData);
 
-    if (newCategory) {
-      loadCategories();
+      if (newCategory) {
+        loadCategories();
 
-      const createCategoryModal = document.getElementById("createCategoryModal");
-      const modalInstance = bootstrap.Modal.getInstance(createCategoryModal);
-      if (modalInstance) {
-        modalInstance.hide();
-      } else {
-        console.log("Modal instance not found.");
+        const createCategoryModal = document.getElementById(
+          "createCategoryModal"
+        );
+        const modalInstance = bootstrap.Modal.getInstance(createCategoryModal);
+        if (modalInstance) {
+          modalInstance.hide();
+        } else {
+          console.log("Modal instance not found.");
+        }
+
+        document.getElementById("createCategoryForm").reset();
+        showToast(newCategory.mensagem, "success");
       }
-
-      document.getElementById("createCategoryForm").reset();
-      showToast(newCategory.mensagem, "success");
-    }
-  });
+    });
 
   async function reactivateCategory(categoryId) {
     try {
@@ -131,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
         body: JSON.stringify({
-          active: true
+          active: true,
         }),
       });
 
@@ -140,7 +157,10 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error(errorResponse.mensagem || "Erro ao reativar categoria");
       }
       const result = await response.json();
-      showToast(result.mensagem || "Categoria reativada com sucesso!", "success");
+      showToast(
+        result.mensagem || "Categoria reativada com sucesso!",
+        "success"
+      );
       loadCategories();
     } catch (error) {
       showToast(error.message, "error");
@@ -166,13 +186,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorResponse = await response.json().catch(() => {
           throw new Error("Erro ao desativar categoria");
         });
-        throw new Error(errorResponse.mensagem || "Erro ao desativar categoria");
+        throw new Error(
+          errorResponse.mensagem || "Erro ao desativar categoria"
+        );
       }
     } catch (error) {
       showToast(error.message, "error");
     }
   }
-
 
   async function editCategory(categoryId, updatedData) {
     try {
@@ -198,52 +219,65 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("editCategoryForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const title = document.getElementById("editCategoryTitle").value;
-    const icon = document.getElementById("editCategoryIcon").value;
+  document
+    .getElementById("editCategoryForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const title = document.getElementById("editCategoryTitle").value;
+      const icon = document.getElementById("editCategoryIcon").value;
 
-    if (categoryIdToEdit) {
-      const updatedData = {
-        title,
-        icon
-      };
+      if (categoryIdToEdit) {
+        const updatedData = {
+          title,
+          icon,
+        };
 
-      await editCategory(categoryIdToEdit, updatedData);
+        await editCategory(categoryIdToEdit, updatedData);
 
-      const editCategoryModal = document.getElementById("editCategoryModal");
-      const modalInstance = bootstrap.Modal.getInstance(editCategoryModal);
-      if (modalInstance) {
-        modalInstance.hide();
-      } else {
-        console.log("Modal instance not found.");
+        const editCategoryModal = document.getElementById("editCategoryModal");
+        const modalInstance = bootstrap.Modal.getInstance(editCategoryModal);
+        if (modalInstance) {
+          modalInstance.hide();
+        } else {
+          console.log("Modal instance not found.");
+        }
+        document.getElementById("editCategoryForm").reset();
       }
-      document.getElementById("editCategoryForm").reset();
-    }
-  });
+    });
 
-  document.getElementById("categories-all").addEventListener("click", (event) => {
-    if (event.target.classList.contains("deactivate-btn")) {
-      categoryIdToDeactivate = event.target.getAttribute("data-category-id");
-      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-      confirmationModal.show();
-    } else if (event.target.classList.contains("reactivate-btn")) {
-      categoryIdToReactivate = event.target.getAttribute("data-category-id");
-      const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-      confirmationModal.show();
-    } else if (event.target.closest(".dropdown-item.text-primary")) {
-      categoryIdToEdit = event.target.closest(".dropdown-item.text-primary").getAttribute("data-category-id");
-      const category = categories.find(cat => cat.id == categoryIdToEdit);
+  document
+    .getElementById("categories-all")
+    .addEventListener("click", (event) => {
+      if (event.target.classList.contains("deactivate-btn")) {
+        categoryIdToDeactivate = event.target.getAttribute("data-category-id");
+        const confirmationModal = new bootstrap.Modal(
+          document.getElementById("confirmationModal")
+        );
+        confirmationModal.show();
+      } else if (event.target.classList.contains("reactivate-btn")) {
+        categoryIdToReactivate = event.target.getAttribute("data-category-id");
+        const confirmationModal = new bootstrap.Modal(
+          document.getElementById("confirmationModal")
+        );
+        confirmationModal.show();
+      } else if (event.target.closest(".dropdown-item.text-primary")) {
+        categoryIdToEdit = event.target
+          .closest(".dropdown-item.text-primary")
+          .getAttribute("data-category-id");
+        const category = categories.find((cat) => cat.id == categoryIdToEdit);
 
-      if (category) {
-        document.getElementById("editCategoryTitle").value = category.title;
-        document.getElementById("editCategoryIcon").value = category.icon || '';
+        if (category) {
+          document.getElementById("editCategoryTitle").value = category.title;
+          document.getElementById("editCategoryIcon").value =
+            category.icon || "";
 
-        const editCategoryModal = new bootstrap.Modal(document.getElementById("editCategoryModal"));
-        editCategoryModal.show();
+          const editCategoryModal = new bootstrap.Modal(
+            document.getElementById("editCategoryModal")
+          );
+          editCategoryModal.show();
+        }
       }
-    }
-  });
+    });
 
   document.getElementById("confirmDeactivate").addEventListener("click", () => {
     if (categoryIdToDeactivate) {
@@ -257,15 +291,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
-
   function formatDate(dateString) {
+    const date = new Date(dateString);
+    const correctedDate = new Date(
+      date.getTime() + date.getTimezoneOffset() * 60000
+    );
     const options = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
     };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return correctedDate.toLocaleDateString(undefined, options);
   }
   loadCategories();
 });

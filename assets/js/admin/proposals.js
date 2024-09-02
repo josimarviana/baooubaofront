@@ -1,9 +1,8 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js';
+import config from "../environments/config.js";
+import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/proposal";
-
+  const apiUrl = config.api + "/proposal/adm";
   let proposals = [];
 
   if (!sessionStorage.getItem("jwt")) {
@@ -15,27 +14,98 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  async function loadProposals() {
+  async function loadProposals(query = "", page = 0, size = 9, sort = "") {
     try {
-      const response = await fetch(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-        },
-      });
+      const response = await fetch(
+        `${apiUrl}?contain=${encodeURIComponent(
+          query
+        )}&page=${page}&size=${size}&sort=${sort}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        throw new Error(errorResponse.mensagem || 'Erro desconhecido');
+        throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
 
-      proposals = await response.json();
+      const result = await response.json();
+      proposals = result.proposals;
+
       displayProposals(proposals);
+      updatePagination(result.currentPage, result.totalPages);
     } catch (error) {
-      console.error("Erro ao obter dados da API: ", error);
       showToast(error.message, "error");
     }
   }
 
+  function updatePagination(currentPage, totalPages) {
+    const paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
+
+    if (currentPage > 0) {
+      const firstPageButton = document.createElement("li");
+      firstPageButton.className = "page-item";
+      firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira">Primeira</a>`;
+      firstPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadProposals("", 0);
+      });
+      paginationContainer.appendChild(firstPageButton);
+    }
+
+    if (currentPage > 0) {
+      const prevButton = document.createElement("li");
+      prevButton.className = "page-item";
+      prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior">&laquo;</a>`;
+      prevButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadProposals("", currentPage - 1);
+      });
+      paginationContainer.appendChild(prevButton);
+    }
+
+    const startPage = Math.max(0, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const pageButton = document.createElement("li");
+      pageButton.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${
+        i + 1
+      }</a>`;
+      pageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadProposals("", i);
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const nextButton = document.createElement("li");
+      nextButton.className = "page-item";
+      nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
+      nextButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadProposals("", currentPage + 1);
+      });
+      paginationContainer.appendChild(nextButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const lastPageButton = document.createElement("li");
+      lastPageButton.className = "page-item";
+      lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
+      lastPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadProposals("", totalPages - 1);
+      });
+      paginationContainer.appendChild(lastPageButton);
+    }
+  }
   function displayProposals(data) {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
@@ -49,10 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="row align-items-center gx-3">
               <div class="col-auto">
                 <div class="app-icon-holder">
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                    <path fill-rule="evenodd" d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
-                  </svg>
+                  <i class="${item.icon}"></i>
                 </div>
               </div>
               <div class="col-auto">
@@ -93,10 +160,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const dropdownItems = document.querySelectorAll(".dropdown-item");
-    dropdownItems.forEach(item => {
+    dropdownItems.forEach((item) => {
       item.addEventListener("click", handleDropdownItemClick);
     });
   }
+
+  const searchForm = document.querySelector(".table-search-form");
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const searchInput = document.getElementById("search-proposals");
+    const query = searchInput.value.trim();
+    loadProposals(query);
+  });
+
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", function () {
+    const selectedOption = sortSelect.options[sortSelect.selectedIndex].value;
+    let sortCriteria = "";
+
+    switch (selectedOption) {
+      case "option-2":
+        sortCriteria = "recent";
+        break;
+      case "option-3":
+        sortCriteria = "oldest";
+        break;
+      default:
+        sortCriteria = "";
+        break;
+    }
+    loadProposals("", 0, 9, sortCriteria);
+  });
 
   async function handleDropdownItemClick(event) {
     event.preventDefault();
@@ -109,14 +203,14 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.mensagem || 'Erro desconhecido');
+        throw new Error(result.mensagem || "Erro desconhecido");
       }
 
       showToast(result.mensagem, "success");
@@ -126,8 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
       showToast(error.message, "error");
     }
   }
-
-
 
   loadProposals();
 });

@@ -1,5 +1,5 @@
-import config from '../environments/config.js';
-import showToast from '../app/toast.js';
+import config from "../environments/config.js";
+import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = config.api + "/user/filter";
@@ -8,33 +8,103 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../errors/404.html";
     return;
   }
-
   if (!sessionStorage.getItem("roles").includes("ROLE_ADMINISTRATOR")) {
     window.location.href = "../errors/404.html";
     return;
   }
 
-  async function loadUsers(query = "", sort = "") {
+  async function loadUsers(query = "", page = 0, size = 9, sort = "") {
     try {
-      const response = await fetch(`${apiUrl}?contain=${encodeURIComponent(query)}&sort=${sort}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-        },
-      });
+      const response = await fetch(
+        `${apiUrl}?contain=${encodeURIComponent(
+          query
+        )}&page=${page}&size=${size}&sort=${sort}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
 
-      const data = await response.json();
-      displayUsers(data.users);
+      const result = await response.json();
+      displayUsers(result.users);
+      updatePagination(result.currentPage, result.totalPages);
     } catch (error) {
       showToast("Erro ao obter dados da API", "error");
     }
   }
+  function updatePagination(currentPage, totalPages) {
+    const paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
+
+    if (currentPage > 0) {
+      const firstPageButton = document.createElement("li");
+      firstPageButton.className = "page-item";
+      firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira">Primeira</a>`;
+      firstPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadUsers("", 0);
+      });
+      paginationContainer.appendChild(firstPageButton);
+    }
+
+    if (currentPage > 0) {
+      const prevButton = document.createElement("li");
+      prevButton.className = "page-item";
+      prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior">&laquo;</a>`;
+      prevButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadUsers("", currentPage - 1);
+      });
+      paginationContainer.appendChild(prevButton);
+    }
+
+    const startPage = Math.max(0, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const pageButton = document.createElement("li");
+      pageButton.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${
+        i + 1
+      }</a>`;
+      pageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadUsers("", i);
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const nextButton = document.createElement("li");
+      nextButton.className = "page-item";
+      nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
+      nextButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadUsers("", currentPage + 1);
+      });
+      paginationContainer.appendChild(nextButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const lastPageButton = document.createElement("li");
+      lastPageButton.className = "page-item";
+      lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
+      lastPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadUsers("", totalPages - 1);
+      });
+      paginationContainer.appendChild(lastPageButton);
+    }
+  }
 
   function displayUsers(users) {
+    console.log(users);
     const tableBody = document.querySelector("#users-all tbody");
 
     const roleMapping = {
@@ -42,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ROLE_ADMINISTRATOR: "Administrador",
       ESTUDANTE: "Estudante",
       DOCENTE: "Docente",
-      TAE: "TAE"
+      TAE: "TAE",
     };
 
     tableBody.innerHTML = "";
@@ -60,7 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
         <td class="cell py-3">${user.email}</td>
         <td class="cell py-3">${user.type}</td>
         <td class="cell py-3">${user.active ? "Sim" : "Não"}</td>
-        <td class="cell py-3">${new Date(user.createdAt).toLocaleDateString()}</td>
+        <td class="cell py-3">${new Date(
+          user.createdAt
+        ).toLocaleDateString()}</td>
         <td class="cell py-3">${friendlyRoles}</td>
         <td class="cell py-3">
           <div class="dropdown">
@@ -105,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
     }
     const query = document.getElementById("search-users").value;
-    loadUsers(query, sortCriteria);
+    loadUsers(query, 0, 9, sortCriteria);
   });
 
   const searchForm = document.getElementById("searchForm");
@@ -113,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const query = document.getElementById("search-users").value;
     const sortCriteria = sortSelect.value;
-    loadUsers(query, sortCriteria);
+    loadUsers(query, 0, 9, sortCriteria); 
   });
 
   loadUsers();

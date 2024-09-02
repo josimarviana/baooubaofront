@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Esqueci Minha Senha - Bão ou Não</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description"
+        content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus" />
+    <meta name="author" content="Cristian Alves Silva" />
+    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
+    <!-- FontAwesome JS -->
+    <script defer src="../../assets/fontawesome/js/all.min.js"></script>
+    <!-- App CSS-->
+    <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style" />
+</head>
+
+<body class="app app-reset-password p-0">
+    <div class="row g-0 app-auth-wrapper">
+        <div class="col-12 col-md-12 col-lg-12 auth-main-col text-center p-5">
+            <div class="d-flex flex-column align-content-end">
+                <div class="app-auth-body mx-auto">
+                    <div class="app-auth-branding mb-4">
+                        <a class="app-logo" href="../../index.html">
+                            <img class="logo-icon me-2" src="../../assets/images/BaoOuNao.png" alt="logo" /></a>
+                    </div>
+                    <h2 class="auth-heading text-center mb-4">Alterar Senha</h2>
+                    <div class="auth-intro text-center mb-4">
+                        Insira seu endereço de e-mail abaixo. Enviaremos um link para uma página onde você poderá criar
+                        uma nova senha facilmente.
+                    </div>
+                    <div class="auth-form-container text-start mx-auto">
+                        <form id="forgotForm" action="#" class="auth-form auth-forgot-form">
+                            <div class="email mb-3">
+                                <label for="forgot-email" class="sr-only">Seu email</label>
+                                <input type="email" name="forgot-email" id="forgot-email" class="form-control forgot-email"
+                                    required="required" placeholder="Seu email" />
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn app-btn-primary btn-block theme-btn mx-auto mt-2">
+                                    Redefinir Senha
+                                </button>
+                            </div>
+                        </form>
+                        <div class="auth-option text-center pt-5 mt-5">
+                            <a href="login.html" class="text-link">Login</a>
+                        </div>
+
+                        <hr>
+                        <div class="auth-option text-center">
+                            Não possui conta?
+                            <a href="signup.html" class="text-link">Cadastre-se</a>
+                        </div>
+                    </div>
+                    <!--//auth-form-container-->
+                </div>
+                <!--//app-auth-body-->
+            </div>
+            <!--//flex-column-->
+        </div>
+        <!--//col-->
+    </div>
+    <!-- //row-->
+
+
+
+    
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+        <div class="toast-header">
+          <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">
+        </div>
+      </div>
+
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="module" src="../../assets/js/auth/forgot.js"></script>
+</body>
+
+</html>

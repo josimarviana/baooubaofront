@@ -19,5 +19,5 @@ export default function showToast(message, type) {
 
     setTimeout(() => {
         toast.hide();
-    }, 3000);
+    }, 5000);
 }
