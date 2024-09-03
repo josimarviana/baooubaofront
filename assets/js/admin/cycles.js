@@ -28,13 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         }
       );
+
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
-      cycles = await response.json();
+
+      const data = await response.json();
+      cycles = data.cycleEntityList;
       displayCycles(cycles);
-      updatePagination(cycles.currentPage, result.totalPages);
+      updatePagination(data.currentPage, data.totalPages);
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -107,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function displayCycles(data) {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
+
+    console.log(data);
     data.forEach((cycle) => {
       const row = document.createElement("tr");
 
@@ -371,33 +376,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.addEventListener("change", function () {
-    const selectedOption = sortSelect.value;
-    let sortCriteria = "";
-
-    switch (selectedOption) {
-      case "recent_createdat":
-        sortCriteria = "recent_createdat";
-        break;
-      case "oldest_createdat":
-        sortCriteria = "oldest_createdat";
-        break;
-      case "recent_startdate":
-        sortCriteria = "recent_startdate";
-        break;
-      case "old_startdate":
-        sortCriteria = "old_startdate";
-        break;
-      case "recent_finishdate":
-        sortCriteria = "recent_finishdate";
-        break;
-      case "oldest_finishdate":
-        sortCriteria = "oldest_finishdate";
-        break;
-      default:
-        sortCriteria = "";
-        break;
-    }
-    const query = document.getElementById("search-users").value;
+    const sortCriteria = sortSelect.value;
+    const query = document.getElementById("search-cycles").value;
     loadCycles(query, 0, 9, sortCriteria);
   });
 

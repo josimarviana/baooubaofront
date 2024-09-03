@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayUsers(users) {
-    console.log(users);
     const tableBody = document.querySelector("#users-all tbody");
 
     const roleMapping = {
