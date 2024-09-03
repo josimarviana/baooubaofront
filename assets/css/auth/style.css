@@ -11863,45 +11863,45 @@ button.close:focus {
   background: var(--bs-success);
   border: 2px solid #fff;
 }
-.app-notifications-dropdown .dropdown-menu {
+.app-helps-dropdown .dropdown-menu {
   width: 300px;
 }
-.app-notifications-dropdown .dropdown-menu .dropdown-menu-header {
+.app-helps-dropdown .dropdown-menu .dropdown-menu-header {
   border-bottom: 1px solid #e7e9ed;
 }
-.app-notifications-dropdown .dropdown-menu .dropdown-menu-title {
+.app-helps-dropdown .dropdown-menu .dropdown-menu-title {
   font-size: 1rem;
 }
-.app-notifications-dropdown .dropdown-menu .profile-image {
+.app-helps-dropdown .dropdown-menu .profile-image {
   width: 36px;
   height: 36px;
 }
-.app-notifications-dropdown .dropdown-menu .info {
+.app-helps-dropdown .dropdown-menu .info {
   padding-right: 80px;
   position: relative;
 }
-.app-notifications-dropdown .dropdown-menu .meta {
+.app-helps-dropdown .dropdown-menu .meta {
   color: #828d9f;
   position: absolute;
   right: 0;
   top: 0;
   font-size: 0.75rem;
 }
-.app-notifications-dropdown .dropdown-menu .dropdown-menu-footer {
+.app-helps-dropdown .dropdown-menu .dropdown-menu-footer {
   border-top: 1px solid #e7e9ed;
 }
-.app-notifications-dropdown .dropdown-menu .item {
+.app-helps-dropdown .dropdown-menu .item {
   min-width: 250px;
   position: relative;
   border-bottom: 1px solid #e7e9ed;
 }
-.app-notifications-dropdown .dropdown-menu .item:last-child {
+.app-helps-dropdown .dropdown-menu .item:last-child {
   border-bottom: none;
 }
-.app-notifications-dropdown .dropdown-menu .item:hover {
+.app-helps-dropdown .dropdown-menu .item:hover {
   background: #f5f5f5;
 }
-.app-notifications-dropdown .dropdown-menu .link-mask {
+.app-helps-dropdown .dropdown-menu .link-mask {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -11909,7 +11909,7 @@ button.close:focus {
   left: 0;
   top: 0;
 }
-.app-notifications-dropdown .app-icon-holder {
+.app-helps-dropdown .app-icon-holder {
   display: inline-block;
   background: #edfdf6;
   color: #15a362;
@@ -11920,11 +11920,11 @@ button.close:focus {
   text-align: center;
   border-radius: 50%;
 }
-.app-notifications-dropdown .app-icon-holder.icon-holder-mono {
+.app-helps-dropdown .app-icon-holder.icon-holder-mono {
   background: #f5f6fe;
   color: #828d9f;
 }
-.app-notifications-dropdown .app-icon-holder svg {
+.app-helps-dropdown .app-icon-holder svg {
   width: 20px;
   height: 20px;
 }
@@ -11936,7 +11936,7 @@ button.close:focus {
   height: 36px;
 }
 @media (min-width: 576px) {
-  .app-notifications-dropdown .dropdown-menu {
+  .app-helps-dropdown .dropdown-menu {
     width: 400px;
   }
 }
@@ -12597,28 +12597,28 @@ button.close:focus {
 .app-table-hover > tbody > tr:hover {
   background-color: #fafbff;
 }
-.app-card-notification .notification-type .badge {
+.app-card-help .help-type .badge {
   font-size: 0.65rem;
   text-transform: uppercase;
 }
-.app-card-notification .profile-image {
+.app-card-help .profile-image {
   width: 60px;
   height: 60px;
 }
-.app-card-notification .notification-title {
+.app-card-help .help-title {
   font-size: 1.125rem;
 }
-.app-card-notification .notification-content {
+.app-card-help .help-content {
   font-size: 0.875rem;
 }
-.app-card-notification .notification-meta {
+.app-card-help .help-meta {
   font-size: 0.75rem;
   color: #828d9f;
 }
-.app-card-notification .action-link {
+.app-card-help .action-link {
   font-size: 0.875rem;
 }
-.app-card-notification .app-card-footer {
+.app-card-help .app-card-footer {
   background: #fafbff;
 }
 @media (min-width: 1200px) {
