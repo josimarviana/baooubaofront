@@ -88,37 +88,49 @@
 
 					</div>
 					<script type="module">
-						import config from "/assets/js/environments/config.js"
+						import config from "/assets/js/environments/config.js";
 						document.addEventListener('DOMContentLoaded', function () {
 
 							const apiUrl = config.api + '/proposal/trending';
 
-
 							fetch(apiUrl)
 								.then(response => response.json())
 								.then(data => {
+									const cardContainer = document.getElementById('card-container');
 
-									data.forEach(item => {
-										const newCard = document.createElement('div');
-										newCard.className = 'col-12 col-lg-4 py-3';
-										newCard.innerHTML = `
-										    <div class="card shadow-sm">
-										        <div class="card-body">
-										            <h5 class="card-title mb-3 d-flex">
-										                <span class="theme-icon-holder card-icon-holder d-inline-block me-2">
-										                    <i class="${item.icon}"></i>                                                            
-										                </span><!--//card-icon-holder-->
-										                <span class="card-title-text align-self-center">${item.title}</span>
-										            </h5>
-										            <div class="card-text overflow-hidden" style="max-height: 5.6em;">
-										                ${item.description}
-										            </div>
-										            <a class="card-link-mask" href="pages/auth/login.html"></a>
-										        </div><!--//card-body-->
-										    </div><!--//card-->
+									if (data.length === 0) {
+										const noContentMessage = document.createElement('div');
+										noContentMessage.className = 'col-12 text-center py-3';
+										noContentMessage.innerHTML = `
+											<div class="alert alert-info" role="alert">
+												Nada por aqui. <br />
+												A plataforma está sem propostas em alta no momento, faça a diferença, entre e participe.
+											</div>
 										`;
-										document.getElementById('card-container').appendChild(newCard);
-									});
+										cardContainer.appendChild(noContentMessage);
+									} else {
+										data.forEach(item => {
+											const newCard = document.createElement('div');
+											newCard.className = 'col-12 col-lg-4 py-3';
+											newCard.innerHTML = `
+												<div class="card shadow-sm">
+													<div class="card-body">
+														<h5 class="card-title mb-3 d-flex">
+															<span class="theme-icon-holder card-icon-holder d-inline-block me-2">
+																<i class="${item.icon}"></i>                                                            
+															</span><!--//card-icon-holder-->
+															<span class="card-title-text align-self-center">${item.title}</span>
+														</h5>
+														<div class="card-text overflow-hidden" style="max-height: 5.6em;">
+															${item.description}
+														</div>
+														<a class="card-link-mask" href="pages/auth/login.html"></a>
+													</div><!--//card-body-->
+												</div><!--//card-->
+											`;
+											cardContainer.appendChild(newCard);
+										});
+									}
 								})
 								.catch(error => {
 									console.error('Erro ao obter dados da API:', error);
