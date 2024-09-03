@@ -61,8 +61,6 @@ signupForm.addEventListener("submit", async (event) => {
     });
 
     if (response.status === 201) {
-      const result = await response.json();
-      console.log("Cadastro realizado com sucesso:", result);
       localStorage.setItem("userEmail", email);
       window.location.href = "../../../pages/messages/email.html";
     } else {
