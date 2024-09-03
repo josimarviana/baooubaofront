@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
 
-    console.log(data);
+  
     data.forEach((cycle) => {
       const row = document.createElement("tr");
 

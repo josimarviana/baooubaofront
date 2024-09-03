@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
       showToast(error.message, "error");
     }
   }
-
   function updatePagination(currentPage, totalPages) {
     const paginationContainer = document.getElementById("paginationContainer");
     paginationContainer.innerHTML = "";
@@ -161,33 +160,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const searchForm = document.querySelector(".table-search-form");
-  searchForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const searchInput = document.getElementById("search-proposals");
-    const query = searchInput.value.trim();
-    loadProposals(query);
-  });
-
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.addEventListener("change", function () {
-    const selectedOption = sortSelect.options[sortSelect.selectedIndex].value;
-    let sortCriteria = "";
-
-    switch (selectedOption) {
-      case "option-2":
-        sortCriteria = "recent";
-        break;
-      case "option-3":
-        sortCriteria = "oldest";
-        break;
-      default:
-        sortCriteria = "";
-        break;
-    }
-    loadProposals("", 0, 9, sortCriteria);
+    const sortCriteria = sortSelect.value;
+    const query = document.getElementById("search-proposals").value;
+    loadProposals(query, 0, 9, sortCriteria);
   });
 
+  const searchForm = document.getElementById("searchForm");
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById("search-proposals").value;
+    const sortCriteria = sortSelect.value;
+    loadProposals(query, 0, 9, sortCriteria);
+  });
   async function handleDropdownItemClick(event) {
     event.preventDefault();
     const action = event.target.dataset.action;

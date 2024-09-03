@@ -3,23 +3,23 @@
 
 <head>
     <title>[ADM] Categorias - Bão ou Não</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
-    <meta name="author" content="Cristian Alves Silva">
-    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
+        content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus" />
+    <meta name="author" content="Cristian Alves Silva" />
+    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous" />
 
     <!-- FontAwesome JS -->
     <script defer src="../../assets/fontawesome/js/all.min.js"></script>
     <!-- App CSS-->
-    <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
+    <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style" />
 
     <style>
         .popover-text {
@@ -42,7 +42,6 @@
             <div class="container-fluid py-3">
                 <div class="app-header-content">
                     <div class="row justify-content-between align-items-center">
-
                         <div class="col-auto">
                             <a href="#" id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
@@ -50,11 +49,12 @@
                                     <title>Menu</title>
                                     <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
                                         stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
-                                </svg> </a>
-                        </div><!--//col-->
+                                </svg>
+                            </a>
+                        </div>
+                        <!--//col-->
 
                         <div class="app-utilities col-auto">
-
                             <div class="app-utility-item app-user-dropdown dropdown">
                                 <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle"
                                     data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
@@ -63,9 +63,7 @@
                                         <path
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
-                                    <span id="user-name">
-                                       
-                                    </span> </a>
+                                    <span id="user-name"> </span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                                     <!-- <li><a class="dropdown-item" href="#">Conta</a></li>  
@@ -74,14 +72,22 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li> -->
-                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" onclick="logout()">Sair</a>
+                                    </li>
                                 </ul>
-                            </div><!--//app-user-dropdown-->
-                        </div><!--//app-utilities-->
-                    </div><!--//row-->
-                </div><!--//app-header-content-->
-            </div><!--//container-fluid-->
-        </div><!--//app-header-inner-->
+                            </div>
+                            <!--//app-user-dropdown-->
+                        </div>
+                        <!--//app-utilities-->
+                    </div>
+                    <!--//row-->
+                </div>
+                <!--//app-header-content-->
+            </div>
+            <!--//container-fluid-->
+        </div>
+        <!--//app-header-inner-->
 
         <div id="app-sidepanel" class="app-sidepanel">
             <div id="sidepanel-drop" class="sidepanel-drop"></div>
@@ -89,10 +95,11 @@
                 <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
                 <div class="app-branding">
                     <a href="../logged/home.html" class="app-logo"><img src="../../assets/images/BaoOuNao.png"
-                            alt="logo" class="logo-icon">
+                            alt="logo" class="logo-icon" />
                         <span class="logo-text">Bão ou Não</span>
                     </a>
-                </div><!--//app-branding-->
+                </div>
+                <!--//app-branding-->
 
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
                     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
@@ -106,21 +113,23 @@
                                             d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                     </svg>
                                 </span>
-                                <span class="nav-link-text">Início</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
-                        <li class="nav-item"><a href="../logged/my-proposal.html" class="nav-link">
-                                <span class="nav-icon"> <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                        class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <span class="nav-link-text">Início</span> </a><!--//nav-link-->
+                        </li>
+                        <!--//nav-item-->
+                        <li class="nav-item">
+                            <a href="../logged/my-proposal.html" class="nav-link">
+                                <span class="nav-icon">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z" />
                                         <path fill-rule="evenodd"
                                             d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z" />
                                     </svg>
                                 </span>
-                                <span class="nav-link-text">Minhas propostas</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
+                                <span class="nav-link-text">Minhas propostas</span> </a><!--//nav-link-->
+                        </li>
+                        <!--//nav-item-->
                         <li class="nav-item">
                             <a class="nav-link" href="../logged/help.html">
                                 <span class="nav-icon">
@@ -132,9 +141,9 @@
                                             d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
                                     </svg>
                                 </span>
-                                <span class="nav-link-text">Ajuda</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
+                                <span class="nav-link-text">Ajuda</span> </a><!--//nav-link-->
+                        </li>
+                        <!--//nav-item-->
 
                         <li class="nav-item has-submenu">
                             <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse"
@@ -154,36 +163,36 @@
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </span><!--//subment-arrow-->
-                            </a><!--//nav - link-->
-
+                                    </svg> </span><!--//subment-arrow--> </a><!--//nav - link-->
 
                             <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
                                 <ul class="submenu-list list-unstyled">
-                                    <li class="submenu-item"><a href="./categorys.html"
-                                            class="submenu-link">Categorias</a></li>
-                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclo</a>
+                                    <li class="submenu-item">
+                                        <a href="./categorys.html" class="submenu-link">Categorias</a>
                                     </li>
-                                    <li class="submenu-item"><a href="./proposals.html"
-                                            class="submenu-link">Propostas</a>
+                                    <li class="submenu-item">
+                                        <a href="./cycles.html" class="submenu-link">Ciclo</a>
                                     </li>
-                                    <li class="submenu-item"><a href="./users.html" class="submenu-link">Usuários</a>
+                                    <li class="submenu-item">
+                                        <a href="./proposals.html" class="submenu-link">Propostas</a>
                                     </li>
-
+                                    <li class="submenu-item">
+                                        <a href="./users.html" class="submenu-link">Usuários</a>
+                                    </li>
                                 </ul>
                             </div>
-                        </li><!--//nav-item-->
-
-
-                    </ul><!--//app-menu-->
-                </nav><!--//app - nav -main-->
-
-
-
-            </div><!--//sidepanel-inner-->
-            </di><!--//app-sidepanel-->
-    </header><!--//app-header-->
+                        </li>
+                        <!--//nav-item-->
+                    </ul>
+                    <!--//app-menu-->
+                </nav>
+                <!--//app - nav -main-->
+            </div>
+            <!--//sidepanel-inner-->
+        </div>
+        <!--//app-sidepanel-->
+    </header>
+    <!--//app-header-->
 
     <div class="app-wrapper">
         <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -191,32 +200,35 @@
                 <div class="row g-3 mb-4 alignt-items-center justify-content-between">
                     <div class="col-auto">
                         <h1 class="app-page-title mb-0">[ADM] - Categorias</h1>
-                    </div><!--//col-->
+                    </div>
+                    <!--//col-->
                     <div class="col-auto">
                         <div class="page-utilities">
                             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                                 <div class="col-auto">
-                                    <form action="#" class="table-search-form row gx-1 align-items-center">
+                                    <form action="#" class="table-search-form row gx-1 align-items-center"
+                                        id="searchForm">
                                         <div class="col-auto">
-                                            <input type="text" name="search-users" id="search-users"
-                                                class="form-control search-users" placeholder="Pesquisar">
+                                            <input type="text" name="search-categories" id="search-categories"
+                                                class="form-control search-categories" placeholder="Pesquisar" />
                                         </div>
                                         <div class="col-auto">
-                                            <button type="submit" class="btn app-btn-secondary">Buscar</button>
+                                            <button type="submit" class="btn app-btn-secondary">
+                                                Buscar
+                                            </button>
                                         </div>
-
                                     </form>
-                                </div><!--//col-->
+                                </div>
+                                <!--//col-->
 
                                 <div class="col-auto">
-                                    <select class="form-select w=auto">
+                                    <select class="form-select w=auto" id="sortSelect">
                                         <option selected value="option-1">Todos</option>
-                                        <option value="option-2">Opção 2</option>
-                                        <option value="option-3">Opção 3</option>
-                                        <option value="option-4">Opção 4</option>
-                                        <option value="option-5">Opção 5</option>
+                                        <option value="recent_createdat">Mais recentes</option>
+                                        <option value="oldest_createdat">Mais antigas</option>
                                     </select>
-                                </div><!--//col-auto-->
+                                </div>
+                                <!--//col-auto-->
                                 <div class="col-auto">
                                     <a href="#" class="btn app-btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#createCategoryModal">
@@ -230,11 +242,14 @@
                                         Nova categoria
                                     </a>
                                 </div>
-                            </div><!--//row-->
-                        </div><!--//page-utilities-->
-                    </div><!--//col-auto-->
-                </div><!--//row-->
-
+                            </div>
+                            <!--//row-->
+                        </div>
+                        <!--//page-utilities-->
+                    </div>
+                    <!--//col-auto-->
+                </div>
+                <!--//row-->
 
                 <div class="tab-content" id="category-table-tab-content">
                     <div class="tab-pane fade show active" id="categories-all" role="tabpanel"
@@ -257,15 +272,22 @@
                                             <!-- Categorias aparecerão aqui -->
                                         </tbody>
                                     </table>
-                                </div><!--/table-responsive-->
-                            </div><!--//app-card-body-->
-                        </div><!--//app-card-users-table-->
-                    </div><!--//tab-pane-->
-                </div><!--//users-table-tab-conten-->
-            </div><!--//container-xl-->
-        </div><!--//app-content-->
-    </div><!--//app-wrapper-->
-
+                                </div>
+                                <!--/table-responsive-->
+                            </div>
+                            <!--//app-card-body-->
+                        </div>
+                        <!--//app-card-users-table-->
+                    </div>
+                    <!--//tab-pane-->
+                </div>
+                <!--//users-table-tab-conten-->
+            </div>
+            <!--//container-xl-->
+        </div>
+        <!--//app-content-->
+    </div>
+    <!--//app-wrapper-->
 
     <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -278,12 +300,13 @@
                     <form id="editCategoryForm">
                         <div class="mb-3">
                             <label for="editCategoryTitle" class="form-label">Título da Categoria</label>
-                            <input type="text" id="editCategoryTitle" class="form-control" required>
+                            <input type="text" id="editCategoryTitle" class="form-control" required />
                         </div>
                         <div class="mb-3">
-                            <label for="editCategoryIcon" class="form-label">Ícone da Categoria <span class="ms-2"
-                                    data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                                    data-bs-placement="top" data-bs-html="true" data-bs-content="<p class='popover-text'>
+                            <label for="editCategoryIcon" class="form-label">Ícone da Categoria
+                                <span class="ms-2" data-bs-container="body" data-bs-toggle="popover"
+                                    data-bs-trigger="hover focus" data-bs-placement="top" data-bs-html="true"
+                                    data-bs-content="<p class='popover-text'>
                                                     Visite o site <a href='https://fontawesome.com/icons' target='_blank'>Font Awesome</a>
                                                     <br> ou o site <a href='https://icons.getbootstrap.com/' target='_blank'>Icons Bootstrap</a>
                                                     e escolha o ícone que deseja para a categoria.
@@ -299,7 +322,6 @@
                                                     </p>
                                                     
                                                     ">
-
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -312,7 +334,7 @@
                                     </svg>
                                 </span>
                             </label>
-                            <input type="text" id="editCategoryIcon" class="form-control" required>
+                            <input type="text" id="editCategoryIcon" class="form-control" required />
                         </div>
                         <button type="submit" class="btn app-btn-primary">Salvar</button>
                     </form>
@@ -321,20 +343,21 @@
         </div>
     </div>
 
-
     <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModal"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createCategoryLabel">Cadastrar Nova Categoria</h5>
+                    <h5 class="modal-title" id="createCategoryLabel">
+                        Cadastrar Nova Categoria
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="createCategoryForm">
                         <div class="mb-3">
                             <label for="categoryTitle" class="form-label">Título da Categoria</label>
-                            <input type="text" class="form-control" id="categoryTitle" required>
+                            <input type="text" class="form-control" id="categoryTitle" required />
                         </div>
                         <div class="mb-3">
                             <label for="categoryIcon" class="form-label">Ícone da Categoria
@@ -356,7 +379,6 @@
                                                     </p>
                                                     
                                                     ">
-
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -369,15 +391,16 @@
                                     </svg>
                                 </span>
                             </label>
-                            <input type="text" class="form-control" id="categoryIcon" required>
+                            <input type="text" class="form-control" id="categoryIcon" required />
                         </div>
-                        <button type="submit" class="btn app-btn-primary">Cadastrar Categoria</button>
+                        <button type="submit" class="btn app-btn-primary">
+                            Cadastrar Categoria
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
         aria-hidden="true">
@@ -391,22 +414,34 @@
                     Tem certeza de que deseja realizar esta ação?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="confirmDeactivate" class="btn app-btn-danger">Desativar</button>
-                    <button type="button" id="confirmReactivate" class="btn app-btn-primary">Reativar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" id="confirmDeactivate" class="btn app-btn-danger">
+                        Desativar
+                    </button>
+                    <button type="button" id="confirmReactivate" class="btn app-btn-primary">
+                        Reativar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
+    <div class="pagination-container d-flex justify-content-center my-4">
+        <nav aria-label="Page navigation">
+            <ul id="paginationContainer" class="pagination">
+                <!-- Os botões de paginação serão gerados dinamicamente aqui -->
+            </ul>
+        </nav>
+    </div>
+
+    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050">
         <div class="toast-header">
             <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body" id="toast-body">
-
-        </div>
+        <div class="toast-body" id="toast-body"></div>
     </div>
 
     <footer class="footer mt-auto">
@@ -431,7 +466,6 @@
     <!--Specific page Js-->
     <script src="../../assets/js/app/app.js"></script>
     <script type="module" src="../../assets/js/admin/categorys.js"></script>
-
 </body>
 
 </html>
