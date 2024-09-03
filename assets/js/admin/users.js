@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       displayUsers(result.users);
       updatePagination(result.currentPage, result.totalPages);
     } catch (error) {
-      showToast("Erro ao obter dados da API", "error");
+      showToast(error.message, "error");
     }
   }
   function updatePagination(currentPage, totalPages) {
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const query = document.getElementById("search-users").value;
     const sortCriteria = sortSelect.value;
-    loadUsers(query, 0, 9, sortCriteria); 
+    loadUsers(query, 0, 9, sortCriteria);
   });
 
   loadUsers();

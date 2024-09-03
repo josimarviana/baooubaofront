@@ -49,7 +49,7 @@
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
                                     <span id="user-name">
-                                
+
                                     </span> </a>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
@@ -182,8 +182,8 @@
                                 <div class="col-auto">
                                     <form action="#" class="table-search-form row gx-1 align-items-center">
                                         <div class="col-auto">
-                                            <input type="text" name="search-users" id="search-users"
-                                                class="form-control search-users" placeholder="Pesquisar">
+                                            <input type="text" name="search-cycles" id="search-cycles"
+                                                class="form-control search-cycles" placeholder="Pesquisar">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn app-btn-secondary">Buscar</button>
@@ -192,12 +192,15 @@
                                 </div><!--//col-->
 
                                 <div class="col-auto">
-                                    <select class="form-select w=auto">
+                                    <select class="form-select w=auto" id="sortSelect">
                                         <option selected value="option-1">Todos</option>
-                                        <option value="option-2">Opção 2</option>
-                                        <option value="option-3">Opção 3</option>
-                                        <option value="option-4">Opção 4</option>
-                                        <option value="option-5">Opção 5</option>
+                                        <option value="recent_createdat">Mais Recentes</option>
+                                        <option value="oldest_createdat">Mais Antigos</option>
+                                        <option value="recent_startdate">Data de iníco (crescente)</option>
+                                        <option value="old_startdate">Data de início (decrescente)</option>
+                                        <option value="recent_finishdate">Data de encerramento (crescente)</option>
+                                        <option value="oldest_finishdate">Data de encerramento (decrescente)</option>
+                                        <option value="">Opção 5</option>
                                     </select>
                                 </div><!--//col-auto-->
                                 <div class="col-auto">
@@ -343,7 +346,13 @@
         </div>
     </div>
 
-
+    <div class="pagination-container d-flex justify-content-center my-4">
+        <nav aria-label="Page navigation">
+            <ul id="paginationContainer" class="pagination">
+                <!-- Os botões de paginação serão gerados dinamicamente aqui -->
+            </ul>
+        </nav>
+    </div>
 
     <footer class="footer mt-auto">
         <div class="footer-bottom text-center py-5">

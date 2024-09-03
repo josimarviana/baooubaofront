@@ -60,16 +60,15 @@ signupForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(formData),
     });
 
-    if (!response.ok) {
+    if (response.status === 201) {
+      const result = await response.json();
+      console.log("Cadastro realizado com sucesso:", result);
+      localStorage.setItem("userEmail", email);
+      window.location.href = "../../../pages/messages/email.html";
+    } else {
       const errorResponse = await response.json();
       throw new Error(errorResponse.mensagem || "Erro desconhecido");
     }
-
-    const result = await response.json();
-    console.log("Cadastro realizado com sucesso:", result);
-    showToast(result.mensagem, "success");
-    localStorage.setItem("userEmail", email);
-    window.location.href = "../../../pages/messages/email.html";
   } catch (error) {
     showToast(error.message, "error");
   }
