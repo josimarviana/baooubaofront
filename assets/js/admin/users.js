@@ -13,6 +13,29 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  async function toggleUserStatus(userId, isActive) {
+    try {
+      const response = await fetch(`${config.api}/user/${userId}`, {
+        method: isActive ? "DELETE" : "PATCH",
+        headers: {
+          "Content-Type": isActive ? undefined : "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        },
+        body: isActive ? undefined : JSON.stringify({ active: true }),
+      });
+      
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao alterar o status");
+      }
+      const successResponse = await response.json();
+      showToast(successResponse.mensagem, "success");
+      loadUsers();
+    } catch (error) {
+      showToast(error.message, "error");
+    }
+  }
+
   async function toggleUserRole(userId, revoke) {
     try {
       const response = await fetch(
@@ -154,6 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const revoke = isAdmin;
       const textClass = revoke ? "text-danger" : "text-primary";
 
+      const isActive = user.active;
+      const statusButtonText = isActive ? "Desativar" : "Ativar";
+      const statusTextClass = isActive ? "text-danger" : "text-primary";
+
       row.innerHTML = `
         <td class="cell py-3">${user.id}</td>
         <td class="cell py-3">${user.name}</td>
@@ -173,7 +200,9 @@ document.addEventListener("DOMContentLoaded", function () {
               <li><a class="dropdown-item toggle-role ${textClass}" href="#" data-id="${
         user.id
       }" data-revoke="${revoke}">${buttonText}</a></li>
-              <li><a class="dropdown-item" href="#">Desativar</a></li>
+              <li><a class="dropdown-item toggle-status ${statusTextClass}" data-id="${
+        user.id
+      }" href="#" data-active="${isActive}">${statusButtonText}</a></li>
             </ul>
           </div>
         </td>
@@ -188,6 +217,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const userId = this.getAttribute("data-id");
         const revoke = this.getAttribute("data-revoke") === "true";
         toggleUserRole(userId, revoke);
+      });
+    });
+    document.querySelectorAll(".toggle-status").forEach((element) => {
+      element.addEventListener("click", function (e) {
+        e.preventDefault();
+        const userId = this.getAttribute("data-id");
+        const isActive = this.getAttribute("data-active") === "true";
+        toggleUserStatus(userId, isActive);
       });
     });
   }
