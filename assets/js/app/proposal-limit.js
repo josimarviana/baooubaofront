@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   proposalIcon.addEventListener("click", (event) => {
     event.preventDefault();
-
     if (parseInt(proposalLimitElement.textContent) > 0) {
-      window.location.href = "new-proposal.html";
+      window.location.href = "../pages/logged/new-proposal.html";
     } else {
       showToast("Você não tem propostas restantes.", "error");
     }
