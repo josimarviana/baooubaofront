@@ -13,6 +13,32 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  async function toggleUserRole(userId, revoke) {
+    try {
+      const response = await fetch(
+        `${config.api}/user/role/revoke-adm/${userId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+          },
+          body: JSON.stringify({ revoke }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.mensagem || "Erro ao alterar o cargo");
+      }
+
+      const successResponse = await response.json();
+      showToast(successResponse.mensagem, "success");
+      loadUsers();
+    } catch (error) {
+      showToast(error.message, "error");
+    }
+  }
   async function loadUsers(query = "", page = 0, size = 9, sort = "") {
     try {
       const response = await fetch(
@@ -123,6 +149,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .map((role) => roleMapping[role] || role)
         .join(", ");
 
+      const isAdmin = user.roles.includes("ROLE_ADMINISTRATOR");
+      const buttonText = isAdmin ? "Revogar ADM" : "Tornar ADM";
+      const revoke = isAdmin;
+      const textClass = revoke ? "text-danger" : "text-primary";
+
       row.innerHTML = `
         <td class="cell py-3">${user.id}</td>
         <td class="cell py-3">${user.name}</td>
@@ -139,8 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
               <i class="bi bi-three-dots-vertical"></i>
             </div>
             <ul class="dropdown-menu">
+              <li><a class="dropdown-item toggle-role ${textClass}" href="#" data-id="${
+        user.id
+      }" data-revoke="${revoke}">${buttonText}</a></li>
               <li><a class="dropdown-item" href="#">Desativar</a></li>
-              <li><a class="dropdown-item" href="#">Alterar Cargo</a></li>
             </ul>
           </div>
         </td>
@@ -148,8 +181,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       tableBody.appendChild(row);
     });
-  }
 
+    document.querySelectorAll(".toggle-role").forEach((element) => {
+      element.addEventListener("click", function (e) {
+        e.preventDefault();
+        const userId = this.getAttribute("data-id");
+        const revoke = this.getAttribute("data-revoke") === "true";
+        toggleUserRole(userId, revoke);
+      });
+    });
+  }
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.addEventListener("change", function () {
     const selectedOption = sortSelect.value;
