@@ -15,27 +15,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function toggleUserStatus(userId, isActive) {
     try {
-      const response = await fetch(`${config.api}/user/${userId}`, {
-        method: isActive ? "DELETE" : "PATCH",
+      const method = isActive ? "DELETE" : "PATCH";
+      const endpoint = `${config.api}/user/${userId}`;
+      const options = {
+        method,
         headers: {
           "Content-Type": isActive ? undefined : "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
         },
         body: isActive ? undefined : JSON.stringify({ active: true }),
-      });
-      
-      if (!response.ok) {
+      };
+
+      const response = await fetch(endpoint, options);
+
+      if (response.status === 204) {
+        showToast(
+          `Usuário ${isActive ? "desativado" : "reativado"} com sucesso.`,
+          "success"
+        );
+        loadUsers();
+      } else if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.mensagem || "Erro ao alterar o status");
+      } else {
+        const successResponse = await response.json();
+        showToast(successResponse.mensagem, "success");
+        loadUsers();
       }
-      const successResponse = await response.json();
-      showToast(successResponse.mensagem, "success");
-      loadUsers();
     } catch (error) {
       showToast(error.message, "error");
     }
   }
-
   async function toggleUserRole(userId, revoke) {
     try {
       const response = await fetch(
