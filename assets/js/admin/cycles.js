@@ -2,7 +2,7 @@ import config from "../environments/config.js";
 import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/cycle/filter";
+  const apiUrl = config.api + "/cycle";
   let cycles = [];
   let cycleIdToDeactivate = null;
   let cycleIdToActivate = null;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadCycles(query = "", page = 0, size = 9, sort = "") {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(
+        `${apiUrl}/filter?contain=${encodeURIComponent(
           query
         )}&page=${page}&size=${size}&sort=${sort}`,
         {

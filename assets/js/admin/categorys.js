@@ -2,7 +2,7 @@ import config from "../environments/config.js";
 import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/category/filter";
+  const apiUrl = config.api + "/category";
   let categories = [];
   let categoryIdToDeactivate = null;
   let categoryIdToReactivate = null;
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadCategories(query = "", page = 0, size = 9, sort = "") {
     try {
       const response = await fetch(
-        `${apiUrl}?contain=${encodeURIComponent(
+        `${apiUrl}/filter?contain=${encodeURIComponent(
           query
         )}&page=${page}&size=${size}&sort=${sort}`,
         {
