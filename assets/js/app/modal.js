@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const proposalModal = document.getElementById("proposalModal");
 
   if (!sessionStorage.getItem("jwt")) {
-    console.error("Usuário não autenticado. Redirecionando para o login.");
     window.location.href = "../errors/404.html";
     return;
   }
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateModalContent(data);
       await checkIfUserHasVoted(id);
     } catch (error) {
-      console.error("Erro ao carregar dados da proposta:", error);
+      showToast("Erro ao carregar dados da proposta", "error");
     }
   });
   proposalModal.addEventListener("hide.bs.modal", function () {
@@ -42,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageContainer = proposalModal.querySelector("#image-container");
     const proposalVideo = proposalModal.querySelector("#proposal-video");
 
-    // Limpa o conteúdo do modal
     modalTitle.textContent = "";
     proposalTitle.textContent = "";
     proposalDescription.textContent = "";
@@ -50,11 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
     proposalAuthor.textContent = "";
     proposalCategory.textContent = "";
 
-    // Remove a imagem e esconde o contêiner
     imageContainer.innerHTML = "";
     imageContainer.style.display = "none";
 
-    // Remove o vídeo e esconde o contêiner
     proposalVideo.innerHTML = "";
     proposalVideo.style.display = "none";
   }
@@ -68,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.mensagem || "Erro ao carregar proposta");
     }
 
     return await response.json();
@@ -184,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }),
       });
 
-     
       if (!response.ok) {
         const errorText = await response.text();
         let errorMessage = "Erro desconhecido";
@@ -247,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await fetchProposalData(currentProposalId);
       updateModalContent(data);
       updateVoteButton();
-      
+
       fetchVotingLimit();
 
       const modal = bootstrap.Modal.getInstance(proposalModal);
