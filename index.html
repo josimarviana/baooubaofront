@@ -80,107 +80,98 @@
     </header>
     <!--//header-->
 
-    <section class="hero-section py-3 py-md-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-6 pt-3 mb-5 mb-lg-0">
-            <h1 class="site-headline font-weight-bold mb-3">
-              Sua opinião conta!
-            </h1>
-            <div class="site-tagline mb-4">
-              Empoderamento e participação: Construindo juntos a nossa escola.
-              <br />
-              Contribua com propostas, vote e ajude a moldar o futuro da nossa
-              comunidade acadêmica.
-            </div>
-            <div class="cta-btns mb-lg-3">
-              <a href="pages/auth/login.html" class="btn btn-primary me-2 mb-3"
-                >Vote até dezembro, 2024</a
-              >
-            </div>
-          </div>
-          <div class="ol-12 col-lg-6 pt-3 mb-5 mb-lg-0">
-            <img
-              src="assets/images/gif.gif"
-              class="w-100 hero-figure mx-auto"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="page-header theme-bg-dark py-5 text-center position-relative">
-      <div class="theme-bg-shapes-right"></div>
-      <div class="theme-bg-shapes-left"></div>
-      <div class="container">
-        <h1 class="page-heading single-col-max mx-auto">Em Alta</h1>
-        <div class="page-intro single-col-max mx-auto">
-          Veja as propostas mais votadas no momento.
-        </div>
-      </div>
-    </div>
-    <!--//page-header-->
-    <div class="page-content">
-      <div class="container">
-        <div class="docs-overview py-5">
-          <div class="row justify-content-center">
-            <div id="card-container" class="row"></div>
-            <script type="module">
-              import config from "/assets/js/environments/config.js";
-              document.addEventListener("DOMContentLoaded", function () {
-                const apiUrl = config.api + "/proposal/trending";
+	<section class="hero-section py-3 py-md-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-6 pt-3 mb-5 mb-lg-0">
+					<h1 class="site-headline font-weight-bold mb-3">Sua opinião conta!</h1>
+					<div class="site-tagline mb-4">
+						Empoderamento e participação: Construindo juntos a nossa escola.
+						<br>
+						Contribua com propostas, vote e ajude a moldar o futuro da nossa comunidade acadêmica.
+					</div>
+					<div class="cta-btns mb-lg-3">
+						<a href="pages/auth/login.html" class="btn btn-primary me-2 mb-3">Vote até dezembro, 2024</a>
 
-                fetch(apiUrl)
-                  .then((response) => response.json())
-                  .then((data) => {
-                    const cardContainer =
-                      document.getElementById("card-container");
+					</div>
+				</div>
+				<div class="ol-12 col-lg-6 pt-3 mb-5 mb-lg-0">
+					<img src="assets/images/gif.gif" class="w-100 hero-figure mx-auto">
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="page-header theme-bg-dark py-5 text-center position-relative">
+		<div class="theme-bg-shapes-right"></div>
+		<div class="theme-bg-shapes-left"></div>
+		<div class="container">
+			<h1 class="page-heading single-col-max mx-auto">Em Alta</h1>
+			<div class="page-intro single-col-max mx-auto">Veja as propostas mais votadas no momento.</div>
 
-                    if (data.mensagem) {
-                      const apiMessage = document.createElement("div");
-                      apiMessage.className = "col-12 text-center py-3";
-                      apiMessage.innerHTML = `
-                        <div role="alert">
-                            Desculpe mas no momento <br>${data.mensagem}.
-                        </div>
-                    `;
-                      cardContainer.appendChild(apiMessage);
-                    } else {
-                      data.forEach((item) => {
-                        const newCard = document.createElement("div");
-                        newCard.className = "col-12 col-lg-4 py-3";
-                        newCard.innerHTML = `
-												<div class="card shadow-sm">
-													<div class="card-body">
-														<h5 class="card-title mb-3 d-flex">
-															<span class="theme-icon-holder card-icon-holder d-inline-block me-2">
-																<i class="${item.icon}"></i>                                                            
-															</span><!--//card-icon-holder-->
-															<span class="card-title-text align-self-center">${item.title}</span>
-														</h5>
-														<div class="card-text overflow-hidden" style="max-height: 5.6em;">
-															${item.description}
-														</div>
-														<a class="card-link-mask" href="pages/auth/login.html"></a>
-													</div><!--//card-body-->
-												</div><!--//card-->
-											`;
-                        cardContainer.appendChild(newCard);
-                      });
-                    }
-                  })
-                  .catch((error) => {
-                    console.error("Erro ao obter dados da API:", error);
-                  });
-              });
-            </script>
-          </div>
-          <!--//row-->
-        </div>
-        <!--//container-->
-      </div>
-      <!--//container-->
-    </div>
-    <!--//page-content-->
+		</div>
+	</div><!--//page-header-->
+	<div class="page-content">
+		<div class="container">
+			<div class="docs-overview py-5">
+				<div class="row justify-content-center">
+					<div id="card-container" class="row">
+
+					</div>
+					<script type="module">
+						import config from "/assets/js/environments/config.js"
+						document.addEventListener('DOMContentLoaded', function () {
+
+							const apiUrl = config.api + '/proposal/trending';
+
+
+							fetch(apiUrl)
+								.then((response) => response.json())
+								.then((data) => {
+									const cardContainer =
+										document.getElementById("card-container");
+
+									if (data.mensagem) {
+										const apiMessage = document.createElement("div");
+										apiMessage.className = "col-12 text-center py-3";
+										apiMessage.innerHTML = `
+								  <div role="alert">
+									  Desculpe mas no momento <br>${data.mensagem}.
+								  </div>
+							  `;
+										cardContainer.appendChild(apiMessage);
+									} else {
+										data.forEach((item) => {
+											const newCard = document.createElement("div");
+											newCard.className = "col-12 col-lg-4 py-3";
+											newCard.innerHTML = `
+														  <div class="card shadow-sm">
+															  <div class="card-body">
+																  <h5 class="card-title mb-3 d-flex">
+																	  <span class="theme-icon-holder card-icon-holder d-inline-block me-2">
+																		  <i class="${item.icon}"></i>                                                            
+																	  </span><!--//card-icon-holder-->
+																	  <span class="card-title-text align-self-center">${item.title}</span>
+																  </h5>
+																  <div class="card-text overflow-hidden" style="max-height: 5.6em;">
+																	  ${item.description}
+																  </div>
+																  <a class="card-link-mask" href="pages/auth/login.html"></a>
+															  </div><!--//card-body-->
+														  </div><!--//card-->
+													  `;
+											cardContainer.appendChild(newCard);
+										});
+									}
+								})
+								.catch((error) => {
+									console.error("Erro ao obter dados da API:", error);
+								});
+						});
+					</script>
+				</div><!--//row-->
+			</div><!--//container-->
+		</div><!--//container-->
+	</div><!--//page-content-->
 
     <section
       class="cta-section text-center py-5 theme-bg-dark position-relative"

@@ -1,5 +1,6 @@
 import config from "../environments/config.js";
 import showToast from "./toast.js";
+import { fetchProposalLimit } from "./proposal-limit.js";
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = `${config.api}/proposal/my-proposals`;
   const jwt = sessionStorage.getItem("jwt");
@@ -37,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
     cardContainer.innerHTML = "";
 
     data.forEach((item) => {
-        const newCard = document.createElement("div");
-        newCard.className = "col-12 col-lg-4";
-        newCard.innerHTML = `
+      const newCard = document.createElement("div");
+      newCard.className = "col-12 col-lg-4";
+      newCard.innerHTML = `
         <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
             <div class="app-card-header p-3 border-bottom-0">
                 <div class="row align-items-center gx-3">
@@ -88,10 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
         `;
-        cardContainer.appendChild(newCard);
+      cardContainer.appendChild(newCard);
     });
-}
-
+  }
 
   function handleDeleteButtonClick(event) {
     const button = event.target.closest(".delete-btn");
@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           modalInstance.hide();
           loadProposals();
+          fetchProposalLimit();
         } catch (error) {
           showToast(error.message, "error");
         }

@@ -50,7 +50,7 @@ loginForm.addEventListener("submit", async (event) => {
     const jwt = sessionStorage.getItem("jwt");
     const decodedToken = parseJwt(jwt);
     sessionStorage.setItem("roles", decodedToken.roles.join(", "));
-
+    
     loginForm.reset();
     window.location.href = "../../../pages/logged/home.html";
   } catch (error) {

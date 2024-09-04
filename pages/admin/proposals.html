@@ -2,351 +2,344 @@
 <html lang="pt-BR">
 
 <head>
-    <title>[ADM] Propostas - Bão ou Não</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[ADM] Propostas - Bão ou Não</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus">
-    <meta name="author" content="Cristian Alves Silva">
-    <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
-    <!-- FontAwesome JS -->
-    <script defer src="../../assets/fontawesome/js/all.min.js"></script>
-    <!-- App CSS-->
-    <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style">
-
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus" />
+  <meta name="author" content="Cristian Alves Silva" />
+  <link rel="shortcut icon" href="../../assets/images/BaoOuNao.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous" />
+  <!-- FontAwesome JS -->
+  <script defer src="../../assets/fontawesome/js/all.min.js"></script>
+  <!-- App CSS-->
+  <link rel="stylesheet" href="../../assets/css/auth/style.css" id="theme-style" />
 </head>
 
 <body class="app d-flex flex-column">
-    <header class="app-header fixed-top">
-        <div class="app-header-inner">
-            <div class="container-fluid py-3">
-                <div class="app-header-content">
-                    <div class="row justify-content-between align-items-center">
+  <header class="app-header fixed-top">
+    <div class="app-header-inner">
+      <div class="container-fluid py-3">
+        <div class="app-header-content">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+              <a href="#" id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                  <title>Menu</title>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                    d="M4 7h22M4 15h22M4 23h22"></path>
+                </svg>
+              </a>
+            </div>
+            <!--//col-->
 
-                        <div class="col-auto">
-                            <a href="#" id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
-                                    role="img">
-                                    <title>Menu</title>
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
-                                        stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
-                                </svg> </a>
-                        </div><!--//col-->
-
-
-                        <div class="app-utilities col-auto">
-
-                            <div class="app-utility-item app-user-dropdown dropdown">
-                                <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle"
-                                    data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                        class="bi bi-person-lines-fill icon" viewBox="0 0 16 16">
-                                        <path
-                                            d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
-                                    </svg>
-                                    <span id="user-name">
-
-                                    </span> </a>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                    <!-- <li><a class="dropdown-item" href="#">Conta</a></li>  
+            <div class="app-utilities col-auto">
+              <div class="app-utility-item app-user-dropdown dropdown">
+                <a class="dropdown-toggle no-toggle-arrow" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                  role="button" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                    class="bi bi-person-lines-fill icon" viewBox="0 0 16 16">
+                    <path
+                      d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                  </svg>
+                  <span id="user-name"> </span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                  <!-- <li><a class="dropdown-item" href="#">Conta</a></li>  
 
                                     <li><a class="dropdown-item" href="#">Configurações</a></li> 
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li> -->
-                                    <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
-                                </ul>
-                            </div><!--//app-user-dropdown-->
-                        </div><!--//app-utilities-->
-                    </div><!--//row-->
-                </div><!--//app-header-content-->
-            </div><!--//container-fluid-->
-        </div><!--//app-header-inner-->
-
-        <div id="app-sidepanel" class="app-sidepanel">
-            <div id="sidepanel-drop" class="sidepanel-drop"></div>
-            <div class="sidepanel-inner d-flex flex-column">
-                <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
-                <div class="app-branding">
-                    <a href="../logged/home.html" class="app-logo"><img src="../../assets/images/BaoOuNao.png"
-                            alt="logo" class="logo-icon">
-                        <span class="logo-text">Bão ou Não</span>
-                    </a>
-                </div><!--//app-branding-->
-
-                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-                    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                        <li class="nav-item">
-                            <a href="../logged/home.html" class="nav-link">
-                                <span class="nav-icon"><svg width="1em" height="1em" viewBox="0 0 16 16"
-                                        class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
-                                        <path fill-rule="evenodd"
-                                            d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-                                    </svg>
-                                </span>
-                                <span class="nav-link-text">Início</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
-                        <li class="nav-item"><a href="../logged/my-proposal.html" class="nav-link">
-                                <span class="nav-icon"> <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                        class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z" />
-                                        <path fill-rule="evenodd"
-                                            d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z" />
-                                    </svg>
-                                </span>
-                                <span class="nav-link-text">Minhas propostas</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="../logged/help.html">
-                                <span class="nav-icon">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
-                                    </svg>
-                                </span>
-                                <span class="nav-link-text">Ajuda</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->
-
-                        <li class="nav-item has-submenu">
-                            <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse"
-                                data-bs-target="#submenu-1" aria-expanded="false" aria-controls="#submenu-1">
-                                <span class="nav-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-shield-check" viewBox="0 0 16 16">
-                                        <path
-                                            d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
-                                        <path
-                                            d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0" />
-                                    </svg>
-                                </span>
-                                <span class="nav-link-text">Moderação</span>
-                                <span class="submenu-arrow">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </span><!--//subment-arrow-->
-                            </a><!--//nav-link-->
-
-
-                            <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
-                                <ul class="submenu-list list-unstyled">
-                                    <li class="submenu-item"><a href="./categorys.html"
-                                            class="submenu-link">Categorias</a></li>
-                                    <li class="submenu-item"><a href="./cycles.html" class="submenu-link">Ciclos</a>
-                                    </li>
-                                    <li class="submenu-item"><a href="./proposals.html"
-                                            class="submenu-link">Propostas</a>
-                                    </li>
-                                    <li class="submenu-item"><a href="./users.html" class="submenu-link">Usuários</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li><!--//nav-item-->
-
-
-                    </ul><!--//app-menu-->
-                </nav><!--//app-nav-main-->
-            </div><!--//sidepanel-inner-->
-        </div><!--//app-sidepanel-->
-    </header><!--//app-header-->
-
-    <div class="app-wrapper">
-        <div class="app-content pt-3 p-md p-lg-4">
-            <div class="container-xl">
-                <div class="row g-3 mb-4 align-items-center justify-content-between">
-                    <div class="col-auto">
-                        <h1 class="app-page-title mb-0">[ADM] - Propostas</h1>
-                    </div>
-                    <!--//col-auto-->
-                    <div class="col-auto">
-                        <div class="page-utilities">
-                            <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                                <div class="col-auto">
-                                    <form action="#" class="table-search-form row gx-1 align-items-center">
-                                        <div class="col-auto">
-                                            <input type="text" name="search-proposals" id="search-proposals"
-                                                class="form-control search-proposals" placeholder="Pesquisar">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn app-btn-secondary">Buscar</button>
-                                        </div>
-                                    </form>
-                                </div><!--//col-->
-
-                                <div class="col-auto">
-                                    <select class="form-select w=auto" id="sortSelect">
-                                        <option selected value="option-1">Tudo</option>
-                                        <option value="option-2">Mais recente</option>
-                                        <option value="option-3">Mais antigo</option>
-                                    </select>
-                                </div><!--//col-auto-->
-
-                            </div><!--//row-->
-                        </div><!--//page-utilities-->
-                    </div><!--//col-auto-->
-                </div>
-                <!--//row-->
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="logout()">Sair</a>
+                  </li>
+                </ul>
+              </div>
+              <!--//app-user-dropdown-->
             </div>
-            <!--//container-xl-->
+            <!--//app-utilities-->
+          </div>
+          <!--//row-->
         </div>
-        <!--//app-content-->
+        <!--//app-header-content-->
+      </div>
+      <!--//container-fluid-->
     </div>
-    <!--//app-wrapper-->
+    <!--//app-header-inner-->
 
-
-    <div class="app-wrapper">
-        <div class="app-content pt-3 p-md-3 p-lg-4">
-            <div class="container-xl">
-                <div class="row g-4" id="card-container">
-                    <!-- As novas propostas serão adicionadas aqui -->
-                </div>
-            </div>
-            <!--//container-xl-->
+    <div id="app-sidepanel" class="app-sidepanel">
+      <div id="sidepanel-drop" class="sidepanel-drop"></div>
+      <div class="sidepanel-inner d-flex flex-column">
+        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+        <div class="app-branding">
+          <a href="../logged/home.html" class="app-logo"><img src="../../assets/images/BaoOuNao.png" alt="logo"
+              class="logo-icon" />
+            <span class="logo-text">Bão ou Não</span>
+          </a>
         </div>
-        <!--//app-content-->
-    </div>
-    <!--//app-wrapper-->
+        <!--//app-branding-->
 
+        <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+          <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+            <li class="nav-item">
+              <a href="../logged/home.html" class="nav-link">
+                <span class="nav-icon"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
+                    <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Início</span> </a><!--//nav-link-->
+            </li>
+            <!--//nav-item-->
+            <li class="nav-item">
+              <a href="../logged/my-proposal.html" class="nav-link">
+                <span class="nav-icon">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z" />
+                    <path fill-rule="evenodd"
+                      d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Minhas propostas</span> </a><!--//nav-link-->
+            </li>
+            <!--//nav-item-->
+            <li class="nav-item">
+              <a class="nav-link" href="../logged/help.html">
+                <span class="nav-icon">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                      d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Ajuda</span> </a><!--//nav-link-->
+            </li>
+            <!--//nav-item-->
 
-    <div class="pagination-container d-flex justify-content-center my-4">
-        <nav aria-label="Page navigation">
-            <ul id="paginationContainer" class="pagination">
-                <!-- Os botões de paginação serão gerados dinamicamente aqui -->
-            </ul>
+            <li class="nav-item has-submenu">
+              <a href="#" class="nav-link submenu-toggle" data-bs-toggle="collapse" data-bs-target="#submenu-1"
+                aria-expanded="false" aria-controls="#submenu-1">
+                <span class="nav-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-shield-check" viewBox="0 0 16 16">
+                    <path
+                      d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
+                    <path
+                      d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Moderação</span>
+                <span class="submenu-arrow">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                  </svg> </span><!--//subment-arrow--> </a><!--//nav-link-->
+
+              <div class="collapse submenu submenu-1" id="submenu-1" data-bs-parent="#menu-accordion">
+                <ul class="submenu-list list-unstyled">
+                  <li class="submenu-item">
+                    <a href="./categorys.html" class="submenu-link">Categorias</a>
+                  </li>
+                  <li class="submenu-item">
+                    <a href="./cycles.html" class="submenu-link">Ciclos</a>
+                  </li>
+                  <li class="submenu-item">
+                    <a href="./proposals.html" class="submenu-link">Propostas</a>
+                  </li>
+                  <li class="submenu-item">
+                    <a href="./users.html" class="submenu-link">Usuários</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <!--//nav-item-->
+          </ul>
+          <!--//app-menu-->
         </nav>
+        <!--//app-nav-main-->
+      </div>
+      <!--//sidepanel-inner-->
     </div>
+    <!--//app-sidepanel-->
+  </header>
+  <!--//app-header-->
 
-
-    <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header align-items-center">
-                    <h5 class="modal-title" id="proposalModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!--//modal-header-->
-
-                <div class="modal-body position-relative">
-                    <div class="app-card app-card-proposal mb-4">
-                        <div class="app-card-header px-4 py-3">
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <h4 class="proposal-title mb-0" id="proposal-title"></h4>
-                                </div>
-                                <div class="col-12 col-lg-auto d-flex align-items-center">
-                                    <a href="#" class="text-action-links d-flex align-items-center">
-                                        <i class="fa-solid fa-thumbs-up me-1"></i>
-                                        <span id="proposal-likes"></span>
-                                    </a>
-                                </div>
-                                <div class="col-12 col-lg-auto ms-lg-auto d-flex align-items-center">
-                                    <span class="badge bg-info" id="proposal-category"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--//app-card-header-->
-
-                        <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container"
-                            style="display: none;">
-
-                        </div>
-
-
-                        <div class="app-card-body p-4">
-                            <div class="proposal-content" id="proposal-description">
-                                <!-- aqui vai a descrição da proposta -->
-                            </div>
-                            <div class="proposal-video d-flex justify-content-center align-items-center px-4 py-3"
-                                id="proposal-video" style="display: none;">
-
-                            </div>
-                            <hr>
-
-                            <div class="proposal-author" id="proposal-author">
-                                <!-- Aqui vai o autor da proposta -->
-                            </div>
-
-                            <hr>
-
-
-                        </div>
-                        <!--//app-card-body-->
+  <div class="app-wrapper">
+    <div class="app-content pt-3 p-md p-lg-4">
+      <div class="container-xl">
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+          <div class="col-auto">
+            <h1 class="app-page-title mb-0">[ADM] - Propostas</h1>
+          </div>
+          <!--//col-auto-->
+          <div class="col-auto">
+            <div class="page-utilities">
+              <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                <div class="col-auto">
+                  <form action="#" class="table-search-form row gx-1 align-items-center" id="searchForm">
+                    <div class="col-auto">
+                      <input type="text" name="search-proposals" id="search-proposals"
+                        class="form-control search-proposals" placeholder="Pesquisar" />
                     </div>
-                    <!--//app-card-->
-
-                    <!-- Spinner de loading -->
-                    <div id="loading-spinner" class="position-absolute top-50 start-50 translate-middle d-none">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn app-btn-secondary">
+                        Buscar
+                      </button>
                     </div>
+                  </form>
                 </div>
-                <!--//modal-body-->
+                <!--//col-->
+
+                <div class="col-auto">
+                  <select class="form-select w=auto" id="sortSelect">
+                    <option selected value="option-1">Tudo</option>
+                    <option value="recent">Mais recente</option>
+                    <option value="oldest">Mais antigo</option>
+                  </select>
+                </div>
+                <!--//col-auto-->
+              </div>
+              <!--//row-->
             </div>
-            <!--//modal-content-->
+            <!--//page-utilities-->
+          </div>
+          <!--//col-auto-->
         </div>
-        <!--//modal-dialog-->
+        <!--//row-->
+      </div>
+      <!--//container-xl-->
     </div>
+    <!--//app-content-->
+  </div>
+  <!--//app-wrapper-->
 
+  <div class="app-wrapper">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+      <div class="container-xl">
+        <div class="row g-4" id="card-container">
+          <!-- As novas propostas serão adicionadas aqui -->
+        </div>
+      </div>
+      <!--//container-xl-->
+    </div>
+    <!--//app-content-->
+  </div>
+  <!--//app-wrapper-->
+
+
+
+  <div class="modal fade" id="proposalModal" tabindex="-1" aria-labelledby="viewProposalModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title" id="proposalModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--//modal-header-->
+
+        <div class="modal-body position-relative">
+          <div class="app-card app-card-proposal mb-4">
+            <div class="app-card-header px-4 py-3">
+              <div class="row g-3">
+                <div class="col-12">
+                  <h4 class="proposal-title mb-0" id="proposal-title"></h4>
+                </div>
+                <div class="col-12 col-lg-auto d-flex align-items-center">
+                  <a href="#" class="text-action-links d-flex align-items-center">
+                    <i class="fa-solid fa-thumbs-up me-1"></i>
+                    <span id="proposal-likes"></span>
+                  </a>
+                </div>
+                <div class="col-12 col-lg-auto ms-lg-auto d-flex align-items-center">
+                  <span class="badge bg-info" id="proposal-category"></span>
+                </div>
+              </div>
+            </div>
+            <!--//app-card-header-->
+
+            <div class="d-flex justify-content-center align-items-center px-4 py-3" id="image-container"
+              style="display: none"></div>
+
+            <div class="app-card-body p-4">
+              <div class="proposal-content" id="proposal-description">
+                <!-- aqui vai a descrição da proposta -->
+              </div>
+              <div class="proposal-video d-flex justify-content-center align-items-center px-4 py-3" id="proposal-video"
+                style="display: none"></div>
+              <hr />
+
+              <div class="proposal-author" id="proposal-author">
+                <!-- Aqui vai o autor da proposta -->
+              </div>
+
+              <hr />
+            </div>
+            <!--//app-card-body-->
+          </div>
+          <!--//app-card-->
+        </div>
+        <!--//modal-body-->
+      </div>
+      <!--//modal-content-->
+    </div>
     <!--//modal-dialog-->
+  </div>
+  <!--//modal-dialog-->
 
-
-    <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050;">
-        <div class="toast-header">
-            <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body" id="toast-body">
-
-        </div>
+  <div class="toast position-fixed bottom-0 end-0 p-3" id="confirmationToast" style="z-index: 1050">
+    <div class="toast-header">
+      <strong class="me-auto"><i class="fa-regular fa-bell"></i> Notificação</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <footer class="footer mt-auto">
-        <div class="footer-bottom text-center py-5">
-            <small class="copyright">
-                Desenvolvido pelos alunos
-                <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves</a>,
-                <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>,
-                <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>,
-                <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
-                com orientações do Professor
-                <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
-                do IFTM Paracatu
-            </small>
-        </div>
-    </footer>
+    <div class="toast-body" id="toast-body"></div>
+  </div>
 
-    <!-- Javascript-->
-    <script src="../../assets/plugins/popper.min.js"></script>
-    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <div class="pagination-container d-flex justify-content-center my-4">
+    <nav aria-label="Page navigation">
+      <ul id="paginationContainer" class="pagination">
+        <!-- Os botões de paginação serão gerados dinamicamente aqui -->
+      </ul>
+    </nav>
+  </div>
 
+  <footer class="footer mt-auto">
+    <div class="footer-bottom text-center py-5">
+      <small class="copyright">
+        Desenvolvido pelos alunos
+        <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves</a>,
+        <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>,
+        <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>,
+        <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+        com orientações do Professor
+        <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
+        do IFTM Paracatu
+      </small>
+    </div>
+  </footer>
 
-    <!--Specific page Js-->
+  <!-- Javascript-->
+  <script src="../../assets/plugins/popper.min.js"></script>
+  <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="../../assets/js/app/app.js"></script>
-    <script type="module" src="../../assets/js/admin/proposals.js"></script>
-    <script type="module" src="../../assets/js/app/modal.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!--Specific page Js-->
 
-
+  <script src="../../assets/js/app/app.js"></script>
+  <script type="module" src="../../assets/js/admin/proposals.js"></script>
+  <script type="module" src="../../assets/js/admin/proposal-modal.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

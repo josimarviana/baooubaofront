@@ -2,7 +2,7 @@ import config from "../environments/config.js";
 import showToast from "../app/toast.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = config.api + "/cycle";
+  const apiUrl = config.api + "/cycle/filter";
   let cycles = [];
   let cycleIdToDeactivate = null;
   let cycleIdToActivate = null;
@@ -16,27 +16,102 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  async function loadCycles() {
+  async function loadCycles(query = "", page = 0, size = 9, sort = "") {
     try {
-      const response = await fetch(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-        },
-      });
+      const response = await fetch(
+        `${apiUrl}?contain=${encodeURIComponent(
+          query
+        )}&page=${page}&size=${size}&sort=${sort}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+          },
+        }
+      );
+
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.mensagem || "Erro ao carregar dados");
       }
-      cycles = await response.json();
+
+      const data = await response.json();
+      cycles = data.cycleEntityList;
       displayCycles(cycles);
+      updatePagination(data.currentPage, data.totalPages);
     } catch (error) {
       showToast(error.message, "error");
+    }
+  }
+  function updatePagination(currentPage, totalPages) {
+    const paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
+
+    if (currentPage > 0) {
+      const firstPageButton = document.createElement("li");
+      firstPageButton.className = "page-item";
+      firstPageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Primeira">Primeira</a>`;
+      firstPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadCycles("", 0);
+      });
+      paginationContainer.appendChild(firstPageButton);
+    }
+
+    if (currentPage > 0) {
+      const prevButton = document.createElement("li");
+      prevButton.className = "page-item";
+      prevButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Anterior">&laquo;</a>`;
+      prevButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadCycles("", currentPage - 1);
+      });
+      paginationContainer.appendChild(prevButton);
+    }
+
+    const startPage = Math.max(0, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const pageButton = document.createElement("li");
+      pageButton.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#">${
+        i + 1
+      }</a>`;
+      pageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadCycles("", i);
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const nextButton = document.createElement("li");
+      nextButton.className = "page-item";
+      nextButton.innerHTML = `<a class="btn app-btn-primary me-2" href="#" aria-label="Próxima">&raquo;</a>`;
+      nextButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadCycles("", currentPage + 1);
+      });
+      paginationContainer.appendChild(nextButton);
+    }
+
+    if (currentPage < totalPages - 1) {
+      const lastPageButton = document.createElement("li");
+      lastPageButton.className = "page-item";
+      lastPageButton.innerHTML = `<a class="btn app-btn-primary" href="#" aria-label="Última">Última</a>`;
+      lastPageButton.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        loadCycles("", totalPages - 1);
+      });
+      paginationContainer.appendChild(lastPageButton);
     }
   }
 
   function displayCycles(data) {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
+
+  
     data.forEach((cycle) => {
       const row = document.createElement("tr");
 
@@ -299,5 +374,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Date(dateString).toLocaleDateString("pt-BR", options);
   }
 
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", function () {
+    const sortCriteria = sortSelect.value;
+    const query = document.getElementById("search-cycles").value;
+    loadCycles(query, 0, 9, sortCriteria);
+  });
+
+  const searchForm = document.getElementById("searchForm");
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById("search-cycles").value;
+    const sortCriteria = sortSelect.value;
+    loadCycles(query, 0, 9, sortCriteria);
+  });
   loadCycles();
 });

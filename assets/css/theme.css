@@ -199,6 +199,24 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #15a362;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #01864a;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -12055,3 +12073,4 @@ a.text-link:hover {
     margin-left: 0;
   }
 }
+
