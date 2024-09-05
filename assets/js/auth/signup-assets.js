@@ -1,5 +1,5 @@
 import config from "../environments/config.js";
-import showToast from "../app/toast.js"; // Importa a função de toast
+import showToast from "../app/toast.js";
 
 const apiUrl = config.api + "/user";
 
@@ -65,9 +65,16 @@ signupForm.addEventListener("submit", async (event) => {
       window.location.href = "../../../pages/messages/email.html";
     } else {
       const errorResponse = await response.json();
-      throw new Error(errorResponse.mensagem || "Erro desconhecido");
+
+      let errorMessage = errorResponse.mensagem;
+      if (errorResponse.detalhes) {
+        const firstKey = Object.keys(errorResponse.detalhes)[0];
+        errorMessage = errorResponse.detalhes[firstKey];
+      }
+
+      throw new Error(errorMessage || "Erro desconhecido");
     }
   } catch (error) {
-    showToast(error.message, "error");
+    showToast(error, "error");
   }
 });
