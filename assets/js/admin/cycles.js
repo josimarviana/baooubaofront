@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.querySelector("#cycles-all tbody");
     tableBody.innerHTML = "";
 
-  
     data.forEach((cycle) => {
       const row = document.createElement("tr");
 
@@ -196,6 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function editCycle(cycleId, cycleData) {
+
+    console.log(cycleData);
     try {
       const response = await fetch(`${apiUrl}/${cycleId}`, {
         method: "PATCH",
@@ -210,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorResponse = await response.json();
         throw new Error(errorResponse.mensagem || "Erro ao atualizar ciclo");
       }
-
+      
       showToast("Ciclo atualizado com sucesso!", "success");
       loadCycles();
     } catch (error) {
