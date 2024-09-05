@@ -2,7 +2,6 @@ import config from "../environments/config.js";
 import showToast from "../app/toast.js";
 
 const apiUrl = config.api + "/user";
-
 document.getElementById("show-password").addEventListener("click", function () {
   var passwordField = document.getElementById("signup-password");
   var passwordIcon = document.getElementById("show-pass-icon");
@@ -19,9 +18,14 @@ document.getElementById("show-password").addEventListener("click", function () {
 });
 
 const signupForm = document.getElementById("signup-form");
+const submitButton = signupForm.querySelector('button[type="submit"]');
 
 signupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  submitButton.disabled = true;
+  submitButton.innerHTML = `
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cadastrando...`;
 
   const name = document.getElementById("signup-name").value;
   const email = document.getElementById("signup-email").value;
@@ -76,5 +80,11 @@ signupForm.addEventListener("submit", async (event) => {
     }
   } catch (error) {
     showToast(error, "error");
+    resetButton();
   }
 });
+
+function resetButton() {
+  submitButton.disabled = false;
+  submitButton.innerHTML = "Cadastrar-se";
+}

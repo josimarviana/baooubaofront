@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let proposalToDelete;
 
   if (!sessionStorage.getItem("jwt")) {
-    console.error("Usuário não autenticado. Redirecionando para o login.");
     window.location.href = "../errors/404.html";
     return;
   }

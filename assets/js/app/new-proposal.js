@@ -3,6 +3,11 @@ import showToast from "./toast.js";
 import { fetchProposalLimit } from "./proposal-limit.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!sessionStorage.getItem("jwt")) {
+    window.location.href = "../errors/404.html";
+    return;
+  }
+
   const form = document.getElementById("new-proposal-form");
   const apiUrl = config.api + "/proposal";
   const categorySelect = document.getElementById("categorySelect");
@@ -45,11 +50,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    if (!sessionStorage.getItem("jwt")) {
-      console.error("JWT não encontrado no sessionStorage");
-      return;
-    }
 
     const formData = new FormData(form);
 
