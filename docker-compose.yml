@@ -8,3 +8,4 @@ services:
       - ${FRONT_VOLUME}:/usr/share/nginx/html
     container_name: ${CONTAINER_NAME}
     network_mode: worknet
+    restart: unless-stopped
