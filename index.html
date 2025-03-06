@@ -1,149 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
-  <head>
-    <title>Bão ou Não</title>
 
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus"
-    />
-    <meta name="author" content="Cristian Alves Silva" />
-    <link rel="shortcut icon" href="assets/images/BaoOuNao.png" />
+<head>
+  <title>Bão ou Não</title>
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Sistema para que alunos, professores e colaboradores do IFTM possam sugerir e votar em novas propostas para seu campus" />
+  <meta name="author" content="Cristian Alves Silva" />
+  <link rel="shortcut icon" href="assets/images/BaoOuNao.png" />
 
-    <!-- FontAwesome JS-->
-    <script defer src="assets/fontawesome/js/all.min.js"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
 
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css" />
-  </head>
+  <!-- FontAwesome JS-->
+  <script defer src="assets/fontawesome/js/all.min.js"></script>
 
-  <body>
-    <header class="header fixed-top">
-      <div class="branding docs-branding">
-        <div class="container-fluid position-relative py-2">
-          <div class="docs-logo-wrapper">
-            <div class="site-logo">
-              <a class="navbar-brand" href="#"
-                ><img
-                  class="logo-icon me-2"
-                  src="assets/images/BaoOuNao.png"
-                  alt="logo"
-                  style="width: 50px"
-                /><span class="text-primary" style="font-size: 0.75em"
-                  >Bão<span class="logo-text"> ou </span></span
-                ><span class="text-danger" style="font-size: 0.75em"
-                  >Não</span
-                ></a
-              >
-            </div>
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="assets/css/theme.css" />
+</head>
+
+<body>
+  <header class="header fixed-top">
+    <div class="branding docs-branding">
+      <div class="container-fluid position-relative py-2">
+        <div class="docs-logo-wrapper">
+          <div class="site-logo">
+            <a class="navbar-brand" href="#"><img class="logo-icon me-2" src="assets/images/BaoOuNao.png" alt="logo"
+                style="width: 50px" /><span class="text-primary" style="font-size: 0.75em">Bão<span class="logo-text">
+                  ou </span></span><span class="text-danger" style="font-size: 0.75em">Não</span></a>
           </div>
-          <!--//docs-logo-wrapper-->
-          <div
-            class="docs-top-utilities d-flex justify-content-end align-items-center"
-          >
-            <ul
-              class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex"
-            >
-              <li class="list-inline-item">
-                <a href="https://www.instagram.com/iftmptu/" target="_blank"
-                  ><i class="fab fa-instagram fa-fw"></i
-                ></a>
-              </li>
-              <li class="list-inline-item">
-                <a
-                  href="https://www.facebook.com/IftmCampusParacatu"
-                  target="_blank"
-                  ><i class="fab fa-facebook fa-fw"></i
-                ></a>
-              </li>
-            </ul>
-            <!--//social-list-->
-            <a href="pages/auth/login.html" class="btn btn-danger d-lg-flex"
-              >Login</a
-            >
-          </div>
-          <!--//docs-top-utilities-->
         </div>
-        <!--//container-->
+        <!--//docs-logo-wrapper-->
+        <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+          <ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/iftmptu/" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/IftmCampusParacatu" target="_blank"><i
+                  class="fab fa-facebook fa-fw"></i></a>
+            </li>
+          </ul>
+          <!--//social-list-->
+          <a href="pages/auth/login.html" class="btn btn-danger d-lg-flex">Login</a>
+        </div>
+        <!--//docs-top-utilities-->
       </div>
-      <!--//branding-->
-    </header>
-    <!--//header-->
+      <!--//container-->
+    </div>
+    <!--//branding-->
+  </header>
+  <!--//header-->
 
-	<section class="hero-section py-3 py-md-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-lg-6 pt-3 mb-5 mb-lg-0">
-					<h1 class="site-headline font-weight-bold mb-3">Sua opinião conta!</h1>
-					<div class="site-tagline mb-4">
-						Empoderamento e participação: Construindo juntos a nossa escola.
-						<br>
-						Contribua com propostas, vote e ajude a moldar o futuro da nossa comunidade acadêmica.
-					</div>
-					<div class="cta-btns mb-lg-3">
-						<a href="pages/auth/login.html" class="btn btn-primary me-2 mb-3">Vote até dezembro, 2024</a>
+  <section class="hero-section py-3 py-md-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6 pt-3 mb-5 mb-lg-0">
+          <h1 class="site-headline font-weight-bold mb-3">Sua opinião conta!</h1>
+          <div class="site-tagline mb-4">
+            Empoderamento e participação: Construindo juntos a nossa escola.
+            <br>
+            Contribua com propostas, vote e ajude a moldar o futuro da nossa comunidade acadêmica.
+          </div>
+          <div class="cta-btns mb-lg-3">
+            <a href="pages/auth/login.html" class="btn btn-primary me-2 mb-3">Vote até dezembro, 2024</a>
 
-					</div>
-				</div>
-				<div class="ol-12 col-lg-6 pt-3 mb-5 mb-lg-0">
-					<img src="assets/images/gif.gif" class="w-100 hero-figure mx-auto">
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class="page-header theme-bg-dark py-5 text-center position-relative">
-		<div class="theme-bg-shapes-right"></div>
-		<div class="theme-bg-shapes-left"></div>
-		<div class="container">
-			<h1 class="page-heading single-col-max mx-auto">Em Alta</h1>
-			<div class="page-intro single-col-max mx-auto">Veja as propostas mais votadas no momento.</div>
+          </div>
+        </div>
+        <div class="ol-12 col-lg-6 pt-3 mb-5 mb-lg-0">
+          <img src="assets/images/gif.gif" class="w-100 hero-figure mx-auto">
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="page-header theme-bg-dark py-5 text-center position-relative">
+    <div class="theme-bg-shapes-right"></div>
+    <div class="theme-bg-shapes-left"></div>
+    <div class="container">
+      <h1 class="page-heading single-col-max mx-auto">Em Alta</h1>
+      <div class="page-intro single-col-max mx-auto">Veja as propostas mais votadas no momento.</div>
 
-		</div>
-	</div><!--//page-header-->
-	<div class="page-content">
-		<div class="container">
-			<div class="docs-overview py-5">
-				<div class="row justify-content-center">
-					<div id="card-container" class="row">
+    </div>
+  </div><!--//page-header-->
+  <div class="page-content">
+    <div class="container">
+      <div class="docs-overview py-5">
+        <div class="row justify-content-center">
+          <div id="card-container" class="row">
 
-					</div>
-					<script type="module">
-						import config from "/assets/js/environments/config.js"
-						document.addEventListener('DOMContentLoaded', function () {
+          </div>
+          <script type="module">
+            import config from "/assets/js/environments/config.js"
+            document.addEventListener('DOMContentLoaded', function () {
 
-							const apiUrl = config.api + '/proposal/trending';
+              const apiUrl = config.api + '/proposal/trending';
 
 
-							fetch(apiUrl)
-								.then((response) => response.json())
-								.then((data) => {
-									const cardContainer =
-										document.getElementById("card-container");
+              fetch(apiUrl)
+                .then((response) => response.json())
+                .then((data) => {
+                  const cardContainer =
+                    document.getElementById("card-container");
 
-									if (data.mensagem) {
-										const apiMessage = document.createElement("div");
-										apiMessage.className = "col-12 text-center py-3";
-										apiMessage.innerHTML = `
+                  if (data.mensagem) {
+                    const apiMessage = document.createElement("div");
+                    apiMessage.className = "col-12 text-center py-3";
+                    apiMessage.innerHTML = `
 								  <div role="alert">
 									  Desculpe mas no momento <br>${data.mensagem}.
 								  </div>
 							  `;
-										cardContainer.appendChild(apiMessage);
-									} else {
-										data.forEach((item) => {
-											const newCard = document.createElement("div");
-											newCard.className = "col-12 col-lg-4 py-3";
-											newCard.innerHTML = `
+                    cardContainer.appendChild(apiMessage);
+                  } else {
+                    data.forEach((item) => {
+                      const newCard = document.createElement("div");
+                      newCard.className = "col-12 col-lg-4 py-3";
+                      newCard.innerHTML = `
 														  <div class="card shadow-sm">
 															  <div class="card-body">
 																  <h5 class="card-title mb-3 d-flex">
@@ -159,85 +135,62 @@
 															  </div><!--//card-body-->
 														  </div><!--//card-->
 													  `;
-											cardContainer.appendChild(newCard);
-										});
-									}
-								})
-								.catch((error) => {
-									console.error("Erro ao obter dados da API:", error);
-								});
-						});
-					</script>
-				</div><!--//row-->
-			</div><!--//container-->
-		</div><!--//container-->
-	</div><!--//page-content-->
+                      cardContainer.appendChild(newCard);
+                    });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Erro ao obter dados da API:", error);
+                });
+            });
+          </script>
+        </div><!--//row-->
+      </div><!--//container-->
+    </div><!--//container-->
+  </div><!--//page-content-->
 
-    <section
-      class="cta-section text-center py-5 theme-bg-dark position-relative"
-    >
-      <div class="theme-bg-shapes-right"></div>
-      <div class="theme-bg-shapes-left"></div>
-      <div class="container">
-        <h3 class="mb-2 text-white mb-3">
-          Instituto Federal do Triângulo Mineiro <br />
-          Campus Paracatu
-        </h3>
-      </div>
-    </section>
-    <!--//cta-section-->
-    <div class="section-intro text-center mt-5 mb-3 single-col-max mx-auto">
-      Acesse o site oficial do
-      <a class="theme-link" href="https://iftm.edu.br/" target="_blank">IFTM</a>
-      para mais informações
+  <section class="cta-section text-center py-5 theme-bg-dark position-relative">
+    <div class="theme-bg-shapes-right"></div>
+    <div class="theme-bg-shapes-left"></div>
+    <div class="container">
+      <h3 class="mb-2 text-white mb-3">
+        Instituto Federal do Triângulo Mineiro <br />
+        Campus Paracatu
+      </h3>
     </div>
+  </section>
+  <!--//cta-section-->
+  <div class="section-intro text-center mt-5 mb-3 single-col-max mx-auto">
+    Acesse o site oficial do
+    <a class="theme-link" href="https://iftm.edu.br/" target="_blank">IFTM</a>
+    para mais informações
+  </div>
 
-    <footer class="footer mt-auto">
-      <div class="footer-bottom text-center py-5">
-        <small class="copyright">
-          Desenvolvido pelos alunos
-          <a class="theme-link" href="https://github.com/Krittz" target="_blank"
-            >Cristian Alves</a
-          >,
-          <a
-            class="theme-link"
-            href="https://github.com/ElisabeteXavier"
-            target="_blank"
-            >Elisabete Xavier</a
-          >,
-          <a
-            class="theme-link"
-            href="https://github.com/felipesoares-tech"
-            target="_blank"
-            >Felipe Soares</a
-          >,
-          <a
-            class="theme-link"
-            href="https://github.com/HyanLucas"
-            target="_blank"
-            >Hyan Lucas</a
-          >
-          com orientações do Professor
-          <a
-            class="theme-link"
-            href="https://github.com/josimarviana"
-            target="_blank"
-            >Josimar Viana</a
-          >
-          do IFTM Paracatu
-        </small>
-      </div>
-    </footer>
+  <footer class="footer mt-auto">
+    <div class="footer-bottom text-center py-5">
+      <small class="copyright">
+        Desenvolvido pelos alunos
+        <a class="theme-link" href="https://github.com/Krittz" target="_blank">Cristian Alves</a>,
+        <a class="theme-link" href="https://github.com/ElisabeteXavier" target="_blank">Elisabete Xavier</a>,
+        <a class="theme-link" href="https://github.com/felipesoares-tech" target="_blank">Felipe Soares</a>,
+        <a class="theme-link" href="https://github.com/HyanLucas" target="_blank">Hyan Lucas</a>
+        com orientações do Professor
+        <a class="theme-link" href="https://github.com/josimarviana" target="_blank">Josimar Viana</a>
+        do IFTM Paracatu
+      </small>
+    </div>
+  </footer>
 
-    <!-- Javascript -->
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Javascript -->
+  <script src="assets/plugins/popper.min.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Page Specific JS -->
-    <script src="assets/plugins/smoothscroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-    <script src="assets/js/highlight-custom.js"></script>
-    <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
-    <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
-  </body>
+  <!-- Page Specific JS -->
+  <script src="assets/plugins/smoothscroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+  <script src="assets/js/highlight-custom.js"></script>
+  <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+  <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+</body>
+
 </html>
